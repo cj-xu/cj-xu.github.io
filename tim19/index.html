@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 5px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+   text-align: center;
+  background: white;
+}
+
+.header h1 {
+  font-size: 28px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding-top: 3px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;;
+  margin-top: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  background-color: white;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding:5pt;
+}
+
+table#gt {
+  background: #f1f1f1;
+}
+
+table#mtt {
+  margin-top: 5px;
+  background: #f1f1f1;
+}
+
+table#abs {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding: 3pt;
+  margin-bottom: 10px;
+}
+
+table#abs tr:nth-child(even) {
+  background-color: white;
+}
+table#abs tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+ul li {
+  padding-bottom: 5px;
+}
+</style>
+<title>TYPES in Munich</title>
+</head>
+<body>
+
+<div class="header">
+  <h1>TYPES in Munich</h1>
+  <h4>Supported by the Junior Researcher Fund, <a href="http://www.en.uni-muenchen.de/about_lmu/research/excellence_initiative/index.html">LMUexcellent</a></h4>
+  <p>7 June 2019, Ludwig-Maximilians-Universit&auml;t M&uuml;nchen</p>
+</div>
+
+<div class="topnav">
+  <a href="#venue">Venue</a>
+  <a href="#programme">Programme</a>
+  <a href="#abstracts">Abstracts</a>
+  <a href="#registration">Registration</a>
+  <a href="http://cj-xu.github.io/" class="right">&#9993 Chuangjie Xu</a>
+</div>
+
+<div class="row">
+<div class="leftcolumn">
+
+<div id="venue" class="card">
+  <h3>Venue</h3>
+  Room B349<BR>
+  Mathematisches Institut, LMU M&uuml;nchen<BR>
+  Theresienstr. 39<BR>
+  D-80333 Munich
+</div>
+
+<div id="programme" class="card">
+  <h3>Programme</h3>
+  <table id="gt" width="100%">
+    <tbody>
+      <h4>Friday 07.06.2019</h4>
+      <tr>
+	<td width="17%">09:55</td>
+	<td width="80%">Opening</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="mtt" width="100%">
+    <tbody>
+      <tr>
+	<td width="17%">10:00 - 10:45</td>
+	<td width="80%"><b>Fredrik Nordvall Forsberg</b>: Open games in type theory</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="mtt" width="100%">
+    <tbody>
+      <tr>
+	<td width="17%">10:45 - 11:15</td>
+	<td width="80%">Coffee break</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="mtt" width="100%">
+    <tbody>
+      <tr>
+	<td width="17%">11:15 - 12:00</td>
+	<td width="80%"><b>Nicolai Kraus</b>: Homotopical ideas in type theory</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="mtt" width="100%">
+    <tbody>
+      <tr>
+	<td width="17%">12:00 - 14:30</td>
+	<td width="80%">Lunch break</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="mtt" width="100%">
+    <tbody>
+      <tr>
+	<td width="17%">14:30 - 15:15</td>
+	<td width="80%"><b>Iosif Petrakis</b>: Types and Bishop sets</td>
+      </tr>
+      <tr>
+	<td width="17%">15:15 - 16:00</td>
+	<td width="80%"><b>Burak Ekici</b>: Univalent Typoids in Coq</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="mtt" width="100%">
+    <tbody>
+      <tr>
+	<td width="17%">16:00 - 16:30</td>
+	<td width="80%">Coffee break</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="mtt" width="100%">
+    <tbody>
+      <tr>
+	<td width="17%">16:30 - 17:15</td>
+	<td width="80%"><b>Gidon Ernst</b>: Applications of type theory for software verification</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="abstracts" class="card">
+  <h3>Abstracts</h3>
+  <table id="abs" width="100%">
+    <tbody>
+      <tr>
+	<td><b>Fredrik Nordvall Forsberg</b>: <em>Open games in type theory</em></td>
+      </tr>
+      <tr>
+	<td>
+	  Open games is a model of economic game theory, whose purpose
+	  is to enable a compositional framework, where complex games
+	  can be constructed by plugging together smaller,
+	  well-understood games.  This is achieved by equipping games
+	  with open "ports" for communicating with their environment,
+	  heavily inspired by techniques from basic category
+	  theory. After giving a gentle introduction to the above, I
+	  will argue that it is advantageous to move to a framework of
+	  open games incorporating dependent types, both for accurate
+	  modelling of economic games, and for mathematical
+	  reasons. This also brings up type-theoretical issues such as
+	  uniform function spaces that might be of independent
+	  interest.
+	</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="abs" width="100%">
+    <tbody>
+      <tr>
+	<td><b>Nicolai Kraus</b>: <em>Homotopical ideas in type theory</em></td>
+      </tr>
+      <tr>
+	<td>
+	  I will explain basic concepts of homotopy type theory, and
+	  demonstrate which way of reasoning these ideas encourage. As
+	  a concrete example, I will show two different looking but
+	  equivalent implementations of the concept of a group: first,
+	  as a tuple (G,comp,id,inv,...), which is the standard
+	  representation; and second, as a pointed connected
+	  1-truncated type, which is the "homotopy type theory
+	  representation".
+	</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="abs" width="100%">
+    <tbody>
+      <tr>
+	<td><b>Iosif Petrakis</b>: <em>Types and Bishop sets</em></td>
+      </tr>
+      <tr>
+	<td>
+	  The standard way of formalizing a Bishop set is through the
+	  notion of a setoid in intensional Martin-Loef type
+	  theory. We explain why this formalization is not faithful,
+	  in Feferman's sense, and we briefly describe BST, a faithful
+	  reconstruction of Bishop's theory of sets. As an application
+	  to constructive topology, we use the corresponding theory of
+	  set-indexed families of sets and subsets in the study of
+	  spectra of Bishop spaces and their limits.
+	</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="abs" width="100%">
+    <tbody>
+      <tr>
+	<td><b>Burak Ekici</b>: <em>Univalent Typoids in Coq</em></td>
+      </tr>
+      <tr>
+	<td>
+	  In this talk I will give an overview of (univalent)
+	  typoids, Coq and my representation of the former into the
+	  latter.
+	</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="abs" width="100%">
+    <tbody>
+      <tr>
+	<td><b>Gidon Ernst</b>: <em>Applications of type theory for software verification</em></td>
+      </tr>
+      <tr>
+	<td>
+	  In software verification one aims to prove strong functional
+	  properties about programs. It is natural to view this
+	  problem as one of constructive mathematics, via the
+	  well-known interpretation of proofs as programs and types as
+	  specifications. This approach is not only theoretically
+	  elegant but works well in practice, too. However, the
+	  influence of type theory on state-of-the-art verification
+	  tools is often not quite obvious &#8208; ideas are selectively
+	  adapted and integrated into the respective methodology of
+	  such tools. We will take a tour to review and discuss a few
+	  examples.
+	</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="registration" class="card">
+  <h3>Registration</h3>
+  <p>There is no registration fee. But to aid planning, please contact
+  Chuangjie Xu (<a href="mailto:xu@math.lmu.de">xu@math.lmu.de</a>) if
+  you're interested in participating in the workshop.</p>
+</div>  
+
+</div>
+</div>
+
+<div class="footer">
+  <a href="http://cj-xu.github.io/">Chuangjie Xu</a><BR><BR>
+  Last modified: Tue 4th June 2019
+</div>
+
+</body>
+</html>
