@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 5px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+   text-align: center;
+  background: white;
+}
+
+.header h1 {
+  font-size: 28px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  background-color: #f1f1f1;
+  padding-left: 10px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding-top: 3px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;;
+  margin-top: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  background-color: white;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding:5pt;
+}
+
+table#gt {
+  background: #f1f1f1;
+}
+
+table#mtt {
+  margin-top: 5px;
+  background: #f1f1f1;
+}
+
+table#abs {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding: 3pt;
+  margin-bottom: 10px;
+}
+
+table#abs tr:nth-child(even) {
+  background-color: white;
+}
+table#abs tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+ul li {
+  padding-bottom: 5px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Arbeitstagung Bern-M&uuml;nchen, ABM Spring 2019</h1>
+  <p>May 2-3, 2019, Ludwig-Maximilians-Universit&auml;t M&uuml;nchen</p>
+</div>
+
+<div class="topnav">
+  <a href="#venue">Venue</a>
+  <a href="#programme">Programme</a>
+  <a href="#abstracts">Abstracts</a>
+  <a href="#accommodation">Accommodation</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div id="venue" class="card">
+      <h3>Venue</h3>
+      Room B349<BR>
+      Mathematisches Institut, LMU M&uuml;nchen<BR>
+      Theresienstr. 39<BR>
+      D-80333 Munich
+    </div>
+    <div id="programme" class="card">
+      <h3>Programme</h3>
+      <table id="gt" width="100%">
+	<tbody>
+	  <h4>Wednesday 01.05.2019</h4>
+	  <tr>
+	    <td width="15%">19:00</td>
+	    <td width="80%">Welcome dinner at <a href="https://www.atzingermuenchen.de/" target="_blank">Atzinger</a>, Schellingstr. 9</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="gt" width="100%">
+        <tbody>
+	  <h4>Thursday 02.05.2019</h4>
+          <tr>
+	    <td width="15%">09:25</td>
+	    <td width="80%">Opening</td>
+	  </tr>
+          <tr>
+	    <td width="15%">09:30 - 10:15</td>
+	    <td width="80%"><b>Klaus Mainzer</b>: From Proof Theory to Proof Assistants: Challenges of Responsible Software and AI (<a href="mainzer.pdf">slides</a>)</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="mtt" width="100%">
+	<tbody>
+	  <tr>
+	    <td width="15%">10:15 - 10:45</td>
+	    <td width="80%">Coffee break</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="mtt" width="100%">
+        <tbody>
+          <tr>
+	    <td width="15%">10:45 - 11:30</td>
+	    <td width="80%"><b>Chuangjie Xu</b>: Ordinal Notations via Simultaneous Definitions (<a href="xu.pdf">slides</a>)</td>
+	  </tr>
+          <tr>
+	    <td width="15%">11:30 - 12:15</td>
+	    <td width="80%"><b>Franziskus Wiesnet</b>: An Algorithmic Approach for Maximal Objects in Algebra</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="mtt" width="100%">
+	<tbody>
+	  <tr>
+	    <td width="15%">12:15 - 15:00</td>
+	    <td width="80%">Lunch break</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="mtt" width="100%">
+        <tbody>
+          <tr>
+	    <td width="15%">15:00 - 15:45</td>
+	    <td width="80%"><b>Gerhard J&auml;ger</b>: Predicative
+  Hierarchies (<a href="jaeger.pdf">slides</a>)</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="mtt" width="100%">
+	<tbody>
+	  <tr>
+	    <td width="15%">15:45 - 16:15</td>
+	    <td width="80%">Coffee break</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="mtt" width="100%">
+        <tbody>
+          <tr>
+	    <td width="15%">16:15 - 17:00</td>
+	    <td width="80%"><b>Michael B&auml;rtschi</b>: Parameter-Free Versions of ATR&#8320; and Related Theories (<a href="baertschi.pdf">slides</a>)</td>
+	  </tr>
+          <tr>
+	    <td width="15%">17:00 - 17:45</td>
+	    <td width="80%"><b>Lukas Jaun</b>: Category Theory in Explicit Mathematics (<a href="jaun.pdf">slides</a>)</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="mtt" width="100%">
+	<tbody>
+	  <tr>
+	    <td width="15%">19:00</td>
+	    <td width="80%">Dinner at <a href="https://los-faroles-muenchen.xregional.de/" target="_blank">Los Faroles</a>, Nordendstr. 26</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="gt" width="100%">
+        <tbody>
+	  <h4>Friday 03.05.2019</h4>
+          <tr>
+	    <td width="15%">09:30 - 10:15</td>
+	    <td width="80%"><b>Peter Hertling</b>: Trees Describing Wadge Degrees and Topological Weihrauch Degrees of Multivalued Functions (<a href="hertling.pdf">slides</a>)</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="mtt" width="100%">
+	<tbody>
+	  <tr>
+	    <td width="15%">10:15 - 10:45</td>
+	    <td width="80%">Coffee break</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="mtt" width="100%">
+        <tbody>
+          <tr>
+	    <td width="15%">10:45 - 11:30</td>
+	    <td width="80%"><b>Iosif Petrakis</b>: Categories and Bishop Sets (<a href="petrakis.pdf">slides</a>)</td>
+	  </tr>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+    <div id="abstracts" class="card">
+      <h3>Abstracts</h3>
+      <table id="abs" width="100%">
+	<tbody>
+	  <tr>
+	    <td><b>Michael B&auml;rtschi</b>: <em>Parameter-Free Versions of ATR&#8320; and Related Theories</em></td>
+	  </tr>
+	  <tr>
+	    <td>Working in ACA&#8320; as our base theory, we will discuss relations among set parameter-free versions of ATR&#8320; and analogous variants of FP&#8320;. While this restriction is not significant for ATR&#8320;, the set parameter-free versions of FP&#8320; exhibit reduced proof-theoretic strength. This can be shown by considering parameter-free variants of arithmetic transfinite recursion with limited height.
+</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="abs" width="100%">
+	<tbody>
+	  <tr>
+	    <td><b>Peter Hertling</b>: <em>Trees Describing Wadge Degrees and Topological Weihrauch Degrees of Multivalued Functions</em></td>
+	  </tr>
+	  <tr>
+	    <td>We introduce notions of continuous strong Weihrauch reducibility and of continuous Weihrauch reducibility for functions with range in a preordered set. Then we associate with such functions certain labeled forests and trees and show that Wadge reducibility, continuous strong Weihrauch reducibility and continuous Weihrauch reducibility between such functions can be characterized by suitable reducibility relations between the associated forests when they are defined. This leads to a combinatorial description of the initial segments of these three hierarchies for those functions defined on the Baire space that have countable range in a bqo set and that are Sigma_2^0-measurable with respect to the reverse Alexandroff topology on the bqo set. Furthermore, we show that the characterization of the topological reducibility relations for bqo-valued functions can be used in order to obtain a similar characterization for the usual Wadge reducibility relation, the continuous strong Weihrauch reducibility relation, and the continuous Weihrauch reducibility relation for multi-valued functions with finite range.</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="abs" width="100%">
+	<tbody>
+	  <tr>
+	    <td><b>Lukas Jaun</b>: <em>Category Theory in Explicit Mathematics</em></td>
+	  </tr>
+	  <tr>
+	    <td>I will give an overview of three candidates for the category of sets in explicit mathematics and describe some notions of universes in this setting.</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="abs" width="100%">
+	<tbody>
+	  <tr>
+	    <td><b>Iosif Petrakis</b>: <em>Categories and Bishop Sets</em></td>
+	  </tr>
+	  <tr>
+	    <td>The influence of category theory to Bishop's set theory is found in the definition of a subset, and in Richman's notion of a family of objects of a category indexed by a set. As a special case, a set-indexed family of Bishop sets is a functor between the corresponding categories. We examine the relation between the equality defined on a totality and its corresponding category, and we prove, as in the case of Martin-L&ouml;f type theory (MLTT), a Yoneda  lemma for set-indexed families of Bishop sets, and also for directed families of Bishop sets. Finally, we discuss a possible variation to Palmgren's theory CETCS, a constructive and predicative version of Lawvere's Elementary Theory of the Category of Sets (ETCS), which is obtained abstracting on category-theoretic properties of setoids in a universe in MLTT.</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="abs" width="100%">
+	<tbody>
+	  <tr>
+	    <td><b>Chuangjie Xu</b>: <em>Ordinal Notations via Simultaneous Definitions</em></td>
+	  </tr>
+	  <tr>
+	    <td>We define an ordinal notation system simultaneously with its ordering. Our simultaneous definitions generate only the ordinal terms in Cantor normal form which are in one-to-one correspondence with the ordinals below &epsilon;&#8320;. We implement the ordinal notation system as inductive-inductive-recursive definitions in the Agda proof assistant.</td>
+	  </tr>
+	</tbody>
+      </table>
+      <table id="abs" width="100%">
+	<tbody>
+	  <tr>
+	    <td><b>Franziskus Wiesnet</b>: <em>An Algorithmic Approach for Maximal Objects in Algebra</em></td>
+	  </tr>
+	  <tr>
+	    <td>The existence of ideal objects, such as maximal ideals in nonzero rings, plays a crucial role in commutative algebra. These are typically justified using Zorn's lemma, and thus pose a challenge from a computational point of view. We take an alternative approach based on Kreisel's no counterexample interpretation and sequential algorithms. We first give a computational interpretation to an abstract maximality principle in the countable setting via an intuitive, state based algorithm. We then carry out a concrete case study, in which we give an exact algorithmic account of the result that in any commutative ring, the intersection of all prime ideals is contained in its nilradical.</td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+    <div id="accommodation" class="card">
+      <h3>Accommodation</h3>
+      <p><a href="https://www.antares-muenchen.de/" target="_blank">Hotel Antares</a></p>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <p>
+      <a href="http://www.inf.unibe.ch/research/ltg/index_eng.html" target="_blank">Logic and Theory Group</a><BR>
+      Universit&auml;t Bern
+      </p>
+      <p>
+      <a
+    href="http://www.mathematik.uni-muenchen.de/forschung/arbeitsgruppen/logik/index.html" target="_blank">Mathematische Logik</a><BR>
+      LMU M&uuml;nchen
+      </p>
+    </div>
+    <div class="card">
+      <h3>Contact</h3>
+      <p><a href="http://cj-xu.github.io/">Chuangjie Xu</a> <a href="mailto:xu@math.lmu.de">&#9993</a></p>
+    </div>
+    <div class="card">
+      <h3>Past ABM meetings</h3>
+      <ul>
+	<li><a href="http://gj65.inf.unibe.ch/" target="_blank">Winter 2018</a></li>
+	<li><a href="http://abm.inf.unibe.ch/" target="_blank">Spring 2018</a></li>
+	<li><a href="http://www.math.lmu.de/~petrakis/ABM17.php" target="_blank">Winter 2017</a></li>
+	<li><a href="http://ost17.inf.unibe.ch/" target="_blank">Spring 2017</a></li>
+	<li><a href="http://www.math.lmu.de/~karadais/abm-2016.php" target="_blank">Winter 2016</a></li>
+	<li><a href="https://sites.google.com/site/bernmuenchen/" target="_blank">Spring 2016</a></li>
+	<li>...</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Last modified: Tue 14th May 2019
+</div>
+
+</body>
+</html>
