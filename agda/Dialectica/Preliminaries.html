@@ -1,0 +1,3630 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >Preliminaries</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1" class="Comment"
+      >Chuangjie Xu, January 2016</a
+      ><a name="27"
+      >
+
+</a
+      ><a name="29" class="Comment"
+      >We define some neccessary preliminaries for the exploration of the</a
+      ><a name="95"
+      >
+</a
+      ><a name="96" class="Comment"
+      >Dialectica interpretation.</a
+      ><a name="122"
+      >
+
+\begin{code}
+
+</a
+      ><a name="138" class="Keyword"
+      >module</a
+      ><a name="144"
+      > </a
+      ><a name="145" href="Preliminaries.html#1" class="Module"
+      >Preliminaries</a
+      ><a name="158"
+      > </a
+      ><a name="159" class="Keyword"
+      >where</a
+      ><a name="164"
+      >
+
+</a
+      ><a name="166" class="Keyword"
+      >open</a
+      ><a name="170"
+      > </a
+      ><a name="171" class="Keyword"
+      >import</a
+      ><a name="177"
+      > </a
+      ><a name="178" href="Agda.Primitive.html#1" class="Module"
+      >Agda.Primitive</a
+      ><a name="192"
+      > </a
+      ><a name="193" class="Keyword"
+      >using</a
+      ><a name="198"
+      > </a
+      ><a name="199" class="Symbol"
+      >(</a
+      ><a name="200"
+      >Level </a
+      ><a name="206" class="Symbol"
+      >;</a
+      ><a name="207"
+      > lzero </a
+      ><a name="214" class="Symbol"
+      >;</a
+      ><a name="215"
+      > lsuc </a
+      ><a name="221" class="Symbol"
+      >;</a
+      ><a name="222"
+      > _&#8852;_</a
+      ><a name="226" class="Symbol"
+      >)</a
+      ><a name="227"
+      >
+
+\end{code}
+
+</a
+      ><a name="241" class="Comment"
+      >Function composition</a
+      ><a name="261"
+      >
+
+\begin{code}
+
+</a
+      ><a name="277" class="Keyword"
+      >infixl</a
+      ><a name="283"
+      > </a
+      ><a name="284" class="Number"
+      >30</a
+      ><a name="286"
+      > _&#8728;_ 
+
+</a
+      ><a name="293" href="Preliminaries.html#293" class="Function Operator"
+      >_&#8728;_</a
+      ><a name="296"
+      > </a
+      ><a name="297" class="Symbol"
+      >:</a
+      ><a name="298"
+      > </a
+      ><a name="299" class="Symbol"
+      >{</a
+      ><a name="300" href="Preliminaries.html#300" class="Bound"
+      >i</a
+      ><a name="301"
+      > </a
+      ><a name="302" href="Preliminaries.html#302" class="Bound"
+      >j</a
+      ><a name="303"
+      > </a
+      ><a name="304" href="Preliminaries.html#304" class="Bound"
+      >k</a
+      ><a name="305"
+      > </a
+      ><a name="306" class="Symbol"
+      >:</a
+      ><a name="307"
+      > </a
+      ><a name="308" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="313" class="Symbol"
+      >}</a
+      ><a name="314"
+      > </a
+      ><a name="315" class="Symbol"
+      >{</a
+      ><a name="316" href="Preliminaries.html#316" class="Bound"
+      >X</a
+      ><a name="317"
+      > </a
+      ><a name="318" class="Symbol"
+      >:</a
+      ><a name="319"
+      > </a
+      ><a name="320" class="PrimitiveType"
+      >Set</a
+      ><a name="323"
+      > </a
+      ><a name="324" href="Preliminaries.html#300" class="Bound"
+      >i</a
+      ><a name="325" class="Symbol"
+      >}</a
+      ><a name="326"
+      > </a
+      ><a name="327" class="Symbol"
+      >{</a
+      ><a name="328" href="Preliminaries.html#328" class="Bound"
+      >Y</a
+      ><a name="329"
+      > </a
+      ><a name="330" class="Symbol"
+      >:</a
+      ><a name="331"
+      > </a
+      ><a name="332" href="Preliminaries.html#316" class="Bound"
+      >X</a
+      ><a name="333"
+      > </a
+      ><a name="334" class="Symbol"
+      >&#8594;</a
+      ><a name="335"
+      > </a
+      ><a name="336" class="PrimitiveType"
+      >Set</a
+      ><a name="339"
+      > </a
+      ><a name="340" href="Preliminaries.html#302" class="Bound"
+      >j</a
+      ><a name="341" class="Symbol"
+      >}</a
+      ><a name="342"
+      > </a
+      ><a name="343" class="Symbol"
+      >{</a
+      ><a name="344" href="Preliminaries.html#344" class="Bound"
+      >Z</a
+      ><a name="345"
+      > </a
+      ><a name="346" class="Symbol"
+      >:</a
+      ><a name="347"
+      > </a
+      ><a name="348" class="Symbol"
+      >(</a
+      ><a name="349" href="Preliminaries.html#349" class="Bound"
+      >x</a
+      ><a name="350"
+      > </a
+      ><a name="351" class="Symbol"
+      >:</a
+      ><a name="352"
+      > </a
+      ><a name="353" href="Preliminaries.html#316" class="Bound"
+      >X</a
+      ><a name="354" class="Symbol"
+      >)</a
+      ><a name="355"
+      > </a
+      ><a name="356" class="Symbol"
+      >&#8594;</a
+      ><a name="357"
+      > </a
+      ><a name="358" href="Preliminaries.html#328" class="Bound"
+      >Y</a
+      ><a name="359"
+      > </a
+      ><a name="360" href="Preliminaries.html#349" class="Bound"
+      >x</a
+      ><a name="361"
+      > </a
+      ><a name="362" class="Symbol"
+      >&#8594;</a
+      ><a name="363"
+      > </a
+      ><a name="364" class="PrimitiveType"
+      >Set</a
+      ><a name="367"
+      > </a
+      ><a name="368" href="Preliminaries.html#304" class="Bound"
+      >k</a
+      ><a name="369" class="Symbol"
+      >}</a
+      ><a name="370"
+      > </a
+      ><a name="371" class="Symbol"
+      >&#8594;</a
+      ><a name="372"
+      >
+      </a
+      ><a name="379" class="Symbol"
+      >({</a
+      ><a name="381" href="Preliminaries.html#381" class="Bound"
+      >x</a
+      ><a name="382"
+      > </a
+      ><a name="383" class="Symbol"
+      >:</a
+      ><a name="384"
+      > </a
+      ><a name="385" href="Preliminaries.html#316" class="Bound"
+      >X</a
+      ><a name="386" class="Symbol"
+      >}</a
+      ><a name="387"
+      > </a
+      ><a name="388" class="Symbol"
+      >&#8594;</a
+      ><a name="389"
+      > </a
+      ><a name="390" class="Symbol"
+      >(</a
+      ><a name="391" href="Preliminaries.html#391" class="Bound"
+      >y</a
+      ><a name="392"
+      > </a
+      ><a name="393" class="Symbol"
+      >:</a
+      ><a name="394"
+      > </a
+      ><a name="395" href="Preliminaries.html#328" class="Bound"
+      >Y</a
+      ><a name="396"
+      > </a
+      ><a name="397" href="Preliminaries.html#381" class="Bound"
+      >x</a
+      ><a name="398" class="Symbol"
+      >)</a
+      ><a name="399"
+      > </a
+      ><a name="400" class="Symbol"
+      >&#8594;</a
+      ><a name="401"
+      > </a
+      ><a name="402" href="Preliminaries.html#344" class="Bound"
+      >Z</a
+      ><a name="403"
+      > </a
+      ><a name="404" href="Preliminaries.html#381" class="Bound"
+      >x</a
+      ><a name="405"
+      > </a
+      ><a name="406" href="Preliminaries.html#391" class="Bound"
+      >y</a
+      ><a name="407" class="Symbol"
+      >)</a
+      ><a name="408"
+      > </a
+      ><a name="409" class="Symbol"
+      >&#8594;</a
+      ><a name="410"
+      > </a
+      ><a name="411" class="Symbol"
+      >(</a
+      ><a name="412" href="Preliminaries.html#412" class="Bound"
+      >f</a
+      ><a name="413"
+      > </a
+      ><a name="414" class="Symbol"
+      >:</a
+      ><a name="415"
+      > </a
+      ><a name="416" class="Symbol"
+      >(</a
+      ><a name="417" href="Preliminaries.html#417" class="Bound"
+      >x</a
+      ><a name="418"
+      > </a
+      ><a name="419" class="Symbol"
+      >:</a
+      ><a name="420"
+      > </a
+      ><a name="421" href="Preliminaries.html#316" class="Bound"
+      >X</a
+      ><a name="422" class="Symbol"
+      >)</a
+      ><a name="423"
+      > </a
+      ><a name="424" class="Symbol"
+      >&#8594;</a
+      ><a name="425"
+      > </a
+      ><a name="426" href="Preliminaries.html#328" class="Bound"
+      >Y</a
+      ><a name="427"
+      > </a
+      ><a name="428" href="Preliminaries.html#417" class="Bound"
+      >x</a
+      ><a name="429" class="Symbol"
+      >)</a
+      ><a name="430"
+      > </a
+      ><a name="431" class="Symbol"
+      >&#8594;</a
+      ><a name="432"
+      >
+      </a
+      ><a name="439" class="Symbol"
+      >(</a
+      ><a name="440" href="Preliminaries.html#440" class="Bound"
+      >x</a
+      ><a name="441"
+      > </a
+      ><a name="442" class="Symbol"
+      >:</a
+      ><a name="443"
+      > </a
+      ><a name="444" href="Preliminaries.html#316" class="Bound"
+      >X</a
+      ><a name="445" class="Symbol"
+      >)</a
+      ><a name="446"
+      > </a
+      ><a name="447" class="Symbol"
+      >&#8594;</a
+      ><a name="448"
+      > </a
+      ><a name="449" href="Preliminaries.html#344" class="Bound"
+      >Z</a
+      ><a name="450"
+      > </a
+      ><a name="451" href="Preliminaries.html#440" class="Bound"
+      >x</a
+      ><a name="452"
+      > </a
+      ><a name="453" class="Symbol"
+      >(</a
+      ><a name="454" href="Preliminaries.html#412" class="Bound"
+      >f</a
+      ><a name="455"
+      > </a
+      ><a name="456" href="Preliminaries.html#440" class="Bound"
+      >x</a
+      ><a name="457" class="Symbol"
+      >)</a
+      ><a name="458"
+      >
+</a
+      ><a name="459" href="Preliminaries.html#459" class="Bound"
+      >g</a
+      ><a name="460"
+      > </a
+      ><a name="461" href="Preliminaries.html#293" class="Function Operator"
+      >&#8728;</a
+      ><a name="462"
+      > </a
+      ><a name="463" href="Preliminaries.html#463" class="Bound"
+      >f</a
+      ><a name="464"
+      > </a
+      ><a name="465" class="Symbol"
+      >=</a
+      ><a name="466"
+      > </a
+      ><a name="467" class="Symbol"
+      >&#955;</a
+      ><a name="468"
+      > </a
+      ><a name="469" href="Preliminaries.html#469" class="Bound"
+      >x</a
+      ><a name="470"
+      > </a
+      ><a name="471" class="Symbol"
+      >&#8594;</a
+      ><a name="472"
+      > </a
+      ><a name="473" href="Preliminaries.html#459" class="Bound"
+      >g</a
+      ><a name="474" class="Symbol"
+      >(</a
+      ><a name="475" href="Preliminaries.html#463" class="Bound"
+      >f</a
+      ><a name="476"
+      > </a
+      ><a name="477" href="Preliminaries.html#469" class="Bound"
+      >x</a
+      ><a name="478" class="Symbol"
+      >)</a
+      ><a name="479"
+      >
+
+\end{code}
+
+</a
+      ><a name="493" class="Comment"
+      >Identity types</a
+      ><a name="507"
+      >
+
+\begin{code}
+
+</a
+      ><a name="523" class="Keyword"
+      >infixl</a
+      ><a name="529"
+      > </a
+      ><a name="530" class="Number"
+      >1</a
+      ><a name="531"
+      > _&#8801;_
+</a
+      ><a name="536" class="Keyword"
+      >infixl</a
+      ><a name="542"
+      > </a
+      ><a name="543" class="Number"
+      >2</a
+      ><a name="544"
+      > _&#183;_
+
+</a
+      ><a name="550" class="Keyword"
+      >data</a
+      ><a name="554"
+      > </a
+      ><a name="555" href="Preliminaries.html#555" class="Datatype Operator"
+      >_&#8801;_</a
+      ><a name="558"
+      > </a
+      ><a name="559" class="Symbol"
+      >{</a
+      ><a name="560" href="Preliminaries.html#560" class="Bound"
+      >i</a
+      ><a name="561"
+      > </a
+      ><a name="562" class="Symbol"
+      >:</a
+      ><a name="563"
+      > </a
+      ><a name="564" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="569" class="Symbol"
+      >}</a
+      ><a name="570"
+      > </a
+      ><a name="571" class="Symbol"
+      >{</a
+      ><a name="572" href="Preliminaries.html#572" class="Bound"
+      >A</a
+      ><a name="573"
+      > </a
+      ><a name="574" class="Symbol"
+      >:</a
+      ><a name="575"
+      > </a
+      ><a name="576" class="PrimitiveType"
+      >Set</a
+      ><a name="579"
+      > </a
+      ><a name="580" href="Preliminaries.html#560" class="Bound"
+      >i</a
+      ><a name="581" class="Symbol"
+      >}</a
+      ><a name="582"
+      > </a
+      ><a name="583" class="Symbol"
+      >:</a
+      ><a name="584"
+      > </a
+      ><a name="585" href="Preliminaries.html#572" class="Bound"
+      >A</a
+      ><a name="586"
+      > </a
+      ><a name="587" class="Symbol"
+      >&#8594;</a
+      ><a name="588"
+      > </a
+      ><a name="589" href="Preliminaries.html#572" class="Bound"
+      >A</a
+      ><a name="590"
+      > </a
+      ><a name="591" class="Symbol"
+      >&#8594;</a
+      ><a name="592"
+      > </a
+      ><a name="593" class="PrimitiveType"
+      >Set</a
+      ><a name="596"
+      > </a
+      ><a name="597" href="Preliminaries.html#560" class="Bound"
+      >i</a
+      ><a name="598"
+      > </a
+      ><a name="599" class="Keyword"
+      >where</a
+      ><a name="604"
+      >
+ </a
+      ><a name="606" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="610"
+      > </a
+      ><a name="611" class="Symbol"
+      >:</a
+      ><a name="612"
+      > </a
+      ><a name="613" class="Symbol"
+      >{</a
+      ><a name="614" href="Preliminaries.html#614" class="Bound"
+      >a</a
+      ><a name="615"
+      > </a
+      ><a name="616" class="Symbol"
+      >:</a
+      ><a name="617"
+      > </a
+      ><a name="618" href="Preliminaries.html#572" class="Bound"
+      >A</a
+      ><a name="619" class="Symbol"
+      >}</a
+      ><a name="620"
+      > </a
+      ><a name="621" class="Symbol"
+      >&#8594;</a
+      ><a name="622"
+      > </a
+      ><a name="623" href="Preliminaries.html#614" class="Bound"
+      >a</a
+      ><a name="624"
+      > </a
+      ><a name="625" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="626"
+      > </a
+      ><a name="627" href="Preliminaries.html#614" class="Bound"
+      >a</a
+      ><a name="628"
+      >
+
+</a
+      ><a name="630" href="Preliminaries.html#630" class="Function Operator"
+      >_&#8315;&#185;</a
+      ><a name="633"
+      > </a
+      ><a name="634" class="Symbol"
+      >:</a
+      ><a name="635"
+      > </a
+      ><a name="636" class="Symbol"
+      >{</a
+      ><a name="637" href="Preliminaries.html#637" class="Bound"
+      >i</a
+      ><a name="638"
+      > </a
+      ><a name="639" class="Symbol"
+      >:</a
+      ><a name="640"
+      > </a
+      ><a name="641" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="646" class="Symbol"
+      >}</a
+      ><a name="647"
+      > </a
+      ><a name="648" class="Symbol"
+      >{</a
+      ><a name="649" href="Preliminaries.html#649" class="Bound"
+      >A</a
+      ><a name="650"
+      > </a
+      ><a name="651" class="Symbol"
+      >:</a
+      ><a name="652"
+      > </a
+      ><a name="653" class="PrimitiveType"
+      >Set</a
+      ><a name="656"
+      > </a
+      ><a name="657" href="Preliminaries.html#637" class="Bound"
+      >i</a
+      ><a name="658" class="Symbol"
+      >}</a
+      ><a name="659"
+      > </a
+      ><a name="660" class="Symbol"
+      >{</a
+      ><a name="661" href="Preliminaries.html#661" class="Bound"
+      >a</a
+      ><a name="662"
+      > </a
+      ><a name="663" href="Preliminaries.html#663" class="Bound"
+      >b</a
+      ><a name="664"
+      > </a
+      ><a name="665" class="Symbol"
+      >:</a
+      ><a name="666"
+      > </a
+      ><a name="667" href="Preliminaries.html#649" class="Bound"
+      >A</a
+      ><a name="668" class="Symbol"
+      >}</a
+      ><a name="669"
+      > </a
+      ><a name="670" class="Symbol"
+      >&#8594;</a
+      ><a name="671"
+      > </a
+      ><a name="672" href="Preliminaries.html#661" class="Bound"
+      >a</a
+      ><a name="673"
+      > </a
+      ><a name="674" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="675"
+      > </a
+      ><a name="676" href="Preliminaries.html#663" class="Bound"
+      >b</a
+      ><a name="677"
+      > </a
+      ><a name="678" class="Symbol"
+      >&#8594;</a
+      ><a name="679"
+      > </a
+      ><a name="680" href="Preliminaries.html#663" class="Bound"
+      >b</a
+      ><a name="681"
+      > </a
+      ><a name="682" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="683"
+      > </a
+      ><a name="684" href="Preliminaries.html#661" class="Bound"
+      >a</a
+      ><a name="685"
+      >
+</a
+      ><a name="686" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="690"
+      > </a
+      ><a name="691" href="Preliminaries.html#630" class="Function Operator"
+      >&#8315;&#185;</a
+      ><a name="693"
+      > </a
+      ><a name="694" class="Symbol"
+      >=</a
+      ><a name="695"
+      > </a
+      ><a name="696" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="700"
+      >
+
+</a
+      ><a name="702" href="Preliminaries.html#702" class="Function Operator"
+      >_&#183;_</a
+      ><a name="705"
+      > </a
+      ><a name="706" class="Symbol"
+      >:</a
+      ><a name="707"
+      > </a
+      ><a name="708" class="Symbol"
+      >{</a
+      ><a name="709" href="Preliminaries.html#709" class="Bound"
+      >i</a
+      ><a name="710"
+      > </a
+      ><a name="711" class="Symbol"
+      >:</a
+      ><a name="712"
+      > </a
+      ><a name="713" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="718" class="Symbol"
+      >}</a
+      ><a name="719"
+      > </a
+      ><a name="720" class="Symbol"
+      >{</a
+      ><a name="721" href="Preliminaries.html#721" class="Bound"
+      >A</a
+      ><a name="722"
+      > </a
+      ><a name="723" class="Symbol"
+      >:</a
+      ><a name="724"
+      > </a
+      ><a name="725" class="PrimitiveType"
+      >Set</a
+      ><a name="728"
+      > </a
+      ><a name="729" href="Preliminaries.html#709" class="Bound"
+      >i</a
+      ><a name="730" class="Symbol"
+      >}</a
+      ><a name="731"
+      > </a
+      ><a name="732" class="Symbol"
+      >{</a
+      ><a name="733" href="Preliminaries.html#733" class="Bound"
+      >a</a
+      ><a name="734"
+      > </a
+      ><a name="735" href="Preliminaries.html#735" class="Bound"
+      >b</a
+      ><a name="736"
+      > </a
+      ><a name="737" href="Preliminaries.html#737" class="Bound"
+      >c</a
+      ><a name="738"
+      > </a
+      ><a name="739" class="Symbol"
+      >:</a
+      ><a name="740"
+      > </a
+      ><a name="741" href="Preliminaries.html#721" class="Bound"
+      >A</a
+      ><a name="742" class="Symbol"
+      >}</a
+      ><a name="743"
+      > </a
+      ><a name="744" class="Symbol"
+      >&#8594;</a
+      ><a name="745"
+      > </a
+      ><a name="746" href="Preliminaries.html#733" class="Bound"
+      >a</a
+      ><a name="747"
+      > </a
+      ><a name="748" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="749"
+      > </a
+      ><a name="750" href="Preliminaries.html#735" class="Bound"
+      >b</a
+      ><a name="751"
+      > </a
+      ><a name="752" class="Symbol"
+      >&#8594;</a
+      ><a name="753"
+      > </a
+      ><a name="754" href="Preliminaries.html#735" class="Bound"
+      >b</a
+      ><a name="755"
+      > </a
+      ><a name="756" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="757"
+      > </a
+      ><a name="758" href="Preliminaries.html#737" class="Bound"
+      >c</a
+      ><a name="759"
+      > </a
+      ><a name="760" class="Symbol"
+      >&#8594;</a
+      ><a name="761"
+      > </a
+      ><a name="762" href="Preliminaries.html#733" class="Bound"
+      >a</a
+      ><a name="763"
+      > </a
+      ><a name="764" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="765"
+      > </a
+      ><a name="766" href="Preliminaries.html#737" class="Bound"
+      >c</a
+      ><a name="767"
+      >
+</a
+      ><a name="768" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="772"
+      > </a
+      ><a name="773" href="Preliminaries.html#702" class="Function Operator"
+      >&#183;</a
+      ><a name="774"
+      > </a
+      ><a name="775" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="779"
+      > </a
+      ><a name="780" class="Symbol"
+      >=</a
+      ><a name="781"
+      > </a
+      ><a name="782" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="786"
+      >
+
+</a
+      ><a name="788" href="Preliminaries.html#788" class="Function"
+      >ap</a
+      ><a name="790"
+      > </a
+      ><a name="791" class="Symbol"
+      >:</a
+      ><a name="792"
+      > </a
+      ><a name="793" class="Symbol"
+      >{</a
+      ><a name="794" href="Preliminaries.html#794" class="Bound"
+      >i</a
+      ><a name="795"
+      > </a
+      ><a name="796" href="Preliminaries.html#796" class="Bound"
+      >j</a
+      ><a name="797"
+      > </a
+      ><a name="798" class="Symbol"
+      >:</a
+      ><a name="799"
+      > </a
+      ><a name="800" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="805" class="Symbol"
+      >}</a
+      ><a name="806"
+      > </a
+      ><a name="807" class="Symbol"
+      >{</a
+      ><a name="808" href="Preliminaries.html#808" class="Bound"
+      >A</a
+      ><a name="809"
+      > </a
+      ><a name="810" class="Symbol"
+      >:</a
+      ><a name="811"
+      > </a
+      ><a name="812" class="PrimitiveType"
+      >Set</a
+      ><a name="815"
+      > </a
+      ><a name="816" href="Preliminaries.html#794" class="Bound"
+      >i</a
+      ><a name="817" class="Symbol"
+      >}</a
+      ><a name="818"
+      > </a
+      ><a name="819" class="Symbol"
+      >{</a
+      ><a name="820" href="Preliminaries.html#820" class="Bound"
+      >B</a
+      ><a name="821"
+      > </a
+      ><a name="822" class="Symbol"
+      >:</a
+      ><a name="823"
+      > </a
+      ><a name="824" class="PrimitiveType"
+      >Set</a
+      ><a name="827"
+      > </a
+      ><a name="828" href="Preliminaries.html#796" class="Bound"
+      >j</a
+      ><a name="829" class="Symbol"
+      >}</a
+      ><a name="830"
+      > </a
+      ><a name="831" class="Symbol"
+      >{</a
+      ><a name="832" href="Preliminaries.html#832" class="Bound"
+      >a</a
+      ><a name="833"
+      > </a
+      ><a name="834" href="Preliminaries.html#834" class="Bound"
+      >a'</a
+      ><a name="836"
+      > </a
+      ><a name="837" class="Symbol"
+      >:</a
+      ><a name="838"
+      > </a
+      ><a name="839" href="Preliminaries.html#808" class="Bound"
+      >A</a
+      ><a name="840" class="Symbol"
+      >}</a
+      ><a name="841"
+      > </a
+      ><a name="842" class="Symbol"
+      >(</a
+      ><a name="843" href="Preliminaries.html#843" class="Bound"
+      >f</a
+      ><a name="844"
+      > </a
+      ><a name="845" class="Symbol"
+      >:</a
+      ><a name="846"
+      > </a
+      ><a name="847" href="Preliminaries.html#808" class="Bound"
+      >A</a
+      ><a name="848"
+      > </a
+      ><a name="849" class="Symbol"
+      >&#8594;</a
+      ><a name="850"
+      > </a
+      ><a name="851" href="Preliminaries.html#820" class="Bound"
+      >B</a
+      ><a name="852" class="Symbol"
+      >)</a
+      ><a name="853"
+      > </a
+      ><a name="854" class="Symbol"
+      >&#8594;</a
+      ><a name="855"
+      > </a
+      ><a name="856" href="Preliminaries.html#832" class="Bound"
+      >a</a
+      ><a name="857"
+      > </a
+      ><a name="858" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="859"
+      > </a
+      ><a name="860" href="Preliminaries.html#834" class="Bound"
+      >a'</a
+      ><a name="862"
+      > </a
+      ><a name="863" class="Symbol"
+      >&#8594;</a
+      ><a name="864"
+      > </a
+      ><a name="865" href="Preliminaries.html#843" class="Bound"
+      >f</a
+      ><a name="866"
+      > </a
+      ><a name="867" href="Preliminaries.html#832" class="Bound"
+      >a</a
+      ><a name="868"
+      > </a
+      ><a name="869" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="870"
+      > </a
+      ><a name="871" href="Preliminaries.html#843" class="Bound"
+      >f</a
+      ><a name="872"
+      > </a
+      ><a name="873" href="Preliminaries.html#834" class="Bound"
+      >a'</a
+      ><a name="875"
+      >
+</a
+      ><a name="876" href="Preliminaries.html#788" class="Function"
+      >ap</a
+      ><a name="878"
+      > </a
+      ><a name="879" href="Preliminaries.html#879" class="Bound"
+      >f</a
+      ><a name="880"
+      > </a
+      ><a name="881" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="885"
+      > </a
+      ><a name="886" class="Symbol"
+      >=</a
+      ><a name="887"
+      > </a
+      ><a name="888" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="892"
+      >
+
+</a
+      ><a name="894" href="Preliminaries.html#894" class="Function"
+      >ap&#178;</a
+      ><a name="897"
+      > </a
+      ><a name="898" class="Symbol"
+      >:</a
+      ><a name="899"
+      > </a
+      ><a name="900" class="Symbol"
+      >{</a
+      ><a name="901" href="Preliminaries.html#901" class="Bound"
+      >i</a
+      ><a name="902"
+      > </a
+      ><a name="903" href="Preliminaries.html#903" class="Bound"
+      >j</a
+      ><a name="904"
+      > </a
+      ><a name="905" href="Preliminaries.html#905" class="Bound"
+      >k</a
+      ><a name="906"
+      > </a
+      ><a name="907" class="Symbol"
+      >:</a
+      ><a name="908"
+      > </a
+      ><a name="909" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="914" class="Symbol"
+      >}</a
+      ><a name="915"
+      > </a
+      ><a name="916" class="Symbol"
+      >{</a
+      ><a name="917" href="Preliminaries.html#917" class="Bound"
+      >A</a
+      ><a name="918"
+      > </a
+      ><a name="919" class="Symbol"
+      >:</a
+      ><a name="920"
+      > </a
+      ><a name="921" class="PrimitiveType"
+      >Set</a
+      ><a name="924"
+      > </a
+      ><a name="925" href="Preliminaries.html#901" class="Bound"
+      >i</a
+      ><a name="926" class="Symbol"
+      >}</a
+      ><a name="927"
+      > </a
+      ><a name="928" class="Symbol"
+      >{</a
+      ><a name="929" href="Preliminaries.html#929" class="Bound"
+      >B</a
+      ><a name="930"
+      > </a
+      ><a name="931" class="Symbol"
+      >:</a
+      ><a name="932"
+      > </a
+      ><a name="933" class="PrimitiveType"
+      >Set</a
+      ><a name="936"
+      > </a
+      ><a name="937" href="Preliminaries.html#903" class="Bound"
+      >j</a
+      ><a name="938" class="Symbol"
+      >}</a
+      ><a name="939"
+      > </a
+      ><a name="940" class="Symbol"
+      >{</a
+      ><a name="941" href="Preliminaries.html#941" class="Bound"
+      >C</a
+      ><a name="942"
+      > </a
+      ><a name="943" class="Symbol"
+      >:</a
+      ><a name="944"
+      > </a
+      ><a name="945" class="PrimitiveType"
+      >Set</a
+      ><a name="948"
+      > </a
+      ><a name="949" href="Preliminaries.html#905" class="Bound"
+      >k</a
+      ><a name="950" class="Symbol"
+      >}</a
+      ><a name="951"
+      > </a
+      ><a name="952" class="Symbol"
+      >{</a
+      ><a name="953" href="Preliminaries.html#953" class="Bound"
+      >a</a
+      ><a name="954"
+      > </a
+      ><a name="955" href="Preliminaries.html#955" class="Bound"
+      >a'</a
+      ><a name="957"
+      > </a
+      ><a name="958" class="Symbol"
+      >:</a
+      ><a name="959"
+      > </a
+      ><a name="960" href="Preliminaries.html#917" class="Bound"
+      >A</a
+      ><a name="961" class="Symbol"
+      >}</a
+      ><a name="962"
+      > </a
+      ><a name="963" class="Symbol"
+      >{</a
+      ><a name="964" href="Preliminaries.html#964" class="Bound"
+      >b</a
+      ><a name="965"
+      > </a
+      ><a name="966" href="Preliminaries.html#966" class="Bound"
+      >b'</a
+      ><a name="968"
+      > </a
+      ><a name="969" class="Symbol"
+      >:</a
+      ><a name="970"
+      > </a
+      ><a name="971" href="Preliminaries.html#929" class="Bound"
+      >B</a
+      ><a name="972" class="Symbol"
+      >}</a
+      ><a name="973"
+      >
+    </a
+      ><a name="978" class="Symbol"
+      >&#8594;</a
+      ><a name="979"
+      > </a
+      ><a name="980" class="Symbol"
+      >(</a
+      ><a name="981" href="Preliminaries.html#981" class="Bound"
+      >f</a
+      ><a name="982"
+      > </a
+      ><a name="983" class="Symbol"
+      >:</a
+      ><a name="984"
+      > </a
+      ><a name="985" href="Preliminaries.html#917" class="Bound"
+      >A</a
+      ><a name="986"
+      > </a
+      ><a name="987" class="Symbol"
+      >&#8594;</a
+      ><a name="988"
+      > </a
+      ><a name="989" href="Preliminaries.html#929" class="Bound"
+      >B</a
+      ><a name="990"
+      > </a
+      ><a name="991" class="Symbol"
+      >&#8594;</a
+      ><a name="992"
+      > </a
+      ><a name="993" href="Preliminaries.html#941" class="Bound"
+      >C</a
+      ><a name="994" class="Symbol"
+      >)</a
+      ><a name="995"
+      > </a
+      ><a name="996" class="Symbol"
+      >&#8594;</a
+      ><a name="997"
+      > </a
+      ><a name="998" href="Preliminaries.html#953" class="Bound"
+      >a</a
+      ><a name="999"
+      > </a
+      ><a name="1000" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1001"
+      > </a
+      ><a name="1002" href="Preliminaries.html#955" class="Bound"
+      >a'</a
+      ><a name="1004"
+      > </a
+      ><a name="1005" class="Symbol"
+      >&#8594;</a
+      ><a name="1006"
+      > </a
+      ><a name="1007" href="Preliminaries.html#964" class="Bound"
+      >b</a
+      ><a name="1008"
+      > </a
+      ><a name="1009" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1010"
+      > </a
+      ><a name="1011" href="Preliminaries.html#966" class="Bound"
+      >b'</a
+      ><a name="1013"
+      > </a
+      ><a name="1014" class="Symbol"
+      >&#8594;</a
+      ><a name="1015"
+      > </a
+      ><a name="1016" href="Preliminaries.html#981" class="Bound"
+      >f</a
+      ><a name="1017"
+      > </a
+      ><a name="1018" href="Preliminaries.html#953" class="Bound"
+      >a</a
+      ><a name="1019"
+      > </a
+      ><a name="1020" href="Preliminaries.html#964" class="Bound"
+      >b</a
+      ><a name="1021"
+      > </a
+      ><a name="1022" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1023"
+      > </a
+      ><a name="1024" href="Preliminaries.html#981" class="Bound"
+      >f</a
+      ><a name="1025"
+      > </a
+      ><a name="1026" href="Preliminaries.html#955" class="Bound"
+      >a'</a
+      ><a name="1028"
+      > </a
+      ><a name="1029" href="Preliminaries.html#966" class="Bound"
+      >b'</a
+      ><a name="1031"
+      >
+</a
+      ><a name="1032" href="Preliminaries.html#894" class="Function"
+      >ap&#178;</a
+      ><a name="1035"
+      > </a
+      ><a name="1036" href="Preliminaries.html#1036" class="Bound"
+      >f</a
+      ><a name="1037"
+      > </a
+      ><a name="1038" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="1042"
+      > </a
+      ><a name="1043" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="1047"
+      > </a
+      ><a name="1048" class="Symbol"
+      >=</a
+      ><a name="1049"
+      > </a
+      ><a name="1050" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="1054"
+      >
+
+</a
+      ><a name="1056" href="Preliminaries.html#1056" class="Function"
+      >transport</a
+      ><a name="1065"
+      > </a
+      ><a name="1066" class="Symbol"
+      >:</a
+      ><a name="1067"
+      > </a
+      ><a name="1068" class="Symbol"
+      >{</a
+      ><a name="1069" href="Preliminaries.html#1069" class="Bound"
+      >i</a
+      ><a name="1070"
+      > </a
+      ><a name="1071" href="Preliminaries.html#1071" class="Bound"
+      >j</a
+      ><a name="1072"
+      > </a
+      ><a name="1073" class="Symbol"
+      >:</a
+      ><a name="1074"
+      > </a
+      ><a name="1075" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="1080" class="Symbol"
+      >}</a
+      ><a name="1081"
+      > </a
+      ><a name="1082" class="Symbol"
+      >{</a
+      ><a name="1083" href="Preliminaries.html#1083" class="Bound"
+      >A</a
+      ><a name="1084"
+      > </a
+      ><a name="1085" class="Symbol"
+      >:</a
+      ><a name="1086"
+      > </a
+      ><a name="1087" class="PrimitiveType"
+      >Set</a
+      ><a name="1090"
+      > </a
+      ><a name="1091" href="Preliminaries.html#1069" class="Bound"
+      >i</a
+      ><a name="1092" class="Symbol"
+      >}</a
+      ><a name="1093"
+      > </a
+      ><a name="1094" class="Symbol"
+      >(</a
+      ><a name="1095" href="Preliminaries.html#1095" class="Bound"
+      >P</a
+      ><a name="1096"
+      > </a
+      ><a name="1097" class="Symbol"
+      >:</a
+      ><a name="1098"
+      > </a
+      ><a name="1099" href="Preliminaries.html#1083" class="Bound"
+      >A</a
+      ><a name="1100"
+      > </a
+      ><a name="1101" class="Symbol"
+      >&#8594;</a
+      ><a name="1102"
+      > </a
+      ><a name="1103" class="PrimitiveType"
+      >Set</a
+      ><a name="1106"
+      > </a
+      ><a name="1107" href="Preliminaries.html#1071" class="Bound"
+      >j</a
+      ><a name="1108" class="Symbol"
+      >)</a
+      ><a name="1109"
+      > </a
+      ><a name="1110" class="Symbol"
+      >{</a
+      ><a name="1111" href="Preliminaries.html#1111" class="Bound"
+      >a</a
+      ><a name="1112"
+      > </a
+      ><a name="1113" href="Preliminaries.html#1113" class="Bound"
+      >b</a
+      ><a name="1114"
+      > </a
+      ><a name="1115" class="Symbol"
+      >:</a
+      ><a name="1116"
+      > </a
+      ><a name="1117" href="Preliminaries.html#1083" class="Bound"
+      >A</a
+      ><a name="1118" class="Symbol"
+      >}</a
+      ><a name="1119"
+      > </a
+      ><a name="1120" class="Symbol"
+      >&#8594;</a
+      ><a name="1121"
+      > </a
+      ><a name="1122" href="Preliminaries.html#1111" class="Bound"
+      >a</a
+      ><a name="1123"
+      > </a
+      ><a name="1124" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1125"
+      > </a
+      ><a name="1126" href="Preliminaries.html#1113" class="Bound"
+      >b</a
+      ><a name="1127"
+      > </a
+      ><a name="1128" class="Symbol"
+      >&#8594;</a
+      ><a name="1129"
+      > </a
+      ><a name="1130" href="Preliminaries.html#1095" class="Bound"
+      >P</a
+      ><a name="1131"
+      > </a
+      ><a name="1132" href="Preliminaries.html#1111" class="Bound"
+      >a</a
+      ><a name="1133"
+      > </a
+      ><a name="1134" class="Symbol"
+      >&#8594;</a
+      ><a name="1135"
+      > </a
+      ><a name="1136" href="Preliminaries.html#1095" class="Bound"
+      >P</a
+      ><a name="1137"
+      > </a
+      ><a name="1138" href="Preliminaries.html#1113" class="Bound"
+      >b</a
+      ><a name="1139"
+      >
+</a
+      ><a name="1140" href="Preliminaries.html#1056" class="Function"
+      >transport</a
+      ><a name="1149"
+      > </a
+      ><a name="1150" href="Preliminaries.html#1150" class="Bound"
+      >P</a
+      ><a name="1151"
+      > </a
+      ><a name="1152" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="1156"
+      > </a
+      ><a name="1157" href="Preliminaries.html#1157" class="Bound"
+      >p</a
+      ><a name="1158"
+      > </a
+      ><a name="1159" class="Symbol"
+      >=</a
+      ><a name="1160"
+      > </a
+      ><a name="1161" href="Preliminaries.html#1157" class="Bound"
+      >p</a
+      ><a name="1162"
+      >
+
+</a
+      ><a name="1164" href="Preliminaries.html#1164" class="Function"
+      >transport&#178;</a
+      ><a name="1174"
+      > </a
+      ><a name="1175" class="Symbol"
+      >:</a
+      ><a name="1176"
+      > </a
+      ><a name="1177" class="Symbol"
+      >{</a
+      ><a name="1178" href="Preliminaries.html#1178" class="Bound"
+      >i</a
+      ><a name="1179"
+      > </a
+      ><a name="1180" href="Preliminaries.html#1180" class="Bound"
+      >j</a
+      ><a name="1181"
+      > </a
+      ><a name="1182" href="Preliminaries.html#1182" class="Bound"
+      >k</a
+      ><a name="1183"
+      > </a
+      ><a name="1184" class="Symbol"
+      >:</a
+      ><a name="1185"
+      > </a
+      ><a name="1186" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="1191" class="Symbol"
+      >}</a
+      ><a name="1192"
+      > </a
+      ><a name="1193" class="Symbol"
+      >{</a
+      ><a name="1194" href="Preliminaries.html#1194" class="Bound"
+      >A</a
+      ><a name="1195"
+      > </a
+      ><a name="1196" class="Symbol"
+      >:</a
+      ><a name="1197"
+      > </a
+      ><a name="1198" class="PrimitiveType"
+      >Set</a
+      ><a name="1201"
+      > </a
+      ><a name="1202" href="Preliminaries.html#1178" class="Bound"
+      >i</a
+      ><a name="1203" class="Symbol"
+      >}</a
+      ><a name="1204"
+      > </a
+      ><a name="1205" class="Symbol"
+      >{</a
+      ><a name="1206" href="Preliminaries.html#1206" class="Bound"
+      >B</a
+      ><a name="1207"
+      > </a
+      ><a name="1208" class="Symbol"
+      >:</a
+      ><a name="1209"
+      > </a
+      ><a name="1210" class="PrimitiveType"
+      >Set</a
+      ><a name="1213"
+      > </a
+      ><a name="1214" href="Preliminaries.html#1180" class="Bound"
+      >j</a
+      ><a name="1215" class="Symbol"
+      >}</a
+      ><a name="1216"
+      > </a
+      ><a name="1217" class="Symbol"
+      >(</a
+      ><a name="1218" href="Preliminaries.html#1218" class="Bound"
+      >P</a
+      ><a name="1219"
+      > </a
+      ><a name="1220" class="Symbol"
+      >:</a
+      ><a name="1221"
+      > </a
+      ><a name="1222" href="Preliminaries.html#1194" class="Bound"
+      >A</a
+      ><a name="1223"
+      > </a
+      ><a name="1224" class="Symbol"
+      >&#8594;</a
+      ><a name="1225"
+      > </a
+      ><a name="1226" href="Preliminaries.html#1206" class="Bound"
+      >B</a
+      ><a name="1227"
+      > </a
+      ><a name="1228" class="Symbol"
+      >&#8594;</a
+      ><a name="1229"
+      > </a
+      ><a name="1230" class="PrimitiveType"
+      >Set</a
+      ><a name="1233"
+      > </a
+      ><a name="1234" href="Preliminaries.html#1182" class="Bound"
+      >k</a
+      ><a name="1235" class="Symbol"
+      >)</a
+      ><a name="1236"
+      > </a
+      ><a name="1237" class="Symbol"
+      >{</a
+      ><a name="1238" href="Preliminaries.html#1238" class="Bound"
+      >a</a
+      ><a name="1239"
+      > </a
+      ><a name="1240" href="Preliminaries.html#1240" class="Bound"
+      >a'</a
+      ><a name="1242"
+      > </a
+      ><a name="1243" class="Symbol"
+      >:</a
+      ><a name="1244"
+      > </a
+      ><a name="1245" href="Preliminaries.html#1194" class="Bound"
+      >A</a
+      ><a name="1246" class="Symbol"
+      >}</a
+      ><a name="1247"
+      > </a
+      ><a name="1248" class="Symbol"
+      >{</a
+      ><a name="1249" href="Preliminaries.html#1249" class="Bound"
+      >b</a
+      ><a name="1250"
+      > </a
+      ><a name="1251" href="Preliminaries.html#1251" class="Bound"
+      >b'</a
+      ><a name="1253"
+      > </a
+      ><a name="1254" class="Symbol"
+      >:</a
+      ><a name="1255"
+      > </a
+      ><a name="1256" href="Preliminaries.html#1206" class="Bound"
+      >B</a
+      ><a name="1257" class="Symbol"
+      >}</a
+      ><a name="1258"
+      >
+           </a
+      ><a name="1270" class="Symbol"
+      >&#8594;</a
+      ><a name="1271"
+      > </a
+      ><a name="1272" href="Preliminaries.html#1238" class="Bound"
+      >a</a
+      ><a name="1273"
+      > </a
+      ><a name="1274" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1275"
+      > </a
+      ><a name="1276" href="Preliminaries.html#1240" class="Bound"
+      >a'</a
+      ><a name="1278"
+      > </a
+      ><a name="1279" class="Symbol"
+      >&#8594;</a
+      ><a name="1280"
+      > </a
+      ><a name="1281" href="Preliminaries.html#1249" class="Bound"
+      >b</a
+      ><a name="1282"
+      > </a
+      ><a name="1283" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1284"
+      > </a
+      ><a name="1285" href="Preliminaries.html#1251" class="Bound"
+      >b'</a
+      ><a name="1287"
+      > </a
+      ><a name="1288" class="Symbol"
+      >&#8594;</a
+      ><a name="1289"
+      > </a
+      ><a name="1290" href="Preliminaries.html#1218" class="Bound"
+      >P</a
+      ><a name="1291"
+      > </a
+      ><a name="1292" href="Preliminaries.html#1238" class="Bound"
+      >a</a
+      ><a name="1293"
+      > </a
+      ><a name="1294" href="Preliminaries.html#1249" class="Bound"
+      >b</a
+      ><a name="1295"
+      > </a
+      ><a name="1296" class="Symbol"
+      >&#8594;</a
+      ><a name="1297"
+      > </a
+      ><a name="1298" href="Preliminaries.html#1218" class="Bound"
+      >P</a
+      ><a name="1299"
+      > </a
+      ><a name="1300" href="Preliminaries.html#1240" class="Bound"
+      >a'</a
+      ><a name="1302"
+      > </a
+      ><a name="1303" href="Preliminaries.html#1251" class="Bound"
+      >b'</a
+      ><a name="1305"
+      >
+</a
+      ><a name="1306" href="Preliminaries.html#1164" class="Function"
+      >transport&#178;</a
+      ><a name="1316"
+      > </a
+      ><a name="1317" href="Preliminaries.html#1317" class="Bound"
+      >P</a
+      ><a name="1318"
+      > </a
+      ><a name="1319" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="1323"
+      > </a
+      ><a name="1324" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="1328"
+      > </a
+      ><a name="1329" href="Preliminaries.html#1329" class="Bound"
+      >p</a
+      ><a name="1330"
+      > </a
+      ><a name="1331" class="Symbol"
+      >=</a
+      ><a name="1332"
+      > </a
+      ><a name="1333" href="Preliminaries.html#1329" class="Bound"
+      >p</a
+      ><a name="1334"
+      >
+
+\end{code}
+
+</a
+      ><a name="1348" class="Comment"
+      >&#931;-types and bianry products</a
+      ><a name="1375"
+      >
+
+\begin{code}
+
+</a
+      ><a name="1391" class="Keyword"
+      >infixr</a
+      ><a name="1397"
+      > </a
+      ><a name="1398" class="Number"
+      >3</a
+      ><a name="1399"
+      > _,_
+
+</a
+      ><a name="1405" class="Keyword"
+      >record</a
+      ><a name="1411"
+      > </a
+      ><a name="1412" href="Preliminaries.html#1412" class="Record"
+      >&#931;</a
+      ><a name="1413"
+      > </a
+      ><a name="1414" class="Symbol"
+      >{</a
+      ><a name="1415" href="Preliminaries.html#1415" class="Bound"
+      >i</a
+      ><a name="1416"
+      > </a
+      ><a name="1417" href="Preliminaries.html#1417" class="Bound"
+      >j</a
+      ><a name="1418"
+      > </a
+      ><a name="1419" class="Symbol"
+      >:</a
+      ><a name="1420"
+      > </a
+      ><a name="1421" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="1426" class="Symbol"
+      >}</a
+      ><a name="1427"
+      > </a
+      ><a name="1428" class="Symbol"
+      >{</a
+      ><a name="1429" href="Preliminaries.html#1429" class="Bound"
+      >A</a
+      ><a name="1430"
+      > </a
+      ><a name="1431" class="Symbol"
+      >:</a
+      ><a name="1432"
+      > </a
+      ><a name="1433" class="PrimitiveType"
+      >Set</a
+      ><a name="1436"
+      > </a
+      ><a name="1437" href="Preliminaries.html#1415" class="Bound"
+      >i</a
+      ><a name="1438" class="Symbol"
+      >}</a
+      ><a name="1439"
+      > </a
+      ><a name="1440" class="Symbol"
+      >(</a
+      ><a name="1441" href="Preliminaries.html#1441" class="Bound"
+      >B</a
+      ><a name="1442"
+      > </a
+      ><a name="1443" class="Symbol"
+      >:</a
+      ><a name="1444"
+      > </a
+      ><a name="1445" href="Preliminaries.html#1429" class="Bound"
+      >A</a
+      ><a name="1446"
+      > </a
+      ><a name="1447" class="Symbol"
+      >&#8594;</a
+      ><a name="1448"
+      > </a
+      ><a name="1449" class="PrimitiveType"
+      >Set</a
+      ><a name="1452"
+      > </a
+      ><a name="1453" href="Preliminaries.html#1417" class="Bound"
+      >j</a
+      ><a name="1454" class="Symbol"
+      >)</a
+      ><a name="1455"
+      > </a
+      ><a name="1456" class="Symbol"
+      >:</a
+      ><a name="1457"
+      > </a
+      ><a name="1458" class="PrimitiveType"
+      >Set</a
+      ><a name="1461"
+      > </a
+      ><a name="1462" class="Symbol"
+      >(</a
+      ><a name="1463" href="Preliminaries.html#1415" class="Bound"
+      >i</a
+      ><a name="1464"
+      > </a
+      ><a name="1465" href="Agda.Primitive.html#626" class="Primitive Operator"
+      >&#8852;</a
+      ><a name="1466"
+      > </a
+      ><a name="1467" href="Preliminaries.html#1417" class="Bound"
+      >j</a
+      ><a name="1468" class="Symbol"
+      >)</a
+      ><a name="1469"
+      > </a
+      ><a name="1470" class="Keyword"
+      >where</a
+      ><a name="1475"
+      >
+  </a
+      ><a name="1478" class="Keyword"
+      >constructor</a
+      ><a name="1489"
+      > </a
+      ><a name="1490" href="Preliminaries.html#1490" class="InductiveConstructor Operator"
+      >_,_</a
+      ><a name="1493"
+      >
+  </a
+      ><a name="1496" class="Keyword"
+      >field</a
+      ><a name="1501"
+      >
+   </a
+      ><a name="1505" href="Preliminaries.html#1505" class="Field"
+      >pr&#8320;</a
+      ><a name="1508"
+      > </a
+      ><a name="1509" class="Symbol"
+      >:</a
+      ><a name="1510"
+      > </a
+      ><a name="1511" href="Preliminaries.html#1429" class="Bound"
+      >A</a
+      ><a name="1512"
+      >
+   </a
+      ><a name="1516" href="Preliminaries.html#1516" class="Field"
+      >pr&#8321;</a
+      ><a name="1519"
+      > </a
+      ><a name="1520" class="Symbol"
+      >:</a
+      ><a name="1521"
+      > </a
+      ><a name="1522" href="Preliminaries.html#1441" class="Bound"
+      >B</a
+      ><a name="1523"
+      > </a
+      ><a name="1524" href="Preliminaries.html#1505" class="Bound"
+      >pr&#8320;</a
+      ><a name="1527"
+      >
+
+</a
+      ><a name="1529" class="Keyword"
+      >open</a
+      ><a name="1533"
+      > </a
+      ><a name="1534" href="Preliminaries.html#1412" class="Module"
+      >&#931;</a
+      ><a name="1535"
+      > </a
+      ><a name="1536" class="Keyword"
+      >public</a
+      ><a name="1542"
+      >
+
+</a
+      ><a name="1544" class="Keyword"
+      >infixl</a
+      ><a name="1550"
+      > </a
+      ><a name="1551" class="Number"
+      >10</a
+      ><a name="1553"
+      > _&#215;_
+
+</a
+      ><a name="1559" href="Preliminaries.html#1559" class="Function Operator"
+      >_&#215;_</a
+      ><a name="1562"
+      > </a
+      ><a name="1563" class="Symbol"
+      >:</a
+      ><a name="1564"
+      > </a
+      ><a name="1565" class="Symbol"
+      >{</a
+      ><a name="1566" href="Preliminaries.html#1566" class="Bound"
+      >i</a
+      ><a name="1567"
+      > </a
+      ><a name="1568" href="Preliminaries.html#1568" class="Bound"
+      >j</a
+      ><a name="1569"
+      > </a
+      ><a name="1570" class="Symbol"
+      >:</a
+      ><a name="1571"
+      > </a
+      ><a name="1572" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="1577" class="Symbol"
+      >}</a
+      ><a name="1578"
+      > </a
+      ><a name="1579" class="Symbol"
+      >&#8594;</a
+      ><a name="1580"
+      > </a
+      ><a name="1581" class="PrimitiveType"
+      >Set</a
+      ><a name="1584"
+      > </a
+      ><a name="1585" href="Preliminaries.html#1566" class="Bound"
+      >i</a
+      ><a name="1586"
+      > </a
+      ><a name="1587" class="Symbol"
+      >&#8594;</a
+      ><a name="1588"
+      > </a
+      ><a name="1589" class="PrimitiveType"
+      >Set</a
+      ><a name="1592"
+      > </a
+      ><a name="1593" href="Preliminaries.html#1568" class="Bound"
+      >j</a
+      ><a name="1594"
+      > </a
+      ><a name="1595" class="Symbol"
+      >&#8594;</a
+      ><a name="1596"
+      > </a
+      ><a name="1597" class="PrimitiveType"
+      >Set</a
+      ><a name="1600"
+      > </a
+      ><a name="1601" class="Symbol"
+      >(</a
+      ><a name="1602" href="Preliminaries.html#1566" class="Bound"
+      >i</a
+      ><a name="1603"
+      > </a
+      ><a name="1604" href="Agda.Primitive.html#626" class="Primitive Operator"
+      >&#8852;</a
+      ><a name="1605"
+      > </a
+      ><a name="1606" href="Preliminaries.html#1568" class="Bound"
+      >j</a
+      ><a name="1607" class="Symbol"
+      >)</a
+      ><a name="1608"
+      >
+</a
+      ><a name="1609" href="Preliminaries.html#1609" class="Bound"
+      >A</a
+      ><a name="1610"
+      > </a
+      ><a name="1611" href="Preliminaries.html#1559" class="Function Operator"
+      >&#215;</a
+      ><a name="1612"
+      > </a
+      ><a name="1613" href="Preliminaries.html#1613" class="Bound"
+      >B</a
+      ><a name="1614"
+      > </a
+      ><a name="1615" class="Symbol"
+      >=</a
+      ><a name="1616"
+      > </a
+      ><a name="1617" href="Preliminaries.html#1412" class="Record"
+      >&#931;</a
+      ><a name="1618"
+      > </a
+      ><a name="1619" class="Symbol"
+      >\(</a
+      ><a name="1621" href="Preliminaries.html#1621" class="Bound"
+      >_</a
+      ><a name="1622"
+      > </a
+      ><a name="1623" class="Symbol"
+      >:</a
+      ><a name="1624"
+      > </a
+      ><a name="1625" href="Preliminaries.html#1609" class="Bound"
+      >A</a
+      ><a name="1626" class="Symbol"
+      >)</a
+      ><a name="1627"
+      > </a
+      ><a name="1628" class="Symbol"
+      >&#8594;</a
+      ><a name="1629"
+      > </a
+      ><a name="1630" href="Preliminaries.html#1613" class="Bound"
+      >B</a
+      ><a name="1631"
+      >
+
+</a
+      ><a name="1633" href="Preliminaries.html#1633" class="Function"
+      >uncurry</a
+      ><a name="1640"
+      > </a
+      ><a name="1641" class="Symbol"
+      >:</a
+      ><a name="1642"
+      > </a
+      ><a name="1643" class="Symbol"
+      >{</a
+      ><a name="1644" href="Preliminaries.html#1644" class="Bound"
+      >i</a
+      ><a name="1645"
+      > </a
+      ><a name="1646" href="Preliminaries.html#1646" class="Bound"
+      >j</a
+      ><a name="1647"
+      > </a
+      ><a name="1648" href="Preliminaries.html#1648" class="Bound"
+      >k</a
+      ><a name="1649"
+      > </a
+      ><a name="1650" class="Symbol"
+      >:</a
+      ><a name="1651"
+      > </a
+      ><a name="1652" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="1657" class="Symbol"
+      >}</a
+      ><a name="1658"
+      > </a
+      ><a name="1659" class="Symbol"
+      >{</a
+      ><a name="1660" href="Preliminaries.html#1660" class="Bound"
+      >A</a
+      ><a name="1661"
+      > </a
+      ><a name="1662" class="Symbol"
+      >:</a
+      ><a name="1663"
+      > </a
+      ><a name="1664" class="PrimitiveType"
+      >Set</a
+      ><a name="1667"
+      > </a
+      ><a name="1668" href="Preliminaries.html#1644" class="Bound"
+      >i</a
+      ><a name="1669" class="Symbol"
+      >}</a
+      ><a name="1670"
+      > </a
+      ><a name="1671" class="Symbol"
+      >{</a
+      ><a name="1672" href="Preliminaries.html#1672" class="Bound"
+      >B</a
+      ><a name="1673"
+      > </a
+      ><a name="1674" class="Symbol"
+      >:</a
+      ><a name="1675"
+      > </a
+      ><a name="1676" href="Preliminaries.html#1660" class="Bound"
+      >A</a
+      ><a name="1677"
+      > </a
+      ><a name="1678" class="Symbol"
+      >&#8594;</a
+      ><a name="1679"
+      > </a
+      ><a name="1680" class="PrimitiveType"
+      >Set</a
+      ><a name="1683"
+      > </a
+      ><a name="1684" href="Preliminaries.html#1646" class="Bound"
+      >j</a
+      ><a name="1685" class="Symbol"
+      >}</a
+      ><a name="1686"
+      > </a
+      ><a name="1687" class="Symbol"
+      >{</a
+      ><a name="1688" href="Preliminaries.html#1688" class="Bound"
+      >C</a
+      ><a name="1689"
+      > </a
+      ><a name="1690" class="Symbol"
+      >:</a
+      ><a name="1691"
+      > </a
+      ><a name="1692" href="Preliminaries.html#1412" class="Record"
+      >&#931;</a
+      ><a name="1693"
+      > </a
+      ><a name="1694" href="Preliminaries.html#1672" class="Bound"
+      >B</a
+      ><a name="1695"
+      > </a
+      ><a name="1696" class="Symbol"
+      >&#8594;</a
+      ><a name="1697"
+      > </a
+      ><a name="1698" class="PrimitiveType"
+      >Set</a
+      ><a name="1701"
+      > </a
+      ><a name="1702" href="Preliminaries.html#1648" class="Bound"
+      >k</a
+      ><a name="1703" class="Symbol"
+      >}</a
+      ><a name="1704"
+      >
+        </a
+      ><a name="1713" class="Symbol"
+      >&#8594;</a
+      ><a name="1714"
+      > </a
+      ><a name="1715" class="Symbol"
+      >((</a
+      ><a name="1717" href="Preliminaries.html#1717" class="Bound"
+      >a</a
+      ><a name="1718"
+      > </a
+      ><a name="1719" class="Symbol"
+      >:</a
+      ><a name="1720"
+      > </a
+      ><a name="1721" href="Preliminaries.html#1660" class="Bound"
+      >A</a
+      ><a name="1722" class="Symbol"
+      >)</a
+      ><a name="1723"
+      > </a
+      ><a name="1724" class="Symbol"
+      >&#8594;</a
+      ><a name="1725"
+      > </a
+      ><a name="1726" class="Symbol"
+      >(</a
+      ><a name="1727" href="Preliminaries.html#1727" class="Bound"
+      >b</a
+      ><a name="1728"
+      > </a
+      ><a name="1729" class="Symbol"
+      >:</a
+      ><a name="1730"
+      > </a
+      ><a name="1731" href="Preliminaries.html#1672" class="Bound"
+      >B</a
+      ><a name="1732"
+      > </a
+      ><a name="1733" href="Preliminaries.html#1717" class="Bound"
+      >a</a
+      ><a name="1734" class="Symbol"
+      >)</a
+      ><a name="1735"
+      > </a
+      ><a name="1736" class="Symbol"
+      >&#8594;</a
+      ><a name="1737"
+      > </a
+      ><a name="1738" href="Preliminaries.html#1688" class="Bound"
+      >C</a
+      ><a name="1739"
+      > </a
+      ><a name="1740" class="Symbol"
+      >(</a
+      ><a name="1741" href="Preliminaries.html#1717" class="Bound"
+      >a</a
+      ><a name="1742"
+      > </a
+      ><a name="1743" href="Preliminaries.html#1490" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="1744"
+      > </a
+      ><a name="1745" href="Preliminaries.html#1727" class="Bound"
+      >b</a
+      ><a name="1746" class="Symbol"
+      >))</a
+      ><a name="1748"
+      >
+        </a
+      ><a name="1757" class="Symbol"
+      >&#8594;</a
+      ><a name="1758"
+      > </a
+      ><a name="1759" class="Symbol"
+      >(</a
+      ><a name="1760" href="Preliminaries.html#1760" class="Bound"
+      >w</a
+      ><a name="1761"
+      > </a
+      ><a name="1762" class="Symbol"
+      >:</a
+      ><a name="1763"
+      > </a
+      ><a name="1764" href="Preliminaries.html#1412" class="Record"
+      >&#931;</a
+      ><a name="1765"
+      > </a
+      ><a name="1766" href="Preliminaries.html#1672" class="Bound"
+      >B</a
+      ><a name="1767" class="Symbol"
+      >)</a
+      ><a name="1768"
+      > </a
+      ><a name="1769" class="Symbol"
+      >&#8594;</a
+      ><a name="1770"
+      > </a
+      ><a name="1771" href="Preliminaries.html#1688" class="Bound"
+      >C</a
+      ><a name="1772"
+      > </a
+      ><a name="1773" href="Preliminaries.html#1760" class="Bound"
+      >w</a
+      ><a name="1774"
+      >
+</a
+      ><a name="1775" href="Preliminaries.html#1633" class="Function"
+      >uncurry</a
+      ><a name="1782"
+      > </a
+      ><a name="1783" href="Preliminaries.html#1783" class="Bound"
+      >f</a
+      ><a name="1784"
+      > </a
+      ><a name="1785" class="Symbol"
+      >(</a
+      ><a name="1786" href="Preliminaries.html#1786" class="Bound"
+      >a</a
+      ><a name="1787"
+      > </a
+      ><a name="1788" href="Preliminaries.html#1490" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="1789"
+      > </a
+      ><a name="1790" href="Preliminaries.html#1790" class="Bound"
+      >b</a
+      ><a name="1791" class="Symbol"
+      >)</a
+      ><a name="1792"
+      > </a
+      ><a name="1793" class="Symbol"
+      >=</a
+      ><a name="1794"
+      > </a
+      ><a name="1795" href="Preliminaries.html#1783" class="Bound"
+      >f</a
+      ><a name="1796"
+      > </a
+      ><a name="1797" href="Preliminaries.html#1786" class="Bound"
+      >a</a
+      ><a name="1798"
+      > </a
+      ><a name="1799" href="Preliminaries.html#1790" class="Bound"
+      >b</a
+      ><a name="1800"
+      >
+
+\end{code}
+
+</a
+      ><a name="1814" class="Comment"
+      >Singleton type</a
+      ><a name="1828"
+      >
+
+\begin{code}
+
+</a
+      ><a name="1844" class="Keyword"
+      >data</a
+      ><a name="1848"
+      > </a
+      ><a name="1849" href="Preliminaries.html#1849" class="Datatype"
+      >&#120793;</a
+      ><a name="1850"
+      > </a
+      ><a name="1851" class="Symbol"
+      >:</a
+      ><a name="1852"
+      > </a
+      ><a name="1853" class="PrimitiveType"
+      >Set</a
+      ><a name="1856"
+      > </a
+      ><a name="1857" class="Keyword"
+      >where</a
+      ><a name="1862"
+      >
+ </a
+      ><a name="1864" href="Preliminaries.html#1864" class="InductiveConstructor"
+      >&#8902;</a
+      ><a name="1865"
+      > </a
+      ><a name="1866" class="Symbol"
+      >:</a
+      ><a name="1867"
+      > </a
+      ><a name="1868" href="Preliminaries.html#1849" class="Datatype"
+      >&#120793;</a
+      ><a name="1869"
+      >
+
+\end{code}
+
+</a
+      ><a name="1883" class="Comment"
+      >Natrual numbers</a
+      ><a name="1898"
+      >
+
+\begin{code}
+
+</a
+      ><a name="1914" class="Keyword"
+      >data</a
+      ><a name="1918"
+      > </a
+      ><a name="1919" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="1920"
+      > </a
+      ><a name="1921" class="Symbol"
+      >:</a
+      ><a name="1922"
+      > </a
+      ><a name="1923" class="PrimitiveType"
+      >Set</a
+      ><a name="1926"
+      > </a
+      ><a name="1927" class="Keyword"
+      >where</a
+      ><a name="1932"
+      >
+ </a
+      ><a name="1934" href="Preliminaries.html#1934" class="InductiveConstructor"
+      >zero</a
+      ><a name="1938"
+      > </a
+      ><a name="1939" class="Symbol"
+      >:</a
+      ><a name="1940"
+      > </a
+      ><a name="1941" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="1942"
+      >
+ </a
+      ><a name="1944" href="Preliminaries.html#1944" class="InductiveConstructor"
+      >succ</a
+      ><a name="1948"
+      > </a
+      ><a name="1949" class="Symbol"
+      >:</a
+      ><a name="1950"
+      > </a
+      ><a name="1951" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="1952"
+      > </a
+      ><a name="1953" class="Symbol"
+      >&#8594;</a
+      ><a name="1954"
+      > </a
+      ><a name="1955" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="1956"
+      >
+
+</a
+      ><a name="1958" class="Symbol"
+      >{-#</a
+      ><a name="1961"
+      > </a
+      ><a name="1962" class="Keyword"
+      >BUILTIN</a
+      ><a name="1969"
+      > NATURAL </a
+      ><a name="1978" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="1979"
+      > </a
+      ><a name="1980" class="Symbol"
+      >#-}</a
+      ><a name="1983"
+      >
+
+</a
+      ><a name="1985" href="Preliminaries.html#1985" class="Function"
+      >rec</a
+      ><a name="1988"
+      > </a
+      ><a name="1989" class="Symbol"
+      >:</a
+      ><a name="1990"
+      > </a
+      ><a name="1991" class="Symbol"
+      >{</a
+      ><a name="1992" href="Preliminaries.html#1992" class="Bound"
+      >A</a
+      ><a name="1993"
+      > </a
+      ><a name="1994" class="Symbol"
+      >:</a
+      ><a name="1995"
+      > </a
+      ><a name="1996" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="1997"
+      > </a
+      ><a name="1998" class="Symbol"
+      >&#8594;</a
+      ><a name="1999"
+      > </a
+      ><a name="2000" class="PrimitiveType"
+      >Set</a
+      ><a name="2003" class="Symbol"
+      >}</a
+      ><a name="2004"
+      > </a
+      ><a name="2005" class="Symbol"
+      >&#8594;</a
+      ><a name="2006"
+      > </a
+      ><a name="2007" href="Preliminaries.html#1992" class="Bound"
+      >A</a
+      ><a name="2008"
+      > </a
+      ><a name="2009" class="Number"
+      >0</a
+      ><a name="2010"
+      > </a
+      ><a name="2011" class="Symbol"
+      >&#8594;</a
+      ><a name="2012"
+      > </a
+      ><a name="2013" class="Symbol"
+      >((</a
+      ><a name="2015" href="Preliminaries.html#2015" class="Bound"
+      >n</a
+      ><a name="2016"
+      > </a
+      ><a name="2017" class="Symbol"
+      >:</a
+      ><a name="2018"
+      > </a
+      ><a name="2019" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="2020" class="Symbol"
+      >)</a
+      ><a name="2021"
+      > </a
+      ><a name="2022" class="Symbol"
+      >&#8594;</a
+      ><a name="2023"
+      > </a
+      ><a name="2024" href="Preliminaries.html#1992" class="Bound"
+      >A</a
+      ><a name="2025"
+      > </a
+      ><a name="2026" href="Preliminaries.html#2015" class="Bound"
+      >n</a
+      ><a name="2027"
+      > </a
+      ><a name="2028" class="Symbol"
+      >&#8594;</a
+      ><a name="2029"
+      > </a
+      ><a name="2030" href="Preliminaries.html#1992" class="Bound"
+      >A</a
+      ><a name="2031"
+      > </a
+      ><a name="2032" class="Symbol"
+      >(</a
+      ><a name="2033" href="Preliminaries.html#1944" class="InductiveConstructor"
+      >succ</a
+      ><a name="2037"
+      > </a
+      ><a name="2038" href="Preliminaries.html#2015" class="Bound"
+      >n</a
+      ><a name="2039" class="Symbol"
+      >))</a
+      ><a name="2041"
+      > </a
+      ><a name="2042" class="Symbol"
+      >&#8594;</a
+      ><a name="2043"
+      > </a
+      ><a name="2044" class="Symbol"
+      >(</a
+      ><a name="2045" href="Preliminaries.html#2045" class="Bound"
+      >n</a
+      ><a name="2046"
+      > </a
+      ><a name="2047" class="Symbol"
+      >:</a
+      ><a name="2048"
+      > </a
+      ><a name="2049" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="2050" class="Symbol"
+      >)</a
+      ><a name="2051"
+      > </a
+      ><a name="2052" class="Symbol"
+      >&#8594;</a
+      ><a name="2053"
+      > </a
+      ><a name="2054" href="Preliminaries.html#1992" class="Bound"
+      >A</a
+      ><a name="2055"
+      > </a
+      ><a name="2056" href="Preliminaries.html#2045" class="Bound"
+      >n</a
+      ><a name="2057"
+      >
+</a
+      ><a name="2058" href="Preliminaries.html#1985" class="Function"
+      >rec</a
+      ><a name="2061"
+      > </a
+      ><a name="2062" href="Preliminaries.html#2062" class="Bound"
+      >a</a
+      ><a name="2063"
+      > </a
+      ><a name="2064" href="Preliminaries.html#2064" class="Bound"
+      >f</a
+      ><a name="2065"
+      > </a
+      ><a name="2066" href="Preliminaries.html#1934" class="InductiveConstructor"
+      >zero</a
+      ><a name="2070"
+      > </a
+      ><a name="2071" class="Symbol"
+      >=</a
+      ><a name="2072"
+      > </a
+      ><a name="2073" href="Preliminaries.html#2062" class="Bound"
+      >a</a
+      ><a name="2074"
+      >
+</a
+      ><a name="2075" href="Preliminaries.html#1985" class="Function"
+      >rec</a
+      ><a name="2078"
+      > </a
+      ><a name="2079" href="Preliminaries.html#2079" class="Bound"
+      >a</a
+      ><a name="2080"
+      > </a
+      ><a name="2081" href="Preliminaries.html#2081" class="Bound"
+      >f</a
+      ><a name="2082"
+      > </a
+      ><a name="2083" class="Symbol"
+      >(</a
+      ><a name="2084" href="Preliminaries.html#1944" class="InductiveConstructor"
+      >succ</a
+      ><a name="2088"
+      > </a
+      ><a name="2089" href="Preliminaries.html#2089" class="Bound"
+      >n</a
+      ><a name="2090" class="Symbol"
+      >)</a
+      ><a name="2091"
+      > </a
+      ><a name="2092" class="Symbol"
+      >=</a
+      ><a name="2093"
+      > </a
+      ><a name="2094" href="Preliminaries.html#2081" class="Bound"
+      >f</a
+      ><a name="2095"
+      > </a
+      ><a name="2096" href="Preliminaries.html#2089" class="Bound"
+      >n</a
+      ><a name="2097"
+      > </a
+      ><a name="2098" class="Symbol"
+      >(</a
+      ><a name="2099" href="Preliminaries.html#1985" class="Function"
+      >rec</a
+      ><a name="2102"
+      > </a
+      ><a name="2103" href="Preliminaries.html#2079" class="Bound"
+      >a</a
+      ><a name="2104"
+      > </a
+      ><a name="2105" href="Preliminaries.html#2081" class="Bound"
+      >f</a
+      ><a name="2106"
+      > </a
+      ><a name="2107" href="Preliminaries.html#2089" class="Bound"
+      >n</a
+      ><a name="2108" class="Symbol"
+      >)</a
+      ><a name="2109"
+      >
+
+\end{code}
+
+</a
+      ><a name="2123" class="Comment"
+      >Finite lists</a
+      ><a name="2135"
+      >
+
+\begin{code}
+
+</a
+      ><a name="2151" class="Keyword"
+      >infixl</a
+      ><a name="2157"
+      > </a
+      ><a name="2158" class="Number"
+      >20</a
+      ><a name="2160"
+      > _&#8330;_
+</a
+      ><a name="2165" class="Keyword"
+      >infixl</a
+      ><a name="2171"
+      > </a
+      ><a name="2172" class="Number"
+      >10</a
+      ><a name="2174"
+      > _&#8330;&#8330;_
+
+</a
+      ><a name="2181" class="Keyword"
+      >data</a
+      ><a name="2185"
+      > </a
+      ><a name="2186" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2190"
+      > </a
+      ><a name="2191" class="Symbol"
+      >{</a
+      ><a name="2192" href="Preliminaries.html#2192" class="Bound"
+      >i</a
+      ><a name="2193"
+      > </a
+      ><a name="2194" class="Symbol"
+      >:</a
+      ><a name="2195"
+      > </a
+      ><a name="2196" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="2201" class="Symbol"
+      >}</a
+      ><a name="2202"
+      > </a
+      ><a name="2203" class="Symbol"
+      >(</a
+      ><a name="2204" href="Preliminaries.html#2204" class="Bound"
+      >A</a
+      ><a name="2205"
+      > </a
+      ><a name="2206" class="Symbol"
+      >:</a
+      ><a name="2207"
+      > </a
+      ><a name="2208" class="PrimitiveType"
+      >Set</a
+      ><a name="2211"
+      > </a
+      ><a name="2212" href="Preliminaries.html#2192" class="Bound"
+      >i</a
+      ><a name="2213" class="Symbol"
+      >)</a
+      ><a name="2214"
+      > </a
+      ><a name="2215" class="Symbol"
+      >:</a
+      ><a name="2216"
+      > </a
+      ><a name="2217" class="PrimitiveType"
+      >Set</a
+      ><a name="2220"
+      > </a
+      ><a name="2221" href="Preliminaries.html#2192" class="Bound"
+      >i</a
+      ><a name="2222"
+      > </a
+      ><a name="2223" class="Keyword"
+      >where</a
+      ><a name="2228"
+      >
+ </a
+      ><a name="2230" href="Preliminaries.html#2230" class="InductiveConstructor"
+      >&#949;</a
+      ><a name="2231"
+      > </a
+      ><a name="2232" class="Symbol"
+      >:</a
+      ><a name="2233"
+      > </a
+      ><a name="2234" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2238"
+      > </a
+      ><a name="2239" href="Preliminaries.html#2204" class="Bound"
+      >A</a
+      ><a name="2240"
+      >
+ </a
+      ><a name="2242" href="Preliminaries.html#2242" class="InductiveConstructor Operator"
+      >_&#8330;_</a
+      ><a name="2245"
+      > </a
+      ><a name="2246" class="Symbol"
+      >:</a
+      ><a name="2247"
+      > </a
+      ><a name="2248" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2252"
+      > </a
+      ><a name="2253" href="Preliminaries.html#2204" class="Bound"
+      >A</a
+      ><a name="2254"
+      > </a
+      ><a name="2255" class="Symbol"
+      >&#8594;</a
+      ><a name="2256"
+      > </a
+      ><a name="2257" href="Preliminaries.html#2204" class="Bound"
+      >A</a
+      ><a name="2258"
+      > </a
+      ><a name="2259" class="Symbol"
+      >&#8594;</a
+      ><a name="2260"
+      > </a
+      ><a name="2261" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2265"
+      > </a
+      ><a name="2266" href="Preliminaries.html#2204" class="Bound"
+      >A</a
+      ><a name="2267"
+      >
+
+</a
+      ><a name="2269" href="Preliminaries.html#2269" class="Function"
+      >&#8330;&#8316;</a
+      ><a name="2271"
+      > </a
+      ><a name="2272" class="Symbol"
+      >:</a
+      ><a name="2273"
+      > </a
+      ><a name="2274" class="Symbol"
+      >{</a
+      ><a name="2275" href="Preliminaries.html#2275" class="Bound"
+      >i</a
+      ><a name="2276"
+      > </a
+      ><a name="2277" class="Symbol"
+      >:</a
+      ><a name="2278"
+      > </a
+      ><a name="2279" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="2284" class="Symbol"
+      >}</a
+      ><a name="2285"
+      > </a
+      ><a name="2286" class="Symbol"
+      >{</a
+      ><a name="2287" href="Preliminaries.html#2287" class="Bound"
+      >A</a
+      ><a name="2288"
+      > </a
+      ><a name="2289" class="Symbol"
+      >:</a
+      ><a name="2290"
+      > </a
+      ><a name="2291" class="PrimitiveType"
+      >Set</a
+      ><a name="2294"
+      > </a
+      ><a name="2295" href="Preliminaries.html#2275" class="Bound"
+      >i</a
+      ><a name="2296" class="Symbol"
+      >}</a
+      ><a name="2297"
+      > </a
+      ><a name="2298" class="Symbol"
+      >{</a
+      ><a name="2299" href="Preliminaries.html#2299" class="Bound"
+      >&#961;</a
+      ><a name="2300"
+      > </a
+      ><a name="2301" href="Preliminaries.html#2301" class="Bound"
+      >&#961;'</a
+      ><a name="2303"
+      > </a
+      ><a name="2304" class="Symbol"
+      >:</a
+      ><a name="2305"
+      > </a
+      ><a name="2306" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2310"
+      > </a
+      ><a name="2311" href="Preliminaries.html#2287" class="Bound"
+      >A</a
+      ><a name="2312" class="Symbol"
+      >}</a
+      ><a name="2313"
+      > </a
+      ><a name="2314" class="Symbol"
+      >{</a
+      ><a name="2315" href="Preliminaries.html#2315" class="Bound"
+      >a</a
+      ><a name="2316"
+      > </a
+      ><a name="2317" href="Preliminaries.html#2317" class="Bound"
+      >a'</a
+      ><a name="2319"
+      > </a
+      ><a name="2320" class="Symbol"
+      >:</a
+      ><a name="2321"
+      > </a
+      ><a name="2322" href="Preliminaries.html#2287" class="Bound"
+      >A</a
+      ><a name="2323" class="Symbol"
+      >}</a
+      ><a name="2324"
+      >
+   </a
+      ><a name="2328" class="Symbol"
+      >&#8594;</a
+      ><a name="2329"
+      > </a
+      ><a name="2330" href="Preliminaries.html#2299" class="Bound"
+      >&#961;</a
+      ><a name="2331"
+      > </a
+      ><a name="2332" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2333"
+      > </a
+      ><a name="2334" href="Preliminaries.html#2301" class="Bound"
+      >&#961;'</a
+      ><a name="2336"
+      > </a
+      ><a name="2337" class="Symbol"
+      >&#8594;</a
+      ><a name="2338"
+      > </a
+      ><a name="2339" href="Preliminaries.html#2315" class="Bound"
+      >a</a
+      ><a name="2340"
+      > </a
+      ><a name="2341" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2342"
+      > </a
+      ><a name="2343" href="Preliminaries.html#2317" class="Bound"
+      >a'</a
+      ><a name="2345"
+      > </a
+      ><a name="2346" class="Symbol"
+      >&#8594;</a
+      ><a name="2347"
+      > </a
+      ><a name="2348" class="Symbol"
+      >(</a
+      ><a name="2349" href="Preliminaries.html#2299" class="Bound"
+      >&#961;</a
+      ><a name="2350"
+      > </a
+      ><a name="2351" href="Preliminaries.html#2242" class="InductiveConstructor Operator"
+      >&#8330;</a
+      ><a name="2352"
+      > </a
+      ><a name="2353" href="Preliminaries.html#2315" class="Bound"
+      >a</a
+      ><a name="2354" class="Symbol"
+      >)</a
+      ><a name="2355"
+      > </a
+      ><a name="2356" href="Preliminaries.html#555" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2357"
+      > </a
+      ><a name="2358" class="Symbol"
+      >(</a
+      ><a name="2359" href="Preliminaries.html#2301" class="Bound"
+      >&#961;'</a
+      ><a name="2361"
+      > </a
+      ><a name="2362" href="Preliminaries.html#2242" class="InductiveConstructor Operator"
+      >&#8330;</a
+      ><a name="2363"
+      > </a
+      ><a name="2364" href="Preliminaries.html#2317" class="Bound"
+      >a'</a
+      ><a name="2366" class="Symbol"
+      >)</a
+      ><a name="2367"
+      >
+</a
+      ><a name="2368" href="Preliminaries.html#2269" class="Function"
+      >&#8330;&#8316;</a
+      ><a name="2370"
+      > </a
+      ><a name="2371" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="2375"
+      > </a
+      ><a name="2376" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="2380"
+      > </a
+      ><a name="2381" class="Symbol"
+      >=</a
+      ><a name="2382"
+      > </a
+      ><a name="2383" href="Preliminaries.html#606" class="InductiveConstructor"
+      >refl</a
+      ><a name="2387"
+      >
+
+</a
+      ><a name="2389" href="Preliminaries.html#2389" class="Function Operator"
+      >_&#8330;&#8330;_</a
+      ><a name="2393"
+      > </a
+      ><a name="2394" class="Symbol"
+      >:</a
+      ><a name="2395"
+      > </a
+      ><a name="2396" class="Symbol"
+      >{</a
+      ><a name="2397" href="Preliminaries.html#2397" class="Bound"
+      >i</a
+      ><a name="2398"
+      > </a
+      ><a name="2399" class="Symbol"
+      >:</a
+      ><a name="2400"
+      > </a
+      ><a name="2401" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="2406" class="Symbol"
+      >}</a
+      ><a name="2407"
+      > </a
+      ><a name="2408" class="Symbol"
+      >{</a
+      ><a name="2409" href="Preliminaries.html#2409" class="Bound"
+      >A</a
+      ><a name="2410"
+      > </a
+      ><a name="2411" class="Symbol"
+      >:</a
+      ><a name="2412"
+      > </a
+      ><a name="2413" class="PrimitiveType"
+      >Set</a
+      ><a name="2416"
+      > </a
+      ><a name="2417" href="Preliminaries.html#2397" class="Bound"
+      >i</a
+      ><a name="2418" class="Symbol"
+      >}</a
+      ><a name="2419"
+      > </a
+      ><a name="2420" class="Symbol"
+      >&#8594;</a
+      ><a name="2421"
+      > </a
+      ><a name="2422" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2426"
+      > </a
+      ><a name="2427" href="Preliminaries.html#2409" class="Bound"
+      >A</a
+      ><a name="2428"
+      > </a
+      ><a name="2429" class="Symbol"
+      >&#8594;</a
+      ><a name="2430"
+      > </a
+      ><a name="2431" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2435"
+      > </a
+      ><a name="2436" href="Preliminaries.html#2409" class="Bound"
+      >A</a
+      ><a name="2437"
+      > </a
+      ><a name="2438" class="Symbol"
+      >&#8594;</a
+      ><a name="2439"
+      > </a
+      ><a name="2440" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2444"
+      > </a
+      ><a name="2445" href="Preliminaries.html#2409" class="Bound"
+      >A</a
+      ><a name="2446"
+      >
+</a
+      ><a name="2447" href="Preliminaries.html#2447" class="Bound"
+      >&#961;</a
+      ><a name="2448"
+      > </a
+      ><a name="2449" href="Preliminaries.html#2389" class="Function Operator"
+      >&#8330;&#8330;</a
+      ><a name="2451"
+      > </a
+      ><a name="2452" href="Preliminaries.html#2230" class="InductiveConstructor"
+      >&#949;</a
+      ><a name="2453"
+      > </a
+      ><a name="2454" class="Symbol"
+      >=</a
+      ><a name="2455"
+      > </a
+      ><a name="2456" href="Preliminaries.html#2447" class="Bound"
+      >&#961;</a
+      ><a name="2457"
+      >
+</a
+      ><a name="2458" href="Preliminaries.html#2458" class="Bound"
+      >&#961;</a
+      ><a name="2459"
+      > </a
+      ><a name="2460" href="Preliminaries.html#2389" class="Function Operator"
+      >&#8330;&#8330;</a
+      ><a name="2462"
+      > </a
+      ><a name="2463" class="Symbol"
+      >(</a
+      ><a name="2464" href="Preliminaries.html#2464" class="Bound"
+      >&#961;'</a
+      ><a name="2466"
+      > </a
+      ><a name="2467" href="Preliminaries.html#2242" class="InductiveConstructor Operator"
+      >&#8330;</a
+      ><a name="2468"
+      > </a
+      ><a name="2469" href="Preliminaries.html#2469" class="Bound"
+      >a</a
+      ><a name="2470" class="Symbol"
+      >)</a
+      ><a name="2471"
+      > </a
+      ><a name="2472" class="Symbol"
+      >=</a
+      ><a name="2473"
+      > </a
+      ><a name="2474" class="Symbol"
+      >(</a
+      ><a name="2475" href="Preliminaries.html#2458" class="Bound"
+      >&#961;</a
+      ><a name="2476"
+      > </a
+      ><a name="2477" href="Preliminaries.html#2389" class="Function Operator"
+      >&#8330;&#8330;</a
+      ><a name="2479"
+      > </a
+      ><a name="2480" href="Preliminaries.html#2464" class="Bound"
+      >&#961;'</a
+      ><a name="2482" class="Symbol"
+      >)</a
+      ><a name="2483"
+      > </a
+      ><a name="2484" href="Preliminaries.html#2242" class="InductiveConstructor Operator"
+      >&#8330;</a
+      ><a name="2485"
+      > </a
+      ><a name="2486" href="Preliminaries.html#2469" class="Bound"
+      >a</a
+      ><a name="2487"
+      >
+
+</a
+      ><a name="2489" href="Preliminaries.html#2489" class="Function"
+      >len</a
+      ><a name="2492"
+      > </a
+      ><a name="2493" class="Symbol"
+      >:</a
+      ><a name="2494"
+      > </a
+      ><a name="2495" class="Symbol"
+      >{</a
+      ><a name="2496" href="Preliminaries.html#2496" class="Bound"
+      >i</a
+      ><a name="2497"
+      > </a
+      ><a name="2498" class="Symbol"
+      >:</a
+      ><a name="2499"
+      > </a
+      ><a name="2500" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="2505" class="Symbol"
+      >}</a
+      ><a name="2506"
+      > </a
+      ><a name="2507" class="Symbol"
+      >{</a
+      ><a name="2508" href="Preliminaries.html#2508" class="Bound"
+      >A</a
+      ><a name="2509"
+      > </a
+      ><a name="2510" class="Symbol"
+      >:</a
+      ><a name="2511"
+      > </a
+      ><a name="2512" class="PrimitiveType"
+      >Set</a
+      ><a name="2515"
+      > </a
+      ><a name="2516" href="Preliminaries.html#2496" class="Bound"
+      >i</a
+      ><a name="2517" class="Symbol"
+      >}</a
+      ><a name="2518"
+      > </a
+      ><a name="2519" class="Symbol"
+      >&#8594;</a
+      ><a name="2520"
+      > </a
+      ><a name="2521" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2525"
+      > </a
+      ><a name="2526" href="Preliminaries.html#2508" class="Bound"
+      >A</a
+      ><a name="2527"
+      > </a
+      ><a name="2528" class="Symbol"
+      >&#8594;</a
+      ><a name="2529"
+      > </a
+      ><a name="2530" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="2531"
+      >
+</a
+      ><a name="2532" href="Preliminaries.html#2489" class="Function"
+      >len</a
+      ><a name="2535"
+      > </a
+      ><a name="2536" href="Preliminaries.html#2230" class="InductiveConstructor"
+      >&#949;</a
+      ><a name="2537"
+      > </a
+      ><a name="2538" class="Symbol"
+      >=</a
+      ><a name="2539"
+      > </a
+      ><a name="2540" class="Number"
+      >0</a
+      ><a name="2541"
+      >
+</a
+      ><a name="2542" href="Preliminaries.html#2489" class="Function"
+      >len</a
+      ><a name="2545"
+      > </a
+      ><a name="2546" class="Symbol"
+      >(</a
+      ><a name="2547" href="Preliminaries.html#2547" class="Bound"
+      >&#961;</a
+      ><a name="2548"
+      > </a
+      ><a name="2549" href="Preliminaries.html#2242" class="InductiveConstructor Operator"
+      >&#8330;</a
+      ><a name="2550"
+      > </a
+      ><a name="2551" class="Symbol"
+      >_)</a
+      ><a name="2553"
+      > </a
+      ><a name="2554" class="Symbol"
+      >=</a
+      ><a name="2555"
+      > </a
+      ><a name="2556" href="Preliminaries.html#1944" class="InductiveConstructor"
+      >succ</a
+      ><a name="2560"
+      > </a
+      ><a name="2561" class="Symbol"
+      >(</a
+      ><a name="2562" href="Preliminaries.html#2489" class="Function"
+      >len</a
+      ><a name="2565"
+      > </a
+      ><a name="2566" href="Preliminaries.html#2547" class="Bound"
+      >&#961;</a
+      ><a name="2567" class="Symbol"
+      >)</a
+      ><a name="2568"
+      >
+
+</a
+      ><a name="2570" class="Keyword"
+      >data</a
+      ><a name="2574"
+      > </a
+      ><a name="2575" href="Preliminaries.html#2575" class="Datatype"
+      >Fin</a
+      ><a name="2578"
+      > </a
+      ><a name="2579" class="Symbol"
+      >:</a
+      ><a name="2580"
+      > </a
+      ><a name="2581" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="2582"
+      > </a
+      ><a name="2583" class="Symbol"
+      >&#8594;</a
+      ><a name="2584"
+      > </a
+      ><a name="2585" class="PrimitiveType"
+      >Set</a
+      ><a name="2588"
+      > </a
+      ><a name="2589" class="Keyword"
+      >where</a
+      ><a name="2594"
+      >
+ </a
+      ><a name="2596" href="Preliminaries.html#2596" class="InductiveConstructor"
+      >zero</a
+      ><a name="2600"
+      > </a
+      ><a name="2601" class="Symbol"
+      >:</a
+      ><a name="2602"
+      > </a
+      ><a name="2603" class="Symbol"
+      >{</a
+      ><a name="2604" href="Preliminaries.html#2604" class="Bound"
+      >n</a
+      ><a name="2605"
+      > </a
+      ><a name="2606" class="Symbol"
+      >:</a
+      ><a name="2607"
+      > </a
+      ><a name="2608" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="2609" class="Symbol"
+      >}</a
+      ><a name="2610"
+      > </a
+      ><a name="2611" class="Symbol"
+      >&#8594;</a
+      ><a name="2612"
+      > </a
+      ><a name="2613" href="Preliminaries.html#2575" class="Datatype"
+      >Fin</a
+      ><a name="2616"
+      > </a
+      ><a name="2617" class="Symbol"
+      >(</a
+      ><a name="2618" href="Preliminaries.html#1944" class="InductiveConstructor"
+      >succ</a
+      ><a name="2622"
+      > </a
+      ><a name="2623" href="Preliminaries.html#2604" class="Bound"
+      >n</a
+      ><a name="2624" class="Symbol"
+      >)</a
+      ><a name="2625"
+      >
+ </a
+      ><a name="2627" href="Preliminaries.html#2627" class="InductiveConstructor"
+      >succ</a
+      ><a name="2631"
+      > </a
+      ><a name="2632" class="Symbol"
+      >:</a
+      ><a name="2633"
+      > </a
+      ><a name="2634" class="Symbol"
+      >{</a
+      ><a name="2635" href="Preliminaries.html#2635" class="Bound"
+      >n</a
+      ><a name="2636"
+      > </a
+      ><a name="2637" class="Symbol"
+      >:</a
+      ><a name="2638"
+      > </a
+      ><a name="2639" href="Preliminaries.html#1919" class="Datatype"
+      >&#8469;</a
+      ><a name="2640" class="Symbol"
+      >}</a
+      ><a name="2641"
+      > </a
+      ><a name="2642" class="Symbol"
+      >&#8594;</a
+      ><a name="2643"
+      > </a
+      ><a name="2644" href="Preliminaries.html#2575" class="Datatype"
+      >Fin</a
+      ><a name="2647"
+      > </a
+      ><a name="2648" href="Preliminaries.html#2635" class="Bound"
+      >n</a
+      ><a name="2649"
+      > </a
+      ><a name="2650" class="Symbol"
+      >&#8594;</a
+      ><a name="2651"
+      > </a
+      ><a name="2652" href="Preliminaries.html#2575" class="Datatype"
+      >Fin</a
+      ><a name="2655"
+      > </a
+      ><a name="2656" class="Symbol"
+      >(</a
+      ><a name="2657" href="Preliminaries.html#1944" class="InductiveConstructor"
+      >succ</a
+      ><a name="2661"
+      > </a
+      ><a name="2662" href="Preliminaries.html#2635" class="Bound"
+      >n</a
+      ><a name="2663" class="Symbol"
+      >)</a
+      ><a name="2664"
+      >
+
+</a
+      ><a name="2666" href="Preliminaries.html#2666" class="Function"
+      >Index</a
+      ><a name="2671"
+      > </a
+      ><a name="2672" class="Symbol"
+      >:</a
+      ><a name="2673"
+      > </a
+      ><a name="2674" class="Symbol"
+      >{</a
+      ><a name="2675" href="Preliminaries.html#2675" class="Bound"
+      >i</a
+      ><a name="2676"
+      > </a
+      ><a name="2677" class="Symbol"
+      >:</a
+      ><a name="2678"
+      > </a
+      ><a name="2679" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="2684" class="Symbol"
+      >}</a
+      ><a name="2685"
+      > </a
+      ><a name="2686" class="Symbol"
+      >{</a
+      ><a name="2687" href="Preliminaries.html#2687" class="Bound"
+      >A</a
+      ><a name="2688"
+      > </a
+      ><a name="2689" class="Symbol"
+      >:</a
+      ><a name="2690"
+      > </a
+      ><a name="2691" class="PrimitiveType"
+      >Set</a
+      ><a name="2694"
+      > </a
+      ><a name="2695" href="Preliminaries.html#2675" class="Bound"
+      >i</a
+      ><a name="2696" class="Symbol"
+      >}</a
+      ><a name="2697"
+      > </a
+      ><a name="2698" class="Symbol"
+      >&#8594;</a
+      ><a name="2699"
+      > </a
+      ><a name="2700" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2704"
+      > </a
+      ><a name="2705" href="Preliminaries.html#2687" class="Bound"
+      >A</a
+      ><a name="2706"
+      > </a
+      ><a name="2707" class="Symbol"
+      >&#8594;</a
+      ><a name="2708"
+      > </a
+      ><a name="2709" class="PrimitiveType"
+      >Set</a
+      ><a name="2712"
+      >
+</a
+      ><a name="2713" href="Preliminaries.html#2666" class="Function"
+      >Index</a
+      ><a name="2718"
+      > </a
+      ><a name="2719" href="Preliminaries.html#2719" class="Bound"
+      >&#961;</a
+      ><a name="2720"
+      > </a
+      ><a name="2721" class="Symbol"
+      >=</a
+      ><a name="2722"
+      > </a
+      ><a name="2723" href="Preliminaries.html#2575" class="Datatype"
+      >Fin</a
+      ><a name="2726"
+      > </a
+      ><a name="2727" class="Symbol"
+      >(</a
+      ><a name="2728" href="Preliminaries.html#2489" class="Function"
+      >len</a
+      ><a name="2731"
+      > </a
+      ><a name="2732" href="Preliminaries.html#2719" class="Bound"
+      >&#961;</a
+      ><a name="2733" class="Symbol"
+      >)</a
+      ><a name="2734"
+      >
+
+</a
+      ><a name="2736" href="Preliminaries.html#2736" class="Function Operator"
+      >_&#8333;_&#8334;</a
+      ><a name="2740"
+      > </a
+      ><a name="2741" class="Symbol"
+      >:</a
+      ><a name="2742"
+      > </a
+      ><a name="2743" class="Symbol"
+      >{</a
+      ><a name="2744" href="Preliminaries.html#2744" class="Bound"
+      >i</a
+      ><a name="2745"
+      > </a
+      ><a name="2746" class="Symbol"
+      >:</a
+      ><a name="2747"
+      > </a
+      ><a name="2748" href="Agda.Primitive.html#379" class="Postulate"
+      >Level</a
+      ><a name="2753" class="Symbol"
+      >}</a
+      ><a name="2754"
+      > </a
+      ><a name="2755" class="Symbol"
+      >{</a
+      ><a name="2756" href="Preliminaries.html#2756" class="Bound"
+      >A</a
+      ><a name="2757"
+      > </a
+      ><a name="2758" class="Symbol"
+      >:</a
+      ><a name="2759"
+      > </a
+      ><a name="2760" class="PrimitiveType"
+      >Set</a
+      ><a name="2763"
+      > </a
+      ><a name="2764" href="Preliminaries.html#2744" class="Bound"
+      >i</a
+      ><a name="2765" class="Symbol"
+      >}</a
+      ><a name="2766"
+      > </a
+      ><a name="2767" class="Symbol"
+      >&#8594;</a
+      ><a name="2768"
+      > </a
+      ><a name="2769" class="Symbol"
+      >(</a
+      ><a name="2770" href="Preliminaries.html#2770" class="Bound"
+      >&#961;</a
+      ><a name="2771"
+      > </a
+      ><a name="2772" class="Symbol"
+      >:</a
+      ><a name="2773"
+      > </a
+      ><a name="2774" href="Preliminaries.html#2186" class="Datatype"
+      >List</a
+      ><a name="2778"
+      > </a
+      ><a name="2779" href="Preliminaries.html#2756" class="Bound"
+      >A</a
+      ><a name="2780" class="Symbol"
+      >)</a
+      ><a name="2781"
+      > </a
+      ><a name="2782" class="Symbol"
+      >&#8594;</a
+      ><a name="2783"
+      > </a
+      ><a name="2784" href="Preliminaries.html#2666" class="Function"
+      >Index</a
+      ><a name="2789"
+      > </a
+      ><a name="2790" href="Preliminaries.html#2770" class="Bound"
+      >&#961;</a
+      ><a name="2791"
+      > </a
+      ><a name="2792" class="Symbol"
+      >&#8594;</a
+      ><a name="2793"
+      > </a
+      ><a name="2794" href="Preliminaries.html#2756" class="Bound"
+      >A</a
+      ><a name="2795"
+      >
+</a
+      ><a name="2796" href="Preliminaries.html#2230" class="InductiveConstructor"
+      >&#949;</a
+      ><a name="2797"
+      > </a
+      ><a name="2798" href="Preliminaries.html#2736" class="Function Operator"
+      >&#8333;</a
+      ><a name="2799"
+      > </a
+      ><a name="2800" class="Symbol"
+      >()</a
+      ><a name="2802"
+      > </a
+      ><a name="2803" href="Preliminaries.html#2736" class="Function Operator"
+      >&#8334;</a
+      ><a name="2804"
+      >
+</a
+      ><a name="2805" class="Symbol"
+      >(</a
+      ><a name="2806" href="Preliminaries.html#2806" class="Bound"
+      >&#961;</a
+      ><a name="2807"
+      > </a
+      ><a name="2808" href="Preliminaries.html#2242" class="InductiveConstructor Operator"
+      >&#8330;</a
+      ><a name="2809"
+      > </a
+      ><a name="2810" href="Preliminaries.html#2810" class="Bound"
+      >a</a
+      ><a name="2811" class="Symbol"
+      >)</a
+      ><a name="2812"
+      > </a
+      ><a name="2813" href="Preliminaries.html#2736" class="Function Operator"
+      >&#8333;</a
+      ><a name="2814"
+      > </a
+      ><a name="2815" href="Preliminaries.html#2596" class="InductiveConstructor"
+      >zero</a
+      ><a name="2819"
+      > </a
+      ><a name="2820" href="Preliminaries.html#2736" class="Function Operator"
+      >&#8334;</a
+      ><a name="2821"
+      >   </a
+      ><a name="2824" class="Symbol"
+      >=</a
+      ><a name="2825"
+      > </a
+      ><a name="2826" href="Preliminaries.html#2810" class="Bound"
+      >a</a
+      ><a name="2827"
+      >
+</a
+      ><a name="2828" class="Symbol"
+      >(</a
+      ><a name="2829" href="Preliminaries.html#2829" class="Bound"
+      >&#961;</a
+      ><a name="2830"
+      > </a
+      ><a name="2831" href="Preliminaries.html#2242" class="InductiveConstructor Operator"
+      >&#8330;</a
+      ><a name="2832"
+      > </a
+      ><a name="2833" href="Preliminaries.html#2833" class="Bound"
+      >a</a
+      ><a name="2834" class="Symbol"
+      >)</a
+      ><a name="2835"
+      > </a
+      ><a name="2836" href="Preliminaries.html#2736" class="Function Operator"
+      >&#8333;</a
+      ><a name="2837"
+      > </a
+      ><a name="2838" href="Preliminaries.html#2627" class="InductiveConstructor"
+      >succ</a
+      ><a name="2842"
+      > </a
+      ><a name="2843" href="Preliminaries.html#2843" class="Bound"
+      >i</a
+      ><a name="2844"
+      > </a
+      ><a name="2845" href="Preliminaries.html#2736" class="Function Operator"
+      >&#8334;</a
+      ><a name="2846"
+      > </a
+      ><a name="2847" class="Symbol"
+      >=</a
+      ><a name="2848"
+      > </a
+      ><a name="2849" href="Preliminaries.html#2829" class="Bound"
+      >&#961;</a
+      ><a name="2850"
+      > </a
+      ><a name="2851" href="Preliminaries.html#2736" class="Function Operator"
+      >&#8333;</a
+      ><a name="2852"
+      > </a
+      ><a name="2853" href="Preliminaries.html#2843" class="Bound"
+      >i</a
+      ><a name="2854"
+      > </a
+      ><a name="2855" href="Preliminaries.html#2736" class="Function Operator"
+      >&#8334;</a
+      ><a name="2856"
+      >
+
+\end{code}
+</a
+      ></pre
+    ></body
+  ></html
+>

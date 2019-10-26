@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >Index</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1" class="Comment"
+      >Chuangjie Xu, January 2017
+
+We implement the term extraction algorithm via a nonstandard
+Dialectica interpretation for system H introduced in
+
+   B. van den Berg, E. Briseid, and P. Safarik, A functional
+   interpretation for nonstandard arithmetic, Annals of pure
+   and applied logic 163 (2012), no. 12, 1962&#8211;1994.
+
+We define system H with 4 inductive datatypes
+
+</a
+      ><a name="366"
+      >\begin{code}
+
+</a
+      ><a name="380" class="Keyword"
+      >import</a
+      ><a name="386"
+      > </a
+      ><a name="387" href="H.html#1" class="Module"
+      >H</a
+      ><a name="388"
+      >
+
+\end{code}
+</a
+      ><a name="401" class="Comment"
+      >
+and then the term extraction algorithm via a nonstandard Dialectica
+interpretation.
+
+</a
+      ><a name="487"
+      >\begin{code}
+
+</a
+      ><a name="501" class="Keyword"
+      >import</a
+      ><a name="507"
+      > </a
+      ><a name="508" href="Dialectica.html#1" class="Module"
+      >Dialectica</a
+      ><a name="518"
+      >
+
+\end{code}
+</a
+      ><a name="531" class="Comment"
+      >
+Extracted terms contain noncomputational information. So we define a
+simplify function to remove it.
+
+</a
+      ><a name="634"
+      >\begin{code}
+
+</a
+      ><a name="648" class="Keyword"
+      >import</a
+      ><a name="654"
+      > </a
+      ><a name="655" href="Simp.html#1" class="Module"
+      >Simp</a
+      ><a name="659"
+      >
+
+\end{code}
+</a
+      ><a name="672" class="Comment"
+      >
+In the end We present a few simple examples and compare the terms
+extracted from different proofs of a theorem.
+
+</a
+      ><a name="786"
+      >\begin{code}
+
+</a
+      ><a name="800" class="Keyword"
+      >import</a
+      ><a name="806"
+      > </a
+      ><a name="807" href="Examples.html#1" class="Module"
+      >Examples</a
+      ><a name="815"
+      >
+
+\end{code}
+</a
+      ></pre
+    ></body
+  ></html
+>

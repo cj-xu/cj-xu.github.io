@@ -1,0 +1,3004 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >ListReversal</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1" class="Comment"
+      >Chuangjie Xu, 4th March 2016</a
+      ><a name="29"
+      >
+
+</a
+      ><a name="31" class="Comment"
+      >We have two proofs that</a
+      ><a name="54"
+      >
+
+</a
+      ><a name="56" class="Comment"
+      >      Every list has a reversed list</a
+      ><a name="92"
+      >
+
+</a
+      ><a name="94" class="Comment"
+      >and then extract reversal functions from them (in Agda/MLTT this is</a
+      ><a name="161"
+      >
+</a
+      ><a name="162" class="Comment"
+      >done via the first projection function pr&#8321;).</a
+      ><a name="206"
+      >
+
+</a
+      ><a name="208" class="Comment"
+      >The first proof Thm&#8321; is simple, but the extracted function reverse&#8321; is</a
+      ><a name="278"
+      >
+</a
+      ><a name="279" class="Comment"
+      >in quadratic time.</a
+      ><a name="297"
+      >
+
+</a
+      ><a name="299" class="Comment"
+      >The second one Thm&#8322; is more complicated with the aid of AuxLemma, but</a
+      ><a name="368"
+      >
+</a
+      ><a name="369" class="Comment"
+      >the extracted function reverse&#8322; is in linear time.</a
+      ><a name="419"
+      >
+
+\begin{code}
+
+</a
+      ><a name="435" class="Keyword"
+      >module</a
+      ><a name="441"
+      > </a
+      ><a name="442" href="ListReversal.html#1" class="Module"
+      >ListReversal</a
+      ><a name="454"
+      > </a
+      ><a name="455" class="Keyword"
+      >where</a
+      ><a name="460"
+      >
+
+</a
+      ><a name="462" class="Keyword"
+      >open</a
+      ><a name="466"
+      > </a
+      ><a name="467" class="Keyword"
+      >import</a
+      ><a name="473"
+      > </a
+      ><a name="474" href="Preliminaries.html#1" class="Module"
+      >Preliminaries</a
+      ><a name="487"
+      >
+
+\end{code}
+
+</a
+      ><a name="501" class="Comment"
+      >Lists and operations</a
+      ><a name="521"
+      >
+
+\begin{code}
+
+</a
+      ><a name="537" class="Keyword"
+      >infixr</a
+      ><a name="543"
+      > </a
+      ><a name="544" class="Number"
+      >20</a
+      ><a name="546"
+      > _::_
+</a
+      ><a name="552" class="Keyword"
+      >infixl</a
+      ><a name="558"
+      > </a
+      ><a name="559" class="Number"
+      >10</a
+      ><a name="561"
+      > _++_
+
+</a
+      ><a name="568" class="Keyword"
+      >data</a
+      ><a name="572"
+      > </a
+      ><a name="573" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="577"
+      > </a
+      ><a name="578" class="Symbol"
+      >(</a
+      ><a name="579" href="ListReversal.html#579" class="Bound"
+      >A</a
+      ><a name="580"
+      > </a
+      ><a name="581" class="Symbol"
+      >:</a
+      ><a name="582"
+      > </a
+      ><a name="583" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="587" class="Symbol"
+      >)</a
+      ><a name="588"
+      > </a
+      ><a name="589" class="Symbol"
+      >:</a
+      ><a name="590"
+      > </a
+      ><a name="591" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="595"
+      > </a
+      ><a name="596" class="Keyword"
+      >where</a
+      ><a name="601"
+      >
+ </a
+      ><a name="603" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="605"
+      >   </a
+      ><a name="608" class="Symbol"
+      >:</a
+      ><a name="609"
+      > </a
+      ><a name="610" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="614"
+      > </a
+      ><a name="615" href="ListReversal.html#579" class="Bound"
+      >A</a
+      ><a name="616"
+      >
+ </a
+      ><a name="618" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >_::_</a
+      ><a name="622"
+      > </a
+      ><a name="623" class="Symbol"
+      >:</a
+      ><a name="624"
+      > </a
+      ><a name="625" href="ListReversal.html#579" class="Bound"
+      >A</a
+      ><a name="626"
+      > </a
+      ><a name="627" class="Symbol"
+      >&#8594;</a
+      ><a name="628"
+      > </a
+      ><a name="629" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="633"
+      > </a
+      ><a name="634" href="ListReversal.html#579" class="Bound"
+      >A</a
+      ><a name="635"
+      > </a
+      ><a name="636" class="Symbol"
+      >&#8594;</a
+      ><a name="637"
+      > </a
+      ><a name="638" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="642"
+      > </a
+      ><a name="643" href="ListReversal.html#579" class="Bound"
+      >A</a
+      ><a name="644"
+      >
+
+</a
+      ><a name="646" href="ListReversal.html#646" class="Function Operator"
+      >[_]</a
+      ><a name="649"
+      > </a
+      ><a name="650" class="Symbol"
+      >:</a
+      ><a name="651"
+      > </a
+      ><a name="652" class="Symbol"
+      >{</a
+      ><a name="653" href="ListReversal.html#653" class="Bound"
+      >A</a
+      ><a name="654"
+      > </a
+      ><a name="655" class="Symbol"
+      >:</a
+      ><a name="656"
+      > </a
+      ><a name="657" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="661" class="Symbol"
+      >}</a
+      ><a name="662"
+      > </a
+      ><a name="663" class="Symbol"
+      >&#8594;</a
+      ><a name="664"
+      > </a
+      ><a name="665" href="ListReversal.html#653" class="Bound"
+      >A</a
+      ><a name="666"
+      > </a
+      ><a name="667" class="Symbol"
+      >&#8594;</a
+      ><a name="668"
+      > </a
+      ><a name="669" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="673"
+      > </a
+      ><a name="674" href="ListReversal.html#653" class="Bound"
+      >A</a
+      ><a name="675"
+      >
+</a
+      ><a name="676" href="ListReversal.html#646" class="Function Operator"
+      >[</a
+      ><a name="677"
+      > </a
+      ><a name="678" href="ListReversal.html#678" class="Bound"
+      >a</a
+      ><a name="679"
+      > </a
+      ><a name="680" href="ListReversal.html#646" class="Function Operator"
+      >]</a
+      ><a name="681"
+      > </a
+      ><a name="682" class="Symbol"
+      >=</a
+      ><a name="683"
+      > </a
+      ><a name="684" href="ListReversal.html#678" class="Bound"
+      >a</a
+      ><a name="685"
+      > </a
+      ><a name="686" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="688"
+      > </a
+      ><a name="689" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="691"
+      >
+
+</a
+      ><a name="693" href="ListReversal.html#693" class="Function Operator"
+      >_++_</a
+      ><a name="697"
+      > </a
+      ><a name="698" class="Symbol"
+      >:</a
+      ><a name="699"
+      > </a
+      ><a name="700" class="Symbol"
+      >{</a
+      ><a name="701" href="ListReversal.html#701" class="Bound"
+      >A</a
+      ><a name="702"
+      > </a
+      ><a name="703" class="Symbol"
+      >:</a
+      ><a name="704"
+      > </a
+      ><a name="705" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="709" class="Symbol"
+      >}</a
+      ><a name="710"
+      > </a
+      ><a name="711" class="Symbol"
+      >&#8594;</a
+      ><a name="712"
+      > </a
+      ><a name="713" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="717"
+      > </a
+      ><a name="718" href="ListReversal.html#701" class="Bound"
+      >A</a
+      ><a name="719"
+      > </a
+      ><a name="720" class="Symbol"
+      >&#8594;</a
+      ><a name="721"
+      > </a
+      ><a name="722" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="726"
+      > </a
+      ><a name="727" href="ListReversal.html#701" class="Bound"
+      >A</a
+      ><a name="728"
+      > </a
+      ><a name="729" class="Symbol"
+      >&#8594;</a
+      ><a name="730"
+      > </a
+      ><a name="731" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="735"
+      > </a
+      ><a name="736" href="ListReversal.html#701" class="Bound"
+      >A</a
+      ><a name="737"
+      >
+</a
+      ><a name="738" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="740"
+      > </a
+      ><a name="741" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="743"
+      > </a
+      ><a name="744" href="ListReversal.html#744" class="Bound"
+      >v</a
+      ><a name="745"
+      > </a
+      ><a name="746" class="Symbol"
+      >=</a
+      ><a name="747"
+      > </a
+      ><a name="748" href="ListReversal.html#744" class="Bound"
+      >v</a
+      ><a name="749"
+      >
+</a
+      ><a name="750" class="Symbol"
+      >(</a
+      ><a name="751" href="ListReversal.html#751" class="Bound"
+      >a</a
+      ><a name="752"
+      > </a
+      ><a name="753" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="755"
+      > </a
+      ><a name="756" href="ListReversal.html#756" class="Bound"
+      >u</a
+      ><a name="757" class="Symbol"
+      >)</a
+      ><a name="758"
+      > </a
+      ><a name="759" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="761"
+      > </a
+      ><a name="762" href="ListReversal.html#762" class="Bound"
+      >v</a
+      ><a name="763"
+      > </a
+      ><a name="764" class="Symbol"
+      >=</a
+      ><a name="765"
+      > </a
+      ><a name="766" href="ListReversal.html#751" class="Bound"
+      >a</a
+      ><a name="767"
+      > </a
+      ><a name="768" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="770"
+      > </a
+      ><a name="771" class="Symbol"
+      >(</a
+      ><a name="772" href="ListReversal.html#756" class="Bound"
+      >u</a
+      ><a name="773"
+      > </a
+      ><a name="774" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="776"
+      > </a
+      ><a name="777" href="ListReversal.html#762" class="Bound"
+      >v</a
+      ><a name="778" class="Symbol"
+      >)</a
+      ><a name="779"
+      >
+
+\end{code}
+
+</a
+      ><a name="793" class="Comment"
+      >An inductively-defined relation of reversed lists</a
+      ><a name="842"
+      >
+
+\begin{code}
+
+</a
+      ><a name="858" class="Keyword"
+      >data</a
+      ><a name="862"
+      > </a
+      ><a name="863" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="871"
+      > </a
+      ><a name="872" class="Symbol"
+      >{</a
+      ><a name="873" href="ListReversal.html#873" class="Bound"
+      >A</a
+      ><a name="874"
+      > </a
+      ><a name="875" class="Symbol"
+      >:</a
+      ><a name="876"
+      > </a
+      ><a name="877" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="881" class="Symbol"
+      >}</a
+      ><a name="882"
+      > </a
+      ><a name="883" class="Symbol"
+      >:</a
+      ><a name="884"
+      > </a
+      ><a name="885" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="889"
+      > </a
+      ><a name="890" href="ListReversal.html#873" class="Bound"
+      >A</a
+      ><a name="891"
+      > </a
+      ><a name="892" class="Symbol"
+      >&#8594;</a
+      ><a name="893"
+      > </a
+      ><a name="894" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="898"
+      > </a
+      ><a name="899" href="ListReversal.html#873" class="Bound"
+      >A</a
+      ><a name="900"
+      > </a
+      ><a name="901" class="Symbol"
+      >&#8594;</a
+      ><a name="902"
+      > </a
+      ><a name="903" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="907"
+      > </a
+      ><a name="908" class="Keyword"
+      >where</a
+      ><a name="913"
+      >
+ </a
+      ><a name="915" href="ListReversal.html#915" class="InductiveConstructor"
+      >r-nil</a
+      ><a name="920"
+      >  </a
+      ><a name="922" class="Symbol"
+      >:</a
+      ><a name="923"
+      > </a
+      ><a name="924" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="932"
+      > </a
+      ><a name="933" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="935"
+      > </a
+      ><a name="936" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="938"
+      >
+ </a
+      ><a name="940" href="ListReversal.html#940" class="InductiveConstructor"
+      >r-cons</a
+      ><a name="946"
+      > </a
+      ><a name="947" class="Symbol"
+      >:</a
+      ><a name="948"
+      > </a
+      ><a name="949" class="Symbol"
+      >{</a
+      ><a name="950" href="ListReversal.html#950" class="Bound"
+      >u</a
+      ><a name="951"
+      > </a
+      ><a name="952" href="ListReversal.html#952" class="Bound"
+      >v</a
+      ><a name="953"
+      > </a
+      ><a name="954" class="Symbol"
+      >:</a
+      ><a name="955"
+      > </a
+      ><a name="956" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="960"
+      > </a
+      ><a name="961" href="ListReversal.html#873" class="Bound"
+      >A</a
+      ><a name="962" class="Symbol"
+      >}</a
+      ><a name="963"
+      > </a
+      ><a name="964" class="Symbol"
+      >{</a
+      ><a name="965" href="ListReversal.html#965" class="Bound"
+      >a</a
+      ><a name="966"
+      > </a
+      ><a name="967" class="Symbol"
+      >:</a
+      ><a name="968"
+      > </a
+      ><a name="969" href="ListReversal.html#873" class="Bound"
+      >A</a
+      ><a name="970" class="Symbol"
+      >}</a
+      ><a name="971"
+      > </a
+      ><a name="972" class="Symbol"
+      >&#8594;</a
+      ><a name="973"
+      > </a
+      ><a name="974" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="982"
+      > </a
+      ><a name="983" href="ListReversal.html#950" class="Bound"
+      >u</a
+      ><a name="984"
+      > </a
+      ><a name="985" href="ListReversal.html#952" class="Bound"
+      >v</a
+      ><a name="986"
+      > </a
+      ><a name="987" class="Symbol"
+      >&#8594;</a
+      ><a name="988"
+      > </a
+      ><a name="989" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="997"
+      > </a
+      ><a name="998" class="Symbol"
+      >(</a
+      ><a name="999" href="ListReversal.html#965" class="Bound"
+      >a</a
+      ><a name="1000"
+      > </a
+      ><a name="1001" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="1003"
+      > </a
+      ><a name="1004" href="ListReversal.html#950" class="Bound"
+      >u</a
+      ><a name="1005" class="Symbol"
+      >)</a
+      ><a name="1006"
+      > </a
+      ><a name="1007" class="Symbol"
+      >(</a
+      ><a name="1008" href="ListReversal.html#952" class="Bound"
+      >v</a
+      ><a name="1009"
+      > </a
+      ><a name="1010" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="1012"
+      > </a
+      ><a name="1013" href="ListReversal.html#646" class="Function Operator"
+      >[</a
+      ><a name="1014"
+      > </a
+      ><a name="1015" href="ListReversal.html#965" class="Bound"
+      >a</a
+      ><a name="1016"
+      > </a
+      ><a name="1017" href="ListReversal.html#646" class="Function Operator"
+      >]</a
+      ><a name="1018" class="Symbol"
+      >)</a
+      ><a name="1019"
+      >
+
+\end{code}
+
+</a
+      ><a name="1033" class="Comment"
+      >A simple proof that every list has a reversed list,</a
+      ><a name="1084"
+      >
+</a
+      ><a name="1085" class="Comment"
+      >whose reversal algorithm is inefficient (quadratic time).</a
+      ><a name="1142"
+      >
+
+\begin{code}
+
+</a
+      ><a name="1158" href="ListReversal.html#1158" class="Function"
+      >Thm&#8321;</a
+      ><a name="1162"
+      > </a
+      ><a name="1163" class="Symbol"
+      >:</a
+      ><a name="1164"
+      > </a
+      ><a name="1165" class="Symbol"
+      >{</a
+      ><a name="1166" href="ListReversal.html#1166" class="Bound"
+      >A</a
+      ><a name="1167"
+      > </a
+      ><a name="1168" class="Symbol"
+      >:</a
+      ><a name="1169"
+      > </a
+      ><a name="1170" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="1174" class="Symbol"
+      >}</a
+      ><a name="1175"
+      >
+     </a
+      ><a name="1181" class="Symbol"
+      >&#8594;</a
+      ><a name="1182"
+      > </a
+      ><a name="1183" class="Symbol"
+      >&#8704;</a
+      ><a name="1184"
+      > </a
+      ><a name="1185" class="Symbol"
+      >(</a
+      ><a name="1186" href="ListReversal.html#1186" class="Bound"
+      >u</a
+      ><a name="1187"
+      > </a
+      ><a name="1188" class="Symbol"
+      >:</a
+      ><a name="1189"
+      > </a
+      ><a name="1190" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="1194"
+      > </a
+      ><a name="1195" href="ListReversal.html#1166" class="Bound"
+      >A</a
+      ><a name="1196" class="Symbol"
+      >)</a
+      ><a name="1197"
+      > </a
+      ><a name="1198" class="Symbol"
+      >&#8594;</a
+      ><a name="1199"
+      > </a
+      ><a name="1200" href="Preliminaries.html#917" class="Function"
+      >&#8707;</a
+      ><a name="1201"
+      > </a
+      ><a name="1202" class="Symbol"
+      >\(</a
+      ><a name="1204" href="ListReversal.html#1204" class="Bound"
+      >v</a
+      ><a name="1205"
+      > </a
+      ><a name="1206" class="Symbol"
+      >:</a
+      ><a name="1207"
+      > </a
+      ><a name="1208" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="1212"
+      > </a
+      ><a name="1213" href="ListReversal.html#1166" class="Bound"
+      >A</a
+      ><a name="1214" class="Symbol"
+      >)</a
+      ><a name="1215"
+      > </a
+      ><a name="1216" class="Symbol"
+      >&#8594;</a
+      ><a name="1217"
+      > </a
+      ><a name="1218" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="1226"
+      > </a
+      ><a name="1227" href="ListReversal.html#1186" class="Bound"
+      >u</a
+      ><a name="1228"
+      > </a
+      ><a name="1229" href="ListReversal.html#1204" class="Bound"
+      >v</a
+      ><a name="1230"
+      >
+</a
+      ><a name="1231" href="ListReversal.html#1158" class="Function"
+      >Thm&#8321;</a
+      ><a name="1235"
+      > </a
+      ><a name="1236" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="1238"
+      > </a
+      ><a name="1239" class="Symbol"
+      >=</a
+      ><a name="1240"
+      > </a
+      ><a name="1241" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="1243"
+      > </a
+      ><a name="1244" href="Preliminaries.html#784" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="1245"
+      > </a
+      ><a name="1246" href="ListReversal.html#915" class="InductiveConstructor"
+      >r-nil</a
+      ><a name="1251"
+      >
+</a
+      ><a name="1252" href="ListReversal.html#1158" class="Function"
+      >Thm&#8321;</a
+      ><a name="1256"
+      > </a
+      ><a name="1257" class="Symbol"
+      >{</a
+      ><a name="1258" href="ListReversal.html#1258" class="Bound"
+      >A</a
+      ><a name="1259" class="Symbol"
+      >}</a
+      ><a name="1260"
+      > </a
+      ><a name="1261" class="Symbol"
+      >(</a
+      ><a name="1262" href="ListReversal.html#1262" class="Bound"
+      >a</a
+      ><a name="1263"
+      > </a
+      ><a name="1264" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="1266"
+      > </a
+      ><a name="1267" href="ListReversal.html#1267" class="Bound"
+      >u</a
+      ><a name="1268" class="Symbol"
+      >)</a
+      ><a name="1269"
+      > </a
+      ><a name="1270" class="Symbol"
+      >=</a
+      ><a name="1271"
+      > </a
+      ><a name="1272" href="ListReversal.html#1355" class="Function"
+      >v</a
+      ><a name="1273"
+      > </a
+      ><a name="1274" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="1276"
+      > </a
+      ><a name="1277" href="ListReversal.html#646" class="Function Operator"
+      >[</a
+      ><a name="1278"
+      > </a
+      ><a name="1279" href="ListReversal.html#1262" class="Bound"
+      >a</a
+      ><a name="1280"
+      > </a
+      ><a name="1281" href="ListReversal.html#646" class="Function Operator"
+      >]</a
+      ><a name="1282"
+      > </a
+      ><a name="1283" href="Preliminaries.html#784" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="1284"
+      > </a
+      ><a name="1285" href="ListReversal.html#940" class="InductiveConstructor"
+      >r-cons</a
+      ><a name="1291"
+      > </a
+      ><a name="1292" href="ListReversal.html#1381" class="Function"
+      >p</a
+      ><a name="1293"
+      >
+ </a
+      ><a name="1295" class="Keyword"
+      >where</a
+      ><a name="1300"
+      >
+  </a
+      ><a name="1303" href="ListReversal.html#1303" class="Function"
+      >IH</a
+      ><a name="1305"
+      > </a
+      ><a name="1306" class="Symbol"
+      >:</a
+      ><a name="1307"
+      > </a
+      ><a name="1308" href="Preliminaries.html#917" class="Function"
+      >&#8707;</a
+      ><a name="1309"
+      > </a
+      ><a name="1310" class="Symbol"
+      >\(</a
+      ><a name="1312" href="ListReversal.html#1312" class="Bound"
+      >v</a
+      ><a name="1313"
+      > </a
+      ><a name="1314" class="Symbol"
+      >:</a
+      ><a name="1315"
+      > </a
+      ><a name="1316" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="1320"
+      > </a
+      ><a name="1321" href="ListReversal.html#1258" class="Bound"
+      >A</a
+      ><a name="1322" class="Symbol"
+      >)</a
+      ><a name="1323"
+      > </a
+      ><a name="1324" class="Symbol"
+      >&#8594;</a
+      ><a name="1325"
+      > </a
+      ><a name="1326" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="1334"
+      > </a
+      ><a name="1335" href="ListReversal.html#1267" class="Bound"
+      >u</a
+      ><a name="1336"
+      > </a
+      ><a name="1337" href="ListReversal.html#1312" class="Bound"
+      >v</a
+      ><a name="1338"
+      >
+  </a
+      ><a name="1341" href="ListReversal.html#1303" class="Function"
+      >IH</a
+      ><a name="1343"
+      > </a
+      ><a name="1344" class="Symbol"
+      >=</a
+      ><a name="1345"
+      > </a
+      ><a name="1346" href="ListReversal.html#1158" class="Function"
+      >Thm&#8321;</a
+      ><a name="1350"
+      > </a
+      ><a name="1351" href="ListReversal.html#1267" class="Bound"
+      >u</a
+      ><a name="1352"
+      >
+  </a
+      ><a name="1355" href="ListReversal.html#1355" class="Function"
+      >v</a
+      ><a name="1356"
+      > </a
+      ><a name="1357" class="Symbol"
+      >:</a
+      ><a name="1358"
+      > </a
+      ><a name="1359" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="1363"
+      > </a
+      ><a name="1364" href="ListReversal.html#1258" class="Bound"
+      >A</a
+      ><a name="1365"
+      >
+  </a
+      ><a name="1368" href="ListReversal.html#1355" class="Function"
+      >v</a
+      ><a name="1369"
+      > </a
+      ><a name="1370" class="Symbol"
+      >=</a
+      ><a name="1371"
+      > </a
+      ><a name="1372" href="Preliminaries.html#797" class="Field"
+      >pr&#8321;</a
+      ><a name="1375"
+      > </a
+      ><a name="1376" href="ListReversal.html#1303" class="Function"
+      >IH</a
+      ><a name="1378"
+      >
+  </a
+      ><a name="1381" href="ListReversal.html#1381" class="Function"
+      >p</a
+      ><a name="1382"
+      > </a
+      ><a name="1383" class="Symbol"
+      >:</a
+      ><a name="1384"
+      > </a
+      ><a name="1385" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="1393"
+      > </a
+      ><a name="1394" href="ListReversal.html#1267" class="Bound"
+      >u</a
+      ><a name="1395"
+      > </a
+      ><a name="1396" href="ListReversal.html#1355" class="Function"
+      >v</a
+      ><a name="1397"
+      >
+  </a
+      ><a name="1400" href="ListReversal.html#1381" class="Function"
+      >p</a
+      ><a name="1401"
+      > </a
+      ><a name="1402" class="Symbol"
+      >=</a
+      ><a name="1403"
+      > </a
+      ><a name="1404" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="1407"
+      > </a
+      ><a name="1408" href="ListReversal.html#1303" class="Function"
+      >IH</a
+      ><a name="1410"
+      >
+
+</a
+      ><a name="1412" href="ListReversal.html#1412" class="Function"
+      >reverse&#8321;</a
+      ><a name="1420"
+      > </a
+      ><a name="1421" class="Symbol"
+      >:</a
+      ><a name="1422"
+      > </a
+      ><a name="1423" class="Symbol"
+      >{</a
+      ><a name="1424" href="ListReversal.html#1424" class="Bound"
+      >A</a
+      ><a name="1425"
+      > </a
+      ><a name="1426" class="Symbol"
+      >:</a
+      ><a name="1427"
+      > </a
+      ><a name="1428" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="1432" class="Symbol"
+      >}</a
+      ><a name="1433"
+      > </a
+      ><a name="1434" class="Symbol"
+      >&#8594;</a
+      ><a name="1435"
+      > </a
+      ><a name="1436" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="1440"
+      > </a
+      ><a name="1441" href="ListReversal.html#1424" class="Bound"
+      >A</a
+      ><a name="1442"
+      > </a
+      ><a name="1443" class="Symbol"
+      >&#8594;</a
+      ><a name="1444"
+      > </a
+      ><a name="1445" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="1449"
+      > </a
+      ><a name="1450" href="ListReversal.html#1424" class="Bound"
+      >A</a
+      ><a name="1451"
+      >
+</a
+      ><a name="1452" href="ListReversal.html#1412" class="Function"
+      >reverse&#8321;</a
+      ><a name="1460"
+      > </a
+      ><a name="1461" href="ListReversal.html#1461" class="Bound"
+      >u</a
+      ><a name="1462"
+      > </a
+      ><a name="1463" class="Symbol"
+      >=</a
+      ><a name="1464"
+      > </a
+      ><a name="1465" href="Preliminaries.html#797" class="Field"
+      >pr&#8321;</a
+      ><a name="1468"
+      > </a
+      ><a name="1469" class="Symbol"
+      >(</a
+      ><a name="1470" href="ListReversal.html#1158" class="Function"
+      >Thm&#8321;</a
+      ><a name="1474"
+      > </a
+      ><a name="1475" href="ListReversal.html#1461" class="Bound"
+      >u</a
+      ><a name="1476" class="Symbol"
+      >)</a
+      ><a name="1477"
+      >
+
+\end{code}
+
+</a
+      ><a name="1491" class="Comment"
+      >The above reverse function can be written as</a
+      ><a name="1535"
+      >
+
+\begin{code}
+
+</a
+      ><a name="1551" href="ListReversal.html#1551" class="Function"
+      >reverse&#185;</a
+      ><a name="1559"
+      > </a
+      ><a name="1560" class="Symbol"
+      >:</a
+      ><a name="1561"
+      > </a
+      ><a name="1562" class="Symbol"
+      >{</a
+      ><a name="1563" href="ListReversal.html#1563" class="Bound"
+      >A</a
+      ><a name="1564"
+      > </a
+      ><a name="1565" class="Symbol"
+      >:</a
+      ><a name="1566"
+      > </a
+      ><a name="1567" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="1571" class="Symbol"
+      >}</a
+      ><a name="1572"
+      > </a
+      ><a name="1573" class="Symbol"
+      >&#8594;</a
+      ><a name="1574"
+      > </a
+      ><a name="1575" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="1579"
+      > </a
+      ><a name="1580" href="ListReversal.html#1563" class="Bound"
+      >A</a
+      ><a name="1581"
+      > </a
+      ><a name="1582" class="Symbol"
+      >&#8594;</a
+      ><a name="1583"
+      > </a
+      ><a name="1584" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="1588"
+      > </a
+      ><a name="1589" href="ListReversal.html#1563" class="Bound"
+      >A</a
+      ><a name="1590"
+      >
+</a
+      ><a name="1591" href="ListReversal.html#1551" class="Function"
+      >reverse&#185;</a
+      ><a name="1599"
+      >  </a
+      ><a name="1601" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="1603"
+      >      </a
+      ><a name="1609" class="Symbol"
+      >=</a
+      ><a name="1610"
+      > </a
+      ><a name="1611" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="1613"
+      >
+</a
+      ><a name="1614" href="ListReversal.html#1551" class="Function"
+      >reverse&#185;</a
+      ><a name="1622"
+      > </a
+      ><a name="1623" class="Symbol"
+      >(</a
+      ><a name="1624" href="ListReversal.html#1624" class="Bound"
+      >a</a
+      ><a name="1625"
+      > </a
+      ><a name="1626" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="1628"
+      > </a
+      ><a name="1629" href="ListReversal.html#1629" class="Bound"
+      >u</a
+      ><a name="1630" class="Symbol"
+      >)</a
+      ><a name="1631"
+      > </a
+      ><a name="1632" class="Symbol"
+      >=</a
+      ><a name="1633"
+      > </a
+      ><a name="1634" href="ListReversal.html#1551" class="Function"
+      >reverse&#185;</a
+      ><a name="1642"
+      > </a
+      ><a name="1643" href="ListReversal.html#1629" class="Bound"
+      >u</a
+      ><a name="1644"
+      > </a
+      ><a name="1645" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="1647"
+      > </a
+      ><a name="1648" href="ListReversal.html#646" class="Function Operator"
+      >[</a
+      ><a name="1649"
+      > </a
+      ><a name="1650" href="ListReversal.html#1624" class="Bound"
+      >a</a
+      ><a name="1651"
+      > </a
+      ><a name="1652" href="ListReversal.html#646" class="Function Operator"
+      >]</a
+      ><a name="1653"
+      >
+
+\end{code}
+
+</a
+      ><a name="1667" class="Comment"
+      >I'm too lazy to prove the following two lemmas.</a
+      ><a name="1714"
+      >
+
+\begin{code}
+
+</a
+      ><a name="1730" class="Keyword"
+      >postulate</a
+      ><a name="1739"
+      >
+ </a
+      ><a name="1741" href="ListReversal.html#1741" class="Postulate"
+      >Lemma[u++a++v=u++a::v]</a
+      ><a name="1763"
+      > </a
+      ><a name="1764" class="Symbol"
+      >:</a
+      ><a name="1765"
+      > </a
+      ><a name="1766" class="Symbol"
+      >{</a
+      ><a name="1767" href="ListReversal.html#1767" class="Bound"
+      >A</a
+      ><a name="1768"
+      > </a
+      ><a name="1769" class="Symbol"
+      >:</a
+      ><a name="1770"
+      > </a
+      ><a name="1771" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="1775" class="Symbol"
+      >}</a
+      ><a name="1776"
+      > </a
+      ><a name="1777" class="Symbol"
+      >(</a
+      ><a name="1778" href="ListReversal.html#1778" class="Bound"
+      >u</a
+      ><a name="1779"
+      > </a
+      ><a name="1780" href="ListReversal.html#1780" class="Bound"
+      >v</a
+      ><a name="1781"
+      > </a
+      ><a name="1782" class="Symbol"
+      >:</a
+      ><a name="1783"
+      > </a
+      ><a name="1784" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="1788"
+      > </a
+      ><a name="1789" href="ListReversal.html#1767" class="Bound"
+      >A</a
+      ><a name="1790" class="Symbol"
+      >)</a
+      ><a name="1791"
+      > </a
+      ><a name="1792" class="Symbol"
+      >(</a
+      ><a name="1793" href="ListReversal.html#1793" class="Bound"
+      >a</a
+      ><a name="1794"
+      > </a
+      ><a name="1795" class="Symbol"
+      >:</a
+      ><a name="1796"
+      > </a
+      ><a name="1797" href="ListReversal.html#1767" class="Bound"
+      >A</a
+      ><a name="1798" class="Symbol"
+      >)</a
+      ><a name="1799"
+      >
+                        </a
+      ><a name="1824" class="Symbol"
+      >&#8594;</a
+      ><a name="1825"
+      > </a
+      ><a name="1826" href="ListReversal.html#1778" class="Bound"
+      >u</a
+      ><a name="1827"
+      > </a
+      ><a name="1828" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="1830"
+      > </a
+      ><a name="1831" href="ListReversal.html#646" class="Function Operator"
+      >[</a
+      ><a name="1832"
+      > </a
+      ><a name="1833" href="ListReversal.html#1793" class="Bound"
+      >a</a
+      ><a name="1834"
+      > </a
+      ><a name="1835" href="ListReversal.html#646" class="Function Operator"
+      >]</a
+      ><a name="1836"
+      > </a
+      ><a name="1837" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="1839"
+      > </a
+      ><a name="1840" href="ListReversal.html#1780" class="Bound"
+      >v</a
+      ><a name="1841"
+      > </a
+      ><a name="1842" href="Preliminaries.html#324" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1843"
+      > </a
+      ><a name="1844" href="ListReversal.html#1778" class="Bound"
+      >u</a
+      ><a name="1845"
+      > </a
+      ><a name="1846" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="1848"
+      > </a
+      ><a name="1849" href="ListReversal.html#1793" class="Bound"
+      >a</a
+      ><a name="1850"
+      > </a
+      ><a name="1851" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="1853"
+      > </a
+      ><a name="1854" href="ListReversal.html#1780" class="Bound"
+      >v</a
+      ><a name="1855"
+      >
+ </a
+      ><a name="1857" href="ListReversal.html#1857" class="Postulate"
+      >Lemma[u++[]=v&#8594;u=v]</a
+      ><a name="1875"
+      > </a
+      ><a name="1876" class="Symbol"
+      >:</a
+      ><a name="1877"
+      > </a
+      ><a name="1878" class="Symbol"
+      >{</a
+      ><a name="1879" href="ListReversal.html#1879" class="Bound"
+      >A</a
+      ><a name="1880"
+      > </a
+      ><a name="1881" class="Symbol"
+      >:</a
+      ><a name="1882"
+      > </a
+      ><a name="1883" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="1887" class="Symbol"
+      >}</a
+      ><a name="1888"
+      > </a
+      ><a name="1889" class="Symbol"
+      >{</a
+      ><a name="1890" href="ListReversal.html#1890" class="Bound"
+      >u</a
+      ><a name="1891"
+      > </a
+      ><a name="1892" href="ListReversal.html#1892" class="Bound"
+      >v</a
+      ><a name="1893"
+      > </a
+      ><a name="1894" class="Symbol"
+      >:</a
+      ><a name="1895"
+      > </a
+      ><a name="1896" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="1900"
+      > </a
+      ><a name="1901" href="ListReversal.html#1879" class="Bound"
+      >A</a
+      ><a name="1902" class="Symbol"
+      >}</a
+      ><a name="1903"
+      >
+                    </a
+      ><a name="1924" class="Symbol"
+      >&#8594;</a
+      ><a name="1925"
+      > </a
+      ><a name="1926" href="ListReversal.html#1890" class="Bound"
+      >u</a
+      ><a name="1927"
+      > </a
+      ><a name="1928" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="1930"
+      > </a
+      ><a name="1931" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="1933"
+      > </a
+      ><a name="1934" href="Preliminaries.html#324" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1935"
+      > </a
+      ><a name="1936" href="ListReversal.html#1892" class="Bound"
+      >v</a
+      ><a name="1937"
+      > </a
+      ><a name="1938" class="Symbol"
+      >&#8594;</a
+      ><a name="1939"
+      > </a
+      ><a name="1940" href="ListReversal.html#1890" class="Bound"
+      >u</a
+      ><a name="1941"
+      > </a
+      ><a name="1942" href="Preliminaries.html#324" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1943"
+      > </a
+      ><a name="1944" href="ListReversal.html#1892" class="Bound"
+      >v</a
+      ><a name="1945"
+      >
+
+\end{code}
+
+</a
+      ><a name="1959" class="Comment"
+      >Now we have a slightly more complicated proof witha linear reversal algorithm.</a
+      ><a name="2037"
+      >
+
+\begin{code}
+
+</a
+      ><a name="2053" href="ListReversal.html#2053" class="Function"
+      >AuxLemma</a
+      ><a name="2061"
+      > </a
+      ><a name="2062" class="Symbol"
+      >:</a
+      ><a name="2063"
+      > </a
+      ><a name="2064" class="Symbol"
+      >{</a
+      ><a name="2065" href="ListReversal.html#2065" class="Bound"
+      >A</a
+      ><a name="2066"
+      > </a
+      ><a name="2067" class="Symbol"
+      >:</a
+      ><a name="2068"
+      > </a
+      ><a name="2069" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="2073" class="Symbol"
+      >}</a
+      ><a name="2074"
+      >
+    </a
+      ><a name="2079" class="Symbol"
+      >&#8594;</a
+      ><a name="2080"
+      > </a
+      ><a name="2081" class="Symbol"
+      >&#8704;</a
+      ><a name="2082"
+      > </a
+      ><a name="2083" class="Symbol"
+      >(</a
+      ><a name="2084" href="ListReversal.html#2084" class="Bound"
+      >u</a
+      ><a name="2085"
+      > </a
+      ><a name="2086" href="ListReversal.html#2086" class="Bound"
+      >v</a
+      ><a name="2087"
+      > </a
+      ><a name="2088" class="Symbol"
+      >:</a
+      ><a name="2089"
+      > </a
+      ><a name="2090" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2094"
+      > </a
+      ><a name="2095" href="ListReversal.html#2065" class="Bound"
+      >A</a
+      ><a name="2096" class="Symbol"
+      >)</a
+      ><a name="2097"
+      >
+    </a
+      ><a name="2102" class="Symbol"
+      >&#8594;</a
+      ><a name="2103"
+      > </a
+      ><a name="2104" href="Preliminaries.html#917" class="Function"
+      >&#8707;</a
+      ><a name="2105"
+      > </a
+      ><a name="2106" class="Symbol"
+      >\(</a
+      ><a name="2108" href="ListReversal.html#2108" class="Bound"
+      >l</a
+      ><a name="2109"
+      > </a
+      ><a name="2110" class="Symbol"
+      >:</a
+      ><a name="2111"
+      > </a
+      ><a name="2112" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2116"
+      > </a
+      ><a name="2117" href="ListReversal.html#2065" class="Bound"
+      >A</a
+      ><a name="2118" class="Symbol"
+      >)</a
+      ><a name="2119"
+      > </a
+      ><a name="2120" class="Symbol"
+      >&#8594;</a
+      ><a name="2121"
+      > </a
+      ><a name="2122" href="Preliminaries.html#917" class="Function"
+      >&#8707;</a
+      ><a name="2123"
+      > </a
+      ><a name="2124" class="Symbol"
+      >\(</a
+      ><a name="2126" href="ListReversal.html#2126" class="Bound"
+      >w</a
+      ><a name="2127"
+      > </a
+      ><a name="2128" class="Symbol"
+      >:</a
+      ><a name="2129"
+      > </a
+      ><a name="2130" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2134"
+      > </a
+      ><a name="2135" href="ListReversal.html#2065" class="Bound"
+      >A</a
+      ><a name="2136" class="Symbol"
+      >)</a
+      ><a name="2137"
+      > </a
+      ><a name="2138" class="Symbol"
+      >&#8594;</a
+      ><a name="2139"
+      > </a
+      ><a name="2140" class="Symbol"
+      >(</a
+      ><a name="2141" href="ListReversal.html#2126" class="Bound"
+      >w</a
+      ><a name="2142"
+      > </a
+      ><a name="2143" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="2145"
+      > </a
+      ><a name="2146" href="ListReversal.html#2086" class="Bound"
+      >v</a
+      ><a name="2147"
+      > </a
+      ><a name="2148" href="Preliminaries.html#324" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2149"
+      > </a
+      ><a name="2150" href="ListReversal.html#2108" class="Bound"
+      >l</a
+      ><a name="2151" class="Symbol"
+      >)</a
+      ><a name="2152"
+      > </a
+      ><a name="2153" href="Preliminaries.html#973" class="Function Operator"
+      >&#8743;</a
+      ><a name="2154"
+      > </a
+      ><a name="2155" class="Symbol"
+      >(</a
+      ><a name="2156" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="2164"
+      > </a
+      ><a name="2165" href="ListReversal.html#2084" class="Bound"
+      >u</a
+      ><a name="2166"
+      > </a
+      ><a name="2167" href="ListReversal.html#2126" class="Bound"
+      >w</a
+      ><a name="2168" class="Symbol"
+      >)</a
+      ><a name="2169"
+      >
+</a
+      ><a name="2170" href="ListReversal.html#2053" class="Function"
+      >AuxLemma</a
+      ><a name="2178"
+      > </a
+      ><a name="2179" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="2181"
+      > </a
+      ><a name="2182" href="ListReversal.html#2182" class="Bound"
+      >v</a
+      ><a name="2183"
+      > </a
+      ><a name="2184" class="Symbol"
+      >=</a
+      ><a name="2185"
+      > </a
+      ><a name="2186" href="ListReversal.html#2182" class="Bound"
+      >v</a
+      ><a name="2187"
+      > </a
+      ><a name="2188" href="Preliminaries.html#784" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2189"
+      > </a
+      ><a name="2190" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="2192"
+      > </a
+      ><a name="2193" href="Preliminaries.html#784" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2194"
+      > </a
+      ><a name="2195" href="Preliminaries.html#361" class="InductiveConstructor"
+      >refl</a
+      ><a name="2199"
+      > </a
+      ><a name="2200" href="Preliminaries.html#784" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2201"
+      > </a
+      ><a name="2202" href="ListReversal.html#915" class="InductiveConstructor"
+      >r-nil</a
+      ><a name="2207"
+      >
+</a
+      ><a name="2208" href="ListReversal.html#2053" class="Function"
+      >AuxLemma</a
+      ><a name="2216"
+      > </a
+      ><a name="2217" class="Symbol"
+      >{</a
+      ><a name="2218" href="ListReversal.html#2218" class="Bound"
+      >A</a
+      ><a name="2219" class="Symbol"
+      >}</a
+      ><a name="2220"
+      > </a
+      ><a name="2221" class="Symbol"
+      >(</a
+      ><a name="2222" href="ListReversal.html#2222" class="Bound"
+      >a</a
+      ><a name="2223"
+      > </a
+      ><a name="2224" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="2226"
+      > </a
+      ><a name="2227" href="ListReversal.html#2227" class="Bound"
+      >u</a
+      ><a name="2228" class="Symbol"
+      >)</a
+      ><a name="2229"
+      > </a
+      ><a name="2230" href="ListReversal.html#2230" class="Bound"
+      >v</a
+      ><a name="2231"
+      > </a
+      ><a name="2232" class="Symbol"
+      >=</a
+      ><a name="2233"
+      > </a
+      ><a name="2234" href="ListReversal.html#2378" class="Function"
+      >l</a
+      ><a name="2235"
+      > </a
+      ><a name="2236" href="Preliminaries.html#784" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2237"
+      > </a
+      ><a name="2238" href="ListReversal.html#2404" class="Function"
+      >w</a
+      ><a name="2239"
+      > </a
+      ><a name="2240" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="2242"
+      > </a
+      ><a name="2243" href="ListReversal.html#646" class="Function Operator"
+      >[</a
+      ><a name="2244"
+      > </a
+      ><a name="2245" href="ListReversal.html#2222" class="Bound"
+      >a</a
+      ><a name="2246"
+      > </a
+      ><a name="2247" href="ListReversal.html#646" class="Function Operator"
+      >]</a
+      ><a name="2248"
+      > </a
+      ><a name="2249" href="Preliminaries.html#784" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2250"
+      > </a
+      ><a name="2251" href="ListReversal.html#2483" class="Function"
+      >q</a
+      ><a name="2252"
+      > </a
+      ><a name="2253" href="Preliminaries.html#784" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2254"
+      > </a
+      ><a name="2255" href="ListReversal.html#940" class="InductiveConstructor"
+      >r-cons</a
+      ><a name="2261"
+      > </a
+      ><a name="2262" href="ListReversal.html#2554" class="Function"
+      >r</a
+      ><a name="2263"
+      >
+ </a
+      ><a name="2265" class="Keyword"
+      >where</a
+      ><a name="2270"
+      >
+  </a
+      ><a name="2273" href="ListReversal.html#2273" class="Function"
+      >IH</a
+      ><a name="2275"
+      > </a
+      ><a name="2276" class="Symbol"
+      >:</a
+      ><a name="2277"
+      > </a
+      ><a name="2278" href="Preliminaries.html#917" class="Function"
+      >&#8707;</a
+      ><a name="2279"
+      > </a
+      ><a name="2280" class="Symbol"
+      >\(</a
+      ><a name="2282" href="ListReversal.html#2282" class="Bound"
+      >l</a
+      ><a name="2283"
+      > </a
+      ><a name="2284" class="Symbol"
+      >:</a
+      ><a name="2285"
+      > </a
+      ><a name="2286" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2290"
+      > </a
+      ><a name="2291" href="ListReversal.html#2218" class="Bound"
+      >A</a
+      ><a name="2292" class="Symbol"
+      >)</a
+      ><a name="2293"
+      > </a
+      ><a name="2294" class="Symbol"
+      >&#8594;</a
+      ><a name="2295"
+      > </a
+      ><a name="2296" href="Preliminaries.html#917" class="Function"
+      >&#8707;</a
+      ><a name="2297"
+      > </a
+      ><a name="2298" class="Symbol"
+      >\(</a
+      ><a name="2300" href="ListReversal.html#2300" class="Bound"
+      >w</a
+      ><a name="2301"
+      > </a
+      ><a name="2302" class="Symbol"
+      >:</a
+      ><a name="2303"
+      > </a
+      ><a name="2304" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2308"
+      > </a
+      ><a name="2309" href="ListReversal.html#2218" class="Bound"
+      >A</a
+      ><a name="2310" class="Symbol"
+      >)</a
+      ><a name="2311"
+      > </a
+      ><a name="2312" class="Symbol"
+      >&#8594;</a
+      ><a name="2313"
+      > </a
+      ><a name="2314" class="Symbol"
+      >(</a
+      ><a name="2315" href="ListReversal.html#2300" class="Bound"
+      >w</a
+      ><a name="2316"
+      > </a
+      ><a name="2317" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="2319"
+      > </a
+      ><a name="2320" href="ListReversal.html#2222" class="Bound"
+      >a</a
+      ><a name="2321"
+      > </a
+      ><a name="2322" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="2324"
+      > </a
+      ><a name="2325" href="ListReversal.html#2230" class="Bound"
+      >v</a
+      ><a name="2326"
+      > </a
+      ><a name="2327" href="Preliminaries.html#324" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2328"
+      > </a
+      ><a name="2329" href="ListReversal.html#2282" class="Bound"
+      >l</a
+      ><a name="2330" class="Symbol"
+      >)</a
+      ><a name="2331"
+      > </a
+      ><a name="2332" href="Preliminaries.html#973" class="Function Operator"
+      >&#8743;</a
+      ><a name="2333"
+      > </a
+      ><a name="2334" class="Symbol"
+      >(</a
+      ><a name="2335" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="2343"
+      > </a
+      ><a name="2344" href="ListReversal.html#2227" class="Bound"
+      >u</a
+      ><a name="2345"
+      > </a
+      ><a name="2346" href="ListReversal.html#2300" class="Bound"
+      >w</a
+      ><a name="2347" class="Symbol"
+      >)</a
+      ><a name="2348"
+      >
+  </a
+      ><a name="2351" href="ListReversal.html#2273" class="Function"
+      >IH</a
+      ><a name="2353"
+      > </a
+      ><a name="2354" class="Symbol"
+      >=</a
+      ><a name="2355"
+      > </a
+      ><a name="2356" href="ListReversal.html#2053" class="Function"
+      >AuxLemma</a
+      ><a name="2364"
+      > </a
+      ><a name="2365" href="ListReversal.html#2227" class="Bound"
+      >u</a
+      ><a name="2366"
+      > </a
+      ><a name="2367" class="Symbol"
+      >(</a
+      ><a name="2368" href="ListReversal.html#2222" class="Bound"
+      >a</a
+      ><a name="2369"
+      > </a
+      ><a name="2370" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="2372"
+      > </a
+      ><a name="2373" href="ListReversal.html#2230" class="Bound"
+      >v</a
+      ><a name="2374" class="Symbol"
+      >)</a
+      ><a name="2375"
+      >
+  </a
+      ><a name="2378" href="ListReversal.html#2378" class="Function"
+      >l</a
+      ><a name="2379"
+      > </a
+      ><a name="2380" class="Symbol"
+      >:</a
+      ><a name="2381"
+      > </a
+      ><a name="2382" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2386"
+      > </a
+      ><a name="2387" href="ListReversal.html#2218" class="Bound"
+      >A</a
+      ><a name="2388"
+      >
+  </a
+      ><a name="2391" href="ListReversal.html#2378" class="Function"
+      >l</a
+      ><a name="2392"
+      > </a
+      ><a name="2393" class="Symbol"
+      >=</a
+      ><a name="2394"
+      > </a
+      ><a name="2395" href="Preliminaries.html#797" class="Field"
+      >pr&#8321;</a
+      ><a name="2398"
+      > </a
+      ><a name="2399" href="ListReversal.html#2273" class="Function"
+      >IH</a
+      ><a name="2401"
+      >
+  </a
+      ><a name="2404" href="ListReversal.html#2404" class="Function"
+      >w</a
+      ><a name="2405"
+      > </a
+      ><a name="2406" class="Symbol"
+      >:</a
+      ><a name="2407"
+      > </a
+      ><a name="2408" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2412"
+      > </a
+      ><a name="2413" href="ListReversal.html#2218" class="Bound"
+      >A</a
+      ><a name="2414"
+      >
+  </a
+      ><a name="2417" href="ListReversal.html#2404" class="Function"
+      >w</a
+      ><a name="2418"
+      > </a
+      ><a name="2419" class="Symbol"
+      >=</a
+      ><a name="2420"
+      > </a
+      ><a name="2421" href="Preliminaries.html#797" class="Field"
+      >pr&#8321;</a
+      ><a name="2424"
+      > </a
+      ><a name="2425" class="Symbol"
+      >(</a
+      ><a name="2426" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2429"
+      > </a
+      ><a name="2430" href="ListReversal.html#2273" class="Function"
+      >IH</a
+      ><a name="2432" class="Symbol"
+      >)</a
+      ><a name="2433"
+      >
+  </a
+      ><a name="2436" href="ListReversal.html#2436" class="Function"
+      >p</a
+      ><a name="2437"
+      > </a
+      ><a name="2438" class="Symbol"
+      >:</a
+      ><a name="2439"
+      > </a
+      ><a name="2440" href="ListReversal.html#2404" class="Function"
+      >w</a
+      ><a name="2441"
+      > </a
+      ><a name="2442" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="2444"
+      > </a
+      ><a name="2445" href="ListReversal.html#2222" class="Bound"
+      >a</a
+      ><a name="2446"
+      > </a
+      ><a name="2447" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="2449"
+      > </a
+      ><a name="2450" href="ListReversal.html#2230" class="Bound"
+      >v</a
+      ><a name="2451"
+      > </a
+      ><a name="2452" href="Preliminaries.html#324" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2453"
+      > </a
+      ><a name="2454" href="ListReversal.html#2378" class="Function"
+      >l</a
+      ><a name="2455"
+      >
+  </a
+      ><a name="2458" href="ListReversal.html#2436" class="Function"
+      >p</a
+      ><a name="2459"
+      > </a
+      ><a name="2460" class="Symbol"
+      >=</a
+      ><a name="2461"
+      > </a
+      ><a name="2462" href="Preliminaries.html#797" class="Field"
+      >pr&#8321;</a
+      ><a name="2465"
+      > </a
+      ><a name="2466" class="Symbol"
+      >(</a
+      ><a name="2467" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2470"
+      > </a
+      ><a name="2471" class="Symbol"
+      >(</a
+      ><a name="2472" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2475"
+      > </a
+      ><a name="2476" href="ListReversal.html#2273" class="Function"
+      >IH</a
+      ><a name="2478" class="Symbol"
+      >))</a
+      ><a name="2480"
+      >
+  </a
+      ><a name="2483" href="ListReversal.html#2483" class="Function"
+      >q</a
+      ><a name="2484"
+      > </a
+      ><a name="2485" class="Symbol"
+      >:</a
+      ><a name="2486"
+      > </a
+      ><a name="2487" href="ListReversal.html#2404" class="Function"
+      >w</a
+      ><a name="2488"
+      > </a
+      ><a name="2489" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="2491"
+      > </a
+      ><a name="2492" href="ListReversal.html#646" class="Function Operator"
+      >[</a
+      ><a name="2493"
+      > </a
+      ><a name="2494" href="ListReversal.html#2222" class="Bound"
+      >a</a
+      ><a name="2495"
+      > </a
+      ><a name="2496" href="ListReversal.html#646" class="Function Operator"
+      >]</a
+      ><a name="2497"
+      > </a
+      ><a name="2498" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="2500"
+      > </a
+      ><a name="2501" href="ListReversal.html#2230" class="Bound"
+      >v</a
+      ><a name="2502"
+      > </a
+      ><a name="2503" href="Preliminaries.html#324" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2504"
+      > </a
+      ><a name="2505" href="ListReversal.html#2378" class="Function"
+      >l</a
+      ><a name="2506"
+      >
+  </a
+      ><a name="2509" href="ListReversal.html#2483" class="Function"
+      >q</a
+      ><a name="2510"
+      > </a
+      ><a name="2511" class="Symbol"
+      >=</a
+      ><a name="2512"
+      > </a
+      ><a name="2513" href="Preliminaries.html#385" class="Function"
+      >trans</a
+      ><a name="2518"
+      > </a
+      ><a name="2519" class="Symbol"
+      >(</a
+      ><a name="2520" href="ListReversal.html#1741" class="Postulate"
+      >Lemma[u++a++v=u++a::v]</a
+      ><a name="2542"
+      > </a
+      ><a name="2543" href="ListReversal.html#2404" class="Function"
+      >w</a
+      ><a name="2544"
+      > </a
+      ><a name="2545" href="ListReversal.html#2230" class="Bound"
+      >v</a
+      ><a name="2546"
+      > </a
+      ><a name="2547" href="ListReversal.html#2222" class="Bound"
+      >a</a
+      ><a name="2548" class="Symbol"
+      >)</a
+      ><a name="2549"
+      > </a
+      ><a name="2550" href="ListReversal.html#2436" class="Function"
+      >p</a
+      ><a name="2551"
+      >
+  </a
+      ><a name="2554" href="ListReversal.html#2554" class="Function"
+      >r</a
+      ><a name="2555"
+      > </a
+      ><a name="2556" class="Symbol"
+      >:</a
+      ><a name="2557"
+      > </a
+      ><a name="2558" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="2566"
+      > </a
+      ><a name="2567" href="ListReversal.html#2227" class="Bound"
+      >u</a
+      ><a name="2568"
+      > </a
+      ><a name="2569" href="ListReversal.html#2404" class="Function"
+      >w</a
+      ><a name="2570"
+      >
+  </a
+      ><a name="2573" href="ListReversal.html#2554" class="Function"
+      >r</a
+      ><a name="2574"
+      > </a
+      ><a name="2575" class="Symbol"
+      >=</a
+      ><a name="2576"
+      > </a
+      ><a name="2577" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2580"
+      > </a
+      ><a name="2581" class="Symbol"
+      >(</a
+      ><a name="2582" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2585"
+      > </a
+      ><a name="2586" class="Symbol"
+      >(</a
+      ><a name="2587" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2590"
+      > </a
+      ><a name="2591" href="ListReversal.html#2273" class="Function"
+      >IH</a
+      ><a name="2593" class="Symbol"
+      >))</a
+      ><a name="2595"
+      >
+
+</a
+      ><a name="2597" href="ListReversal.html#2597" class="Function"
+      >Thm&#8322;</a
+      ><a name="2601"
+      > </a
+      ><a name="2602" class="Symbol"
+      >:</a
+      ><a name="2603"
+      > </a
+      ><a name="2604" class="Symbol"
+      >{</a
+      ><a name="2605" href="ListReversal.html#2605" class="Bound"
+      >A</a
+      ><a name="2606"
+      > </a
+      ><a name="2607" class="Symbol"
+      >:</a
+      ><a name="2608"
+      > </a
+      ><a name="2609" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="2613" class="Symbol"
+      >}</a
+      ><a name="2614"
+      >
+     </a
+      ><a name="2620" class="Symbol"
+      >&#8594;</a
+      ><a name="2621"
+      > </a
+      ><a name="2622" class="Symbol"
+      >&#8704;</a
+      ><a name="2623"
+      > </a
+      ><a name="2624" class="Symbol"
+      >(</a
+      ><a name="2625" href="ListReversal.html#2625" class="Bound"
+      >u</a
+      ><a name="2626"
+      > </a
+      ><a name="2627" class="Symbol"
+      >:</a
+      ><a name="2628"
+      > </a
+      ><a name="2629" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2633"
+      > </a
+      ><a name="2634" href="ListReversal.html#2605" class="Bound"
+      >A</a
+      ><a name="2635" class="Symbol"
+      >)</a
+      ><a name="2636"
+      > </a
+      ><a name="2637" class="Symbol"
+      >&#8594;</a
+      ><a name="2638"
+      > </a
+      ><a name="2639" href="Preliminaries.html#917" class="Function"
+      >&#8707;</a
+      ><a name="2640"
+      > </a
+      ><a name="2641" class="Symbol"
+      >\(</a
+      ><a name="2643" href="ListReversal.html#2643" class="Bound"
+      >v</a
+      ><a name="2644"
+      > </a
+      ><a name="2645" class="Symbol"
+      >:</a
+      ><a name="2646"
+      > </a
+      ><a name="2647" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2651"
+      > </a
+      ><a name="2652" href="ListReversal.html#2605" class="Bound"
+      >A</a
+      ><a name="2653" class="Symbol"
+      >)</a
+      ><a name="2654"
+      > </a
+      ><a name="2655" class="Symbol"
+      >&#8594;</a
+      ><a name="2656"
+      > </a
+      ><a name="2657" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="2665"
+      > </a
+      ><a name="2666" href="ListReversal.html#2625" class="Bound"
+      >u</a
+      ><a name="2667"
+      > </a
+      ><a name="2668" href="ListReversal.html#2643" class="Bound"
+      >v</a
+      ><a name="2669"
+      >
+</a
+      ><a name="2670" href="ListReversal.html#2597" class="Function"
+      >Thm&#8322;</a
+      ><a name="2674"
+      > </a
+      ><a name="2675" class="Symbol"
+      >{</a
+      ><a name="2676" href="ListReversal.html#2676" class="Bound"
+      >A</a
+      ><a name="2677" class="Symbol"
+      >}</a
+      ><a name="2678"
+      > </a
+      ><a name="2679" href="ListReversal.html#2679" class="Bound"
+      >u</a
+      ><a name="2680"
+      > </a
+      ><a name="2681" class="Symbol"
+      >=</a
+      ><a name="2682"
+      > </a
+      ><a name="2683" href="ListReversal.html#2800" class="Function"
+      >v</a
+      ><a name="2684"
+      > </a
+      ><a name="2685" href="Preliminaries.html#784" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2686"
+      > </a
+      ><a name="2687" href="ListReversal.html#2996" class="Function"
+      >r'</a
+      ><a name="2689"
+      >
+ </a
+      ><a name="2691" class="Keyword"
+      >where</a
+      ><a name="2696"
+      >
+  </a
+      ><a name="2699" href="ListReversal.html#2699" class="Function"
+      >known</a
+      ><a name="2704"
+      > </a
+      ><a name="2705" class="Symbol"
+      >:</a
+      ><a name="2706"
+      > </a
+      ><a name="2707" href="Preliminaries.html#917" class="Function"
+      >&#8707;</a
+      ><a name="2708"
+      > </a
+      ><a name="2709" class="Symbol"
+      >\(</a
+      ><a name="2711" href="ListReversal.html#2711" class="Bound"
+      >v</a
+      ><a name="2712"
+      > </a
+      ><a name="2713" class="Symbol"
+      >:</a
+      ><a name="2714"
+      > </a
+      ><a name="2715" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2719"
+      > </a
+      ><a name="2720" href="ListReversal.html#2676" class="Bound"
+      >A</a
+      ><a name="2721" class="Symbol"
+      >)</a
+      ><a name="2722"
+      > </a
+      ><a name="2723" class="Symbol"
+      >&#8594;</a
+      ><a name="2724"
+      > </a
+      ><a name="2725" href="Preliminaries.html#917" class="Function"
+      >&#8707;</a
+      ><a name="2726"
+      > </a
+      ><a name="2727" class="Symbol"
+      >\(</a
+      ><a name="2729" href="ListReversal.html#2729" class="Bound"
+      >w</a
+      ><a name="2730"
+      > </a
+      ><a name="2731" class="Symbol"
+      >:</a
+      ><a name="2732"
+      > </a
+      ><a name="2733" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2737"
+      > </a
+      ><a name="2738" href="ListReversal.html#2676" class="Bound"
+      >A</a
+      ><a name="2739" class="Symbol"
+      >)</a
+      ><a name="2740"
+      > </a
+      ><a name="2741" class="Symbol"
+      >&#8594;</a
+      ><a name="2742"
+      > </a
+      ><a name="2743" class="Symbol"
+      >(</a
+      ><a name="2744" href="ListReversal.html#2729" class="Bound"
+      >w</a
+      ><a name="2745"
+      > </a
+      ><a name="2746" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="2748"
+      > </a
+      ><a name="2749" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="2751"
+      > </a
+      ><a name="2752" href="Preliminaries.html#324" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2753"
+      > </a
+      ><a name="2754" href="ListReversal.html#2711" class="Bound"
+      >v</a
+      ><a name="2755" class="Symbol"
+      >)</a
+      ><a name="2756"
+      > </a
+      ><a name="2757" href="Preliminaries.html#973" class="Function Operator"
+      >&#8743;</a
+      ><a name="2758"
+      > </a
+      ><a name="2759" class="Symbol"
+      >(</a
+      ><a name="2760" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="2768"
+      > </a
+      ><a name="2769" href="ListReversal.html#2679" class="Bound"
+      >u</a
+      ><a name="2770"
+      > </a
+      ><a name="2771" href="ListReversal.html#2729" class="Bound"
+      >w</a
+      ><a name="2772" class="Symbol"
+      >)</a
+      ><a name="2773"
+      >
+  </a
+      ><a name="2776" href="ListReversal.html#2699" class="Function"
+      >known</a
+      ><a name="2781"
+      > </a
+      ><a name="2782" class="Symbol"
+      >=</a
+      ><a name="2783"
+      > </a
+      ><a name="2784" href="ListReversal.html#2053" class="Function"
+      >AuxLemma</a
+      ><a name="2792"
+      > </a
+      ><a name="2793" href="ListReversal.html#2679" class="Bound"
+      >u</a
+      ><a name="2794"
+      > </a
+      ><a name="2795" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="2797"
+      >
+  </a
+      ><a name="2800" href="ListReversal.html#2800" class="Function"
+      >v</a
+      ><a name="2801"
+      > </a
+      ><a name="2802" class="Symbol"
+      >:</a
+      ><a name="2803"
+      > </a
+      ><a name="2804" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2808"
+      > </a
+      ><a name="2809" href="ListReversal.html#2676" class="Bound"
+      >A</a
+      ><a name="2810"
+      >
+  </a
+      ><a name="2813" href="ListReversal.html#2800" class="Function"
+      >v</a
+      ><a name="2814"
+      > </a
+      ><a name="2815" class="Symbol"
+      >=</a
+      ><a name="2816"
+      > </a
+      ><a name="2817" href="Preliminaries.html#797" class="Field"
+      >pr&#8321;</a
+      ><a name="2820"
+      > </a
+      ><a name="2821" href="ListReversal.html#2699" class="Function"
+      >known</a
+      ><a name="2826"
+      >
+  </a
+      ><a name="2829" href="ListReversal.html#2829" class="Function"
+      >w</a
+      ><a name="2830"
+      > </a
+      ><a name="2831" class="Symbol"
+      >:</a
+      ><a name="2832"
+      > </a
+      ><a name="2833" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="2837"
+      > </a
+      ><a name="2838" href="ListReversal.html#2676" class="Bound"
+      >A</a
+      ><a name="2839"
+      >
+  </a
+      ><a name="2842" href="ListReversal.html#2829" class="Function"
+      >w</a
+      ><a name="2843"
+      > </a
+      ><a name="2844" class="Symbol"
+      >=</a
+      ><a name="2845"
+      > </a
+      ><a name="2846" href="Preliminaries.html#797" class="Field"
+      >pr&#8321;</a
+      ><a name="2849"
+      > </a
+      ><a name="2850" class="Symbol"
+      >(</a
+      ><a name="2851" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2854"
+      > </a
+      ><a name="2855" href="ListReversal.html#2699" class="Function"
+      >known</a
+      ><a name="2860" class="Symbol"
+      >)</a
+      ><a name="2861"
+      >
+  </a
+      ><a name="2864" href="ListReversal.html#2864" class="Function"
+      >p</a
+      ><a name="2865"
+      > </a
+      ><a name="2866" class="Symbol"
+      >:</a
+      ><a name="2867"
+      > </a
+      ><a name="2868" href="ListReversal.html#2829" class="Function"
+      >w</a
+      ><a name="2869"
+      > </a
+      ><a name="2870" href="ListReversal.html#693" class="Function Operator"
+      >++</a
+      ><a name="2872"
+      > </a
+      ><a name="2873" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="2875"
+      > </a
+      ><a name="2876" href="Preliminaries.html#324" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2877"
+      > </a
+      ><a name="2878" href="ListReversal.html#2800" class="Function"
+      >v</a
+      ><a name="2879"
+      >
+  </a
+      ><a name="2882" href="ListReversal.html#2864" class="Function"
+      >p</a
+      ><a name="2883"
+      > </a
+      ><a name="2884" class="Symbol"
+      >=</a
+      ><a name="2885"
+      > </a
+      ><a name="2886" href="Preliminaries.html#797" class="Field"
+      >pr&#8321;</a
+      ><a name="2889"
+      > </a
+      ><a name="2890" class="Symbol"
+      >(</a
+      ><a name="2891" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2894"
+      > </a
+      ><a name="2895" class="Symbol"
+      >(</a
+      ><a name="2896" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2899"
+      > </a
+      ><a name="2900" href="ListReversal.html#2699" class="Function"
+      >known</a
+      ><a name="2905" class="Symbol"
+      >))</a
+      ><a name="2907"
+      >
+  </a
+      ><a name="2910" href="ListReversal.html#2910" class="Function"
+      >q</a
+      ><a name="2911"
+      > </a
+      ><a name="2912" class="Symbol"
+      >:</a
+      ><a name="2913"
+      > </a
+      ><a name="2914" href="ListReversal.html#2829" class="Function"
+      >w</a
+      ><a name="2915"
+      > </a
+      ><a name="2916" href="Preliminaries.html#324" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2917"
+      > </a
+      ><a name="2918" href="ListReversal.html#2800" class="Function"
+      >v</a
+      ><a name="2919"
+      >
+  </a
+      ><a name="2922" href="ListReversal.html#2910" class="Function"
+      >q</a
+      ><a name="2923"
+      > </a
+      ><a name="2924" class="Symbol"
+      >=</a
+      ><a name="2925"
+      > </a
+      ><a name="2926" href="ListReversal.html#1857" class="Postulate"
+      >Lemma[u++[]=v&#8594;u=v]</a
+      ><a name="2944"
+      > </a
+      ><a name="2945" href="ListReversal.html#2864" class="Function"
+      >p</a
+      ><a name="2946"
+      >
+  </a
+      ><a name="2949" href="ListReversal.html#2949" class="Function"
+      >r</a
+      ><a name="2950"
+      > </a
+      ><a name="2951" class="Symbol"
+      >:</a
+      ><a name="2952"
+      > </a
+      ><a name="2953" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="2961"
+      > </a
+      ><a name="2962" href="ListReversal.html#2679" class="Bound"
+      >u</a
+      ><a name="2963"
+      > </a
+      ><a name="2964" href="ListReversal.html#2829" class="Function"
+      >w</a
+      ><a name="2965"
+      >
+  </a
+      ><a name="2968" href="ListReversal.html#2949" class="Function"
+      >r</a
+      ><a name="2969"
+      > </a
+      ><a name="2970" class="Symbol"
+      >=</a
+      ><a name="2971"
+      > </a
+      ><a name="2972" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2975"
+      > </a
+      ><a name="2976" class="Symbol"
+      >(</a
+      ><a name="2977" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2980"
+      > </a
+      ><a name="2981" class="Symbol"
+      >(</a
+      ><a name="2982" href="Preliminaries.html#807" class="Field"
+      >pr&#8322;</a
+      ><a name="2985"
+      > </a
+      ><a name="2986" href="ListReversal.html#2699" class="Function"
+      >known</a
+      ><a name="2991" class="Symbol"
+      >))</a
+      ><a name="2993"
+      >
+  </a
+      ><a name="2996" href="ListReversal.html#2996" class="Function"
+      >r'</a
+      ><a name="2998"
+      > </a
+      ><a name="2999" class="Symbol"
+      >:</a
+      ><a name="3000"
+      > </a
+      ><a name="3001" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="3009"
+      > </a
+      ><a name="3010" href="ListReversal.html#2679" class="Bound"
+      >u</a
+      ><a name="3011"
+      > </a
+      ><a name="3012" href="ListReversal.html#2800" class="Function"
+      >v</a
+      ><a name="3013"
+      >
+  </a
+      ><a name="3016" href="ListReversal.html#2996" class="Function"
+      >r'</a
+      ><a name="3018"
+      > </a
+      ><a name="3019" class="Symbol"
+      >=</a
+      ><a name="3020"
+      > </a
+      ><a name="3021" href="Preliminaries.html#470" class="Function"
+      >transport</a
+      ><a name="3030"
+      > </a
+      ><a name="3031" class="Symbol"
+      >(</a
+      ><a name="3032" href="ListReversal.html#863" class="Datatype"
+      >reversed</a
+      ><a name="3040"
+      > </a
+      ><a name="3041" href="ListReversal.html#2679" class="Bound"
+      >u</a
+      ><a name="3042" class="Symbol"
+      >)</a
+      ><a name="3043"
+      > </a
+      ><a name="3044" href="ListReversal.html#2910" class="Function"
+      >q</a
+      ><a name="3045"
+      > </a
+      ><a name="3046" href="ListReversal.html#2949" class="Function"
+      >r</a
+      ><a name="3047"
+      >
+
+</a
+      ><a name="3049" href="ListReversal.html#3049" class="Function"
+      >reverse&#8322;</a
+      ><a name="3057"
+      > </a
+      ><a name="3058" class="Symbol"
+      >:</a
+      ><a name="3059"
+      > </a
+      ><a name="3060" class="Symbol"
+      >{</a
+      ><a name="3061" href="ListReversal.html#3061" class="Bound"
+      >A</a
+      ><a name="3062"
+      > </a
+      ><a name="3063" class="Symbol"
+      >:</a
+      ><a name="3064"
+      > </a
+      ><a name="3065" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="3069" class="Symbol"
+      >}</a
+      ><a name="3070"
+      > </a
+      ><a name="3071" class="Symbol"
+      >&#8594;</a
+      ><a name="3072"
+      > </a
+      ><a name="3073" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="3077"
+      > </a
+      ><a name="3078" href="ListReversal.html#3061" class="Bound"
+      >A</a
+      ><a name="3079"
+      > </a
+      ><a name="3080" class="Symbol"
+      >&#8594;</a
+      ><a name="3081"
+      > </a
+      ><a name="3082" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="3086"
+      > </a
+      ><a name="3087" href="ListReversal.html#3061" class="Bound"
+      >A</a
+      ><a name="3088"
+      >
+</a
+      ><a name="3089" href="ListReversal.html#3049" class="Function"
+      >reverse&#8322;</a
+      ><a name="3097"
+      > </a
+      ><a name="3098" href="ListReversal.html#3098" class="Bound"
+      >u</a
+      ><a name="3099"
+      > </a
+      ><a name="3100" class="Symbol"
+      >=</a
+      ><a name="3101"
+      > </a
+      ><a name="3102" href="Preliminaries.html#797" class="Field"
+      >pr&#8321;</a
+      ><a name="3105"
+      > </a
+      ><a name="3106" class="Symbol"
+      >(</a
+      ><a name="3107" href="ListReversal.html#2597" class="Function"
+      >Thm&#8322;</a
+      ><a name="3111"
+      > </a
+      ><a name="3112" href="ListReversal.html#3098" class="Bound"
+      >u</a
+      ><a name="3113" class="Symbol"
+      >)</a
+      ><a name="3114"
+      >
+
+\end{code}
+
+</a
+      ><a name="3128" class="Comment"
+      >The second reverse function is defined with a helper function derived</a
+      ><a name="3197"
+      >
+</a
+      ><a name="3198" class="Comment"
+      >from AuxLemma as follows</a
+      ><a name="3222"
+      >
+
+\begin{code}
+
+</a
+      ><a name="3238" href="ListReversal.html#3238" class="Function"
+      >reverseAux</a
+      ><a name="3248"
+      > </a
+      ><a name="3249" class="Symbol"
+      >:</a
+      ><a name="3250"
+      > </a
+      ><a name="3251" class="Symbol"
+      >{</a
+      ><a name="3252" href="ListReversal.html#3252" class="Bound"
+      >A</a
+      ><a name="3253"
+      > </a
+      ><a name="3254" class="Symbol"
+      >:</a
+      ><a name="3255"
+      > </a
+      ><a name="3256" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="3260" class="Symbol"
+      >}</a
+      ><a name="3261"
+      > </a
+      ><a name="3262" class="Symbol"
+      >&#8594;</a
+      ><a name="3263"
+      > </a
+      ><a name="3264" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="3268"
+      > </a
+      ><a name="3269" href="ListReversal.html#3252" class="Bound"
+      >A</a
+      ><a name="3270"
+      > </a
+      ><a name="3271" class="Symbol"
+      >&#8594;</a
+      ><a name="3272"
+      > </a
+      ><a name="3273" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="3277"
+      > </a
+      ><a name="3278" href="ListReversal.html#3252" class="Bound"
+      >A</a
+      ><a name="3279"
+      > </a
+      ><a name="3280" class="Symbol"
+      >&#8594;</a
+      ><a name="3281"
+      > </a
+      ><a name="3282" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="3286"
+      > </a
+      ><a name="3287" href="ListReversal.html#3252" class="Bound"
+      >A</a
+      ><a name="3288"
+      >
+</a
+      ><a name="3289" href="ListReversal.html#3238" class="Function"
+      >reverseAux</a
+      ><a name="3299"
+      >  </a
+      ><a name="3301" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="3303"
+      >      </a
+      ><a name="3309" href="ListReversal.html#3309" class="Bound"
+      >v</a
+      ><a name="3310"
+      > </a
+      ><a name="3311" class="Symbol"
+      >=</a
+      ><a name="3312"
+      > </a
+      ><a name="3313" href="ListReversal.html#3309" class="Bound"
+      >v</a
+      ><a name="3314"
+      >
+</a
+      ><a name="3315" href="ListReversal.html#3238" class="Function"
+      >reverseAux</a
+      ><a name="3325"
+      > </a
+      ><a name="3326" class="Symbol"
+      >(</a
+      ><a name="3327" href="ListReversal.html#3327" class="Bound"
+      >a</a
+      ><a name="3328"
+      > </a
+      ><a name="3329" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="3331"
+      > </a
+      ><a name="3332" href="ListReversal.html#3332" class="Bound"
+      >u</a
+      ><a name="3333" class="Symbol"
+      >)</a
+      ><a name="3334"
+      > </a
+      ><a name="3335" href="ListReversal.html#3335" class="Bound"
+      >v</a
+      ><a name="3336"
+      > </a
+      ><a name="3337" class="Symbol"
+      >=</a
+      ><a name="3338"
+      > </a
+      ><a name="3339" href="ListReversal.html#3238" class="Function"
+      >reverseAux</a
+      ><a name="3349"
+      > </a
+      ><a name="3350" href="ListReversal.html#3332" class="Bound"
+      >u</a
+      ><a name="3351"
+      > </a
+      ><a name="3352" class="Symbol"
+      >(</a
+      ><a name="3353" href="ListReversal.html#3327" class="Bound"
+      >a</a
+      ><a name="3354"
+      > </a
+      ><a name="3355" href="ListReversal.html#618" class="InductiveConstructor Operator"
+      >::</a
+      ><a name="3357"
+      > </a
+      ><a name="3358" href="ListReversal.html#3335" class="Bound"
+      >v</a
+      ><a name="3359" class="Symbol"
+      >)</a
+      ><a name="3360"
+      >
+
+</a
+      ><a name="3362" href="ListReversal.html#3362" class="Function"
+      >reverse&#178;</a
+      ><a name="3370"
+      > </a
+      ><a name="3371" class="Symbol"
+      >:</a
+      ><a name="3372"
+      > </a
+      ><a name="3373" class="Symbol"
+      >{</a
+      ><a name="3374" href="ListReversal.html#3374" class="Bound"
+      >A</a
+      ><a name="3375"
+      > </a
+      ><a name="3376" class="Symbol"
+      >:</a
+      ><a name="3377"
+      > </a
+      ><a name="3378" href="Preliminaries.html#123" class="Function"
+      >Type</a
+      ><a name="3382" class="Symbol"
+      >}</a
+      ><a name="3383"
+      > </a
+      ><a name="3384" class="Symbol"
+      >&#8594;</a
+      ><a name="3385"
+      > </a
+      ><a name="3386" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="3390"
+      > </a
+      ><a name="3391" href="ListReversal.html#3374" class="Bound"
+      >A</a
+      ><a name="3392"
+      > </a
+      ><a name="3393" class="Symbol"
+      >&#8594;</a
+      ><a name="3394"
+      > </a
+      ><a name="3395" href="ListReversal.html#573" class="Datatype"
+      >List</a
+      ><a name="3399"
+      > </a
+      ><a name="3400" href="ListReversal.html#3374" class="Bound"
+      >A</a
+      ><a name="3401"
+      >
+</a
+      ><a name="3402" href="ListReversal.html#3362" class="Function"
+      >reverse&#178;</a
+      ><a name="3410"
+      > </a
+      ><a name="3411" href="ListReversal.html#3411" class="Bound"
+      >u</a
+      ><a name="3412"
+      > </a
+      ><a name="3413" class="Symbol"
+      >=</a
+      ><a name="3414"
+      > </a
+      ><a name="3415" href="ListReversal.html#3238" class="Function"
+      >reverseAux</a
+      ><a name="3425"
+      > </a
+      ><a name="3426" href="ListReversal.html#3411" class="Bound"
+      >u</a
+      ><a name="3427"
+      > </a
+      ><a name="3428" href="ListReversal.html#603" class="InductiveConstructor"
+      >[]</a
+      ><a name="3430"
+      >
+
+\end{code}
+</a
+      ></pre
+    ></body
+  ></html
+>

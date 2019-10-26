@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >Index</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1" class="Comment"
+      >Chuangjie Xu, January 2017</a
+      ><a name="27"
+      >
+
+</a
+      ><a name="29" class="Comment"
+      >We implement the term extraction algorithm via a nonstandard</a
+      ><a name="89"
+      >
+</a
+      ><a name="90" class="Comment"
+      >Dialectica interpretation for system H introduced in</a
+      ><a name="142"
+      >
+
+</a
+      ><a name="144" class="Comment"
+      >   B. van den Berg, E. Briseid, and P. Safarik, A functional</a
+      ><a name="204"
+      >
+</a
+      ><a name="205" class="Comment"
+      >   interpretation for nonstandard arithmetic, Annals of pure</a
+      ><a name="265"
+      >
+</a
+      ><a name="266" class="Comment"
+      >   and applied logic 163 (2012), no. 12, 1962&#8211;1994.</a
+      ><a name="317"
+      >
+
+</a
+      ><a name="319" class="Comment"
+      >We define system H with 4 inductive datatypes</a
+      ><a name="364"
+      >
+
+\begin{code}
+
+</a
+      ><a name="380" class="Keyword"
+      >import</a
+      ><a name="386"
+      > </a
+      ><a name="387" href="http://cj-xu.github.io/agda/nonstandard_dialectica/H.html#1" class="Module"
+      >H</a
+      ><a name="388"
+      >
+
+\end{code}
+
+</a
+      ><a name="402" class="Comment"
+      >and then the term extraction algorithm via a nonstandard Dialectica</a
+      ><a name="469"
+      >
+</a
+      ><a name="470" class="Comment"
+      >interpretation.</a
+      ><a name="485"
+      >
+
+\begin{code}
+
+</a
+      ><a name="501" class="Keyword"
+      >import</a
+      ><a name="507"
+      > </a
+      ><a name="508" href="http://cj-xu.github.io/agda/nonstandard_dialectica/Dialectica.html#1" class="Module"
+      >Dialectica</a
+      ><a name="518"
+      >
+
+\end{code}
+
+</a
+      ><a name="532" class="Comment"
+      >Extracted terms contain noncomputational information. So we define a</a
+      ><a name="600"
+      >
+</a
+      ><a name="601" class="Comment"
+      >simplify function to remove it.</a
+      ><a name="632"
+      >
+
+\begin{code}
+
+</a
+      ><a name="648" class="Keyword"
+      >import</a
+      ><a name="654"
+      > </a
+      ><a name="655" href="http://cj-xu.github.io/agda/nonstandard_dialectica/Simp.html#1" class="Module"
+      >Simp</a
+      ><a name="659"
+      >
+
+\end{code}
+
+</a
+      ><a name="673" class="Comment"
+      >In the end we present a few simple examples and compare the terms</a
+      ><a name="738"
+      >
+</a
+      ><a name="739" class="Comment"
+      >extracted from different proofs of a theorem.</a
+      ><a name="784"
+      >
+
+\begin{code}
+
+</a
+      ><a name="800" class="Keyword"
+      >import</a
+      ><a name="806"
+      > </a
+      ><a name="807" href="http://cj-xu.github.io/agda/nonstandard_dialectica/Examples.html#1" class="Module"
+      >Examples</a
+      ><a name="815"
+      >
+
+\end{code}
+</a
+      ></pre
+    ></body
+  ></html
+>

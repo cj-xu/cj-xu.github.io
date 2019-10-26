@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Ordinal notations via simultaneous definitions</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Background">
+        --------------------------------------------------
+          Ordinal notations via simultaneous definitions
+        --------------------------------------------------
+
+            Fredrik Nordvall Forsberg and Chuangjie Xu
+
+
+We define an ordinal notation system simultaneously with its ordering.
+Our simultaneous definitions generate only the ordinal terms in Cantor
+normal form which are in one-to-one correspondence with the ordinals
+below ε₀.  We implement the ordinal notation system as
+inductive-inductive-recursive definitions in Agda.
+
+The source files are available at
+
+    <a href = "https://github.com/cj-xu/OrdinalNotations">https://github.com/cj-xu/OrdinalNotations</a>
+
+All the files are tested in the safe mode of Agda version 2.6.0.1 with
+Agda&#39;s standard library Version 1.0.1.
+
+</a><a id="746" class="Markup">\begin{code}</a>
+
+<a id="760" class="Symbol">{-#</a> <a id="764" class="Keyword">OPTIONS</a> <a id="772" class="Pragma">--safe</a> <a id="779" class="Symbol">#-}</a>
+
+<a id="784" class="Markup">\end{code}</a><a id="794" class="Background">
+
+■ An inductive-inductive-recursive definition of ordinal notations
+
+Our ordinal notations are nested weakly decreasing lists.  When
+inserting a new element x in front of an already constructed list xs,
+we need to ensure that x is greater than or equal to the head of xs.
+Therefore, we simultaneously define an inductive type 𝒪 of ordinal
+notations, an inductive family of types a &lt; b indexed by a,b : 𝒪, and
+a head function fst: 𝒪 → 𝒪.
+
+</a><a id="1233" class="Markup">\begin{code}</a>
+
+<a id="1247" class="Keyword">import</a> <a id="1254" href="OrdinalNotations.html" class="Module">OrdinalNotations</a>
+
+<a id="1272" class="Markup">\end{code}</a><a id="1282" class="Background">
+
+■ Ordinal arithmetic
+
+We define ordinal arithmetic operations for our ordinal notations
+including addition, subtraction, multiplication and exponentiation.
+
+</a><a id="1441" class="Markup">\begin{code}</a>
+
+<a id="1455" class="Keyword">import</a> <a id="1462" href="OrdinalArithmetic.html" class="Module">OrdinalArithmetic</a>
+
+<a id="1481" class="Markup">\end{code}</a><a id="1491" class="Background">
+
+■ Transfinite induction
+
+We prove that our simultaneous definition 𝒪 of ordinal notations is
+well-founded and hence have the transfinite induction principle for 𝒪.
+Using this, we prove a computational version of the statement
+
+  there is no infinite descending sequence of ordinals below ε₀.
+
+</a><a id="1786" class="Markup">\begin{code}</a>
+
+<a id="1800" class="Keyword">import</a> <a id="1807" href="TransfiniteInduction.html" class="Module">TransfiniteInduction</a>
+
+<a id="1829" class="Markup">\end{code}</a><a id="1839" class="Background">
+
+■ An equivalent inductive-inductive definition of ordinal notations
+
+The head function fst : 𝒪 → 𝒪 is only used strictly positively in 𝒪
+and &lt;, which means that its graph can be defined inductive-inductively
+and in turn used instead of the recursively defined fst.  This reduces
+the above inductive-inductive-recursive construction to an
+inductive-inductive one.
+
+</a><a id="2205" class="Markup">\begin{code}</a>
+
+<a id="2219" class="Keyword">import</a> <a id="2226" href="OrdinalNotationsWithoutRecursion.html" class="Module">OrdinalNotationsWithoutRecursion</a>
+
+<a id="2260" class="Markup">\end{code}</a><a id="2270" class="Background">
+</a></pre></body></html>
