@@ -36,7 +36,10 @@ body {
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;;
   text-decoration: none;
 }
 
@@ -50,6 +53,20 @@ body {
   color: black;
 }
 
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
 /* Create two unequal columns that floats next to each other */
 /* Left column */
 .leftcolumn {
@@ -58,9 +75,9 @@ body {
 /* Add a card effect for articles */
 .card {
   background-color: white;
-  padding-top: 3px;
+  padding-top: 10px;
   padding-right: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   padding-left: 20px;;
   margin-top: 10px;
 }
@@ -116,6 +133,7 @@ ul {
 ul li {
   padding-bottom: 5px;
 }
+
 </style>
 <title>Foundations and Applications of Univalent Mathematics</title>
 </head>
@@ -129,7 +147,7 @@ ul li {
   <p>18-20 December 2019, Herrsching (near Munich), Germany</p>
 </div>
 
-<div class="topnav">
+<div class="topnav" id="navbar">
   <a href="#main">Main</a>
   <a href="#programme">Programme</a>
   <a href="#practical">Practical information</a>
@@ -198,8 +216,8 @@ ul li {
 </div>
 
 <div id="programme" class="card">
-  <h3>Preliminary schedule</h3>
-  <table id="gt" style="margin-bottom:30px;">
+  <h3>Preliminary programme</h3>
+  <table id="gt" style="margin-bottom:10px;margin-top:20px;">
     <tbody>
       <tr align="center" bgcolor=white>
 	<td width="130"></td>
@@ -267,9 +285,9 @@ ul li {
     </tbody>
   </table>
 
-  <h3>Abstracts</h3>
-  <table id="ahrens" width="100%" style="margin-bottom:20px;">
+  <table id="ahrens" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Benedikt Ahrens</b>: <em>A Higher Structure Identity Principle</em></td>
       </tr>
@@ -307,8 +325,9 @@ ul li {
     </tbody>
   </table>
 <!--
-  <table id="altenkirch" width="100%" style="margin-bottom:20px;">
+  <table id="altenkirch" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Thorsten Altenkirch</b>: <em>title</em></td>
       </tr>
@@ -320,8 +339,9 @@ ul li {
     </tbody>
   </table>
 -->
-  <table id="awodey" width="100%" style="margin-bottom:20px;">
+  <table id="awodey" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Steve Awodey</b>: <em>Composition, Filling, and the Fibrancy of the Universe</em></td>
       </tr>
@@ -338,8 +358,9 @@ ul li {
     </tbody>
   </table>
 <!--
-  <table id="bauer" width="100%" style="margin-bottom:20px;">
+  <table id="bauer" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Andrej Bauer</b>: <em>title</em></td>
       </tr>
@@ -350,8 +371,9 @@ ul li {
       </tr>
     </tbody>
   </table>
-  <table id="buchholtz" width="100%" style="margin-bottom:20px;">
+  <table id="buchholtz" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Ulrik Buchholtz</b>: <em>title</em></td>
       </tr>
@@ -362,8 +384,9 @@ ul li {
       </tr>
     </tbody>
   </table>
-  <table id="coquand" width="100%" style="margin-bottom:20px;">
+  <table id="coquand" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Thierry Coquand</b>: <em>title</em></td>
       </tr>
@@ -375,8 +398,9 @@ ul li {
     </tbody>
   </table>
 -->
-  <table id="dybjer" width="100%" style="margin-bottom:20px;">
+  <table id="dybjer" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Peter Dybjer</b>: <em>Categories with Families: Unityped, Simply Typed, and Dependently Typed</em></td>
       </tr>
@@ -410,8 +434,9 @@ ul li {
     </tbody>
   </table>
 <!--
-  <table id="escardo" width="100%" style="margin-bottom:20px;">
+  <table id="escardo" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Mart&iacute;n Escard&oacute;</b>: <em>title</em></td>
       </tr>
@@ -422,8 +447,9 @@ ul li {
       </tr>
     </tbody>
   </table>
-  <table id="isaev" width="100%" style="margin-bottom:20px;">
+  <table id="isaev" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Valery Isaev</b>: <em>title</em></td>
       </tr>
@@ -435,8 +461,9 @@ ul li {
     </tbody>
   </table>
 -->
-  <table id="kraus" width="100%" style="margin-bottom:20px;">
+  <table id="kraus" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Nicolai Kraus</b>: <em>Coherence via Well-founded Relations</em></td>
       </tr>
@@ -458,8 +485,9 @@ ul li {
     </tbody>
   </table>
 <!--
-  <table id="nordvallforsberg" width="100%" style="margin-bottom:20px;">
+  <table id="nordvallforsberg" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Fredrik Nordvall Forsberg</b>: <em>title</em></td>
       </tr>
@@ -471,8 +499,9 @@ ul li {
     </tbody>
   </table>
 -->
-  <table id="north" width="100%" style="margin-bottom:20px;">
+  <table id="north" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Paige Randall North</b>: <em>Two-sided Weak Factorization Systems for Directed Type Theory</em></td>
       </tr>
@@ -491,8 +520,9 @@ ul li {
     </tbody>
   </table>
 <!--
-  <table id="petrakis" width="100%" style="margin-bottom:20px;">
+  <table id="petrakis" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Iosif Petrakis</b>: <em>title</em></td>
       </tr>
@@ -504,8 +534,9 @@ ul li {
     </tbody>
   </table>
 -->
-  <table id="spitters" width="100%" style="margin-bottom:20px;">
+  <table id="spitters" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Bas Spitters</b>: <em>Synthetic topology in Homotopy Type Theory for probabilistic programming</em></td>
       </tr>
@@ -537,8 +568,9 @@ ul li {
       </tr>
     </tbody>
   </table>
-  <table id="streicher" width="100%" style="margin-bottom:20px;">
+  <table id="streicher" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Thomas Streicher</b>: <em>Simplicial Sets within Cubical Sets</em></td>
       </tr>
@@ -556,8 +588,9 @@ ul li {
       </tr>
     </tbody>
   </table>
-  <table id="vandenberg" width="100%" style="margin-bottom:20px;">
+  <table id="vandenberg" width="100%">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Benno van den Berg</b>: <em>Homotopy Type Theory with Explicit Conversions</em></td>
       </tr>
@@ -582,8 +615,9 @@ ul li {
       </tr>
     </tbody>
   </table>
-  <table id="vezzosi" width="100%" style="margin-bottom:20px;">
+  <table id="vezzosi" width="100%" style="margin-bottom:20px">
     <tbody>
+      <tr><td height="35"></td></tr>
       <tr bgcolor="#f1f1f1">
 	<td><b>Andrea Vezzosi</b>: <em>Partial Univalence in n-truncated Type Theory</em></td>
       </tr>
@@ -634,11 +668,11 @@ ul li {
   Ammersee and downtwon Munich.
 
   <h4>Getting to the venue</h4>
-  There are frequent suburban trains (line S8) from the Munich airport
+  <p>There are frequent suburban trains (line S8) from the Munich airport
   and downtown Munich to Herrsching (last stop). From the train
   station in Herrsching, it takes about 30 minutes to walk to the
   venue, or you can take Bus 921 to Herrsching-Lochschwab (2
-  stops). Please see the venue's website for directions.
+  stops). Please see the venue's website for directions.</p>
 </div>
 
 <div id="registration" class="card">
@@ -672,6 +706,21 @@ ul li {
   <a href="http://cj-xu.github.io/">Chuangjie Xu</a><BR><BR>
   Last modified: Tue 10th December 2019
 </div>
+
+<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
 
 </body>
 </html>
