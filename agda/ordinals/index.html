@@ -1,82 +1,67 @@
 <!DOCTYPE HTML>
-<html><head><meta charset="utf-8"><title>Ordinal notations via simultaneous definitions</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Background">
-        --------------------------------------------------
-          Ordinal notations via simultaneous definitions
-        --------------------------------------------------
+<html><head><meta charset="utf-8"><title>index</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Background">-------------------------------------------------------------
+- Three equivalent ordinal notation systems in Cubical Agda -
+-------------------------------------------------------------
 
-            Fredrik Nordvall Forsberg and Chuangjie Xu
+       Fredrik Nordvall Forsberg  and  Chuangjie Xu
 
-
-We define an ordinal notation system simultaneously with its ordering.
-Our simultaneous definitions generate only the ordinal terms in Cantor
-normal form which are in one-to-one correspondence with the ordinals
-below ε₀.  We implement the ordinal notation system as
-inductive-inductive-recursive definitions in Agda.
+We present three ordinal notation systems representing ordinals below
+ε₀ in type theory, using recent type-theoretical innovations such as
+mutual inductive-inductive definitions and higher inductive types.  As
+case studies, we show how basic ordinal arithmetic can be developed
+for these systems, and how they admit a transfinite induction
+principle.  We prove that all three notation systems are equivalent,
+so that we can transport results between them using the univalence
+principle.
 
 The source files are available at
 
     <a href = "https://github.com/cj-xu/OrdinalNotations">https://github.com/cj-xu/OrdinalNotations</a>
 
-All the files are tested in the safe mode of Agda version 2.6.0.1 with
-Agda&#39;s standard library Version 1.0.1.
+All the files are tested with
 
-</a><a id="746" class="Markup">\begin{code}</a>
+• Agda development version 2.6.1
+  (commit: 4af7b92663d2eb1dd94383b140eb7acfeb1b1eb0)
 
-<a id="760" class="Symbol">{-#</a> <a id="764" class="Keyword">OPTIONS</a> <a id="772" class="Pragma">--safe</a> <a id="779" class="Symbol">#-}</a>
+• Cubical Agda library
+  (commit: d7e345d3bcaefbc066d057487fca9677de7e29c7)
 
-<a id="784" class="Markup">\end{code}</a><a id="794" class="Background">
+</a><a id="924" class="Markup">\begin{code}</a>
 
-■ An inductive-inductive-recursive definition of ordinal notations
+<a id="938" class="Symbol">{-#</a> <a id="942" class="Keyword">OPTIONS</a> <a id="950" class="Pragma">--cubical</a> <a id="960" class="Pragma">--safe</a> <a id="967" class="Symbol">#-}</a>
 
-Our ordinal notations are nested weakly decreasing lists.  When
-inserting a new element x in front of an already constructed list xs,
-we need to ensure that x is greater than or equal to the head of xs.
-Therefore, we simultaneously define an inductive type 𝒪 of ordinal
-notations, an inductive family of types a &lt; b indexed by a,b : 𝒪, and
-a head function fst: 𝒪 → 𝒪.
+<a id="972" class="Keyword">module</a> <a id="979" href="index.html" class="Module">index</a> <a id="985" class="Keyword">where</a>
 
-</a><a id="1233" class="Markup">\begin{code}</a>
+<a id="992" class="Comment">-----------------------</a>
+<a id="1016" class="Comment">-- Table of contents --</a>
+<a id="1040" class="Comment">-----------------------</a>
 
-<a id="1247" class="Keyword">import</a> <a id="1254" href="OrdinalNotations.html" class="Module">OrdinalNotations</a>
+<a id="1065" class="Comment">-- §2 Cubical Agda</a>
+<a id="1084" class="Keyword">import</a> <a id="1091" href="Preliminaries.html" class="Module">Preliminaries</a>
 
-<a id="1272" class="Markup">\end{code}</a><a id="1282" class="Background">
+<a id="1106" class="Comment">-- §3 Notation systems for ordinals below ε₀</a>
 
-■ Ordinal arithmetic
+<a id="1152" class="Comment">-- §3.1 The subset approach</a>
+<a id="1180" class="Keyword">import</a> <a id="1187" href="SigmaOrd.html" class="Module">SigmaOrd</a>
 
-We define ordinal arithmetic operations for our ordinal notations
-including addition, subtraction, multiplication and exponentiation.
+<a id="1197" class="Comment">-- §3.2 The mutual approach</a>
+<a id="1225" class="Keyword">import</a> <a id="1232" href="MutualOrd.html" class="Module">MutualOrd</a>
 
-</a><a id="1441" class="Markup">\begin{code}</a>
+<a id="1243" class="Comment">-- MutualOrd can also be defined without nested and</a>
+<a id="1295" class="Comment">-- inductive-recursive definitions</a>
+<a id="1330" class="Keyword">import</a> <a id="1337" href="MutualOrdWithoutNestednessAndRecursion.html" class="Module">MutualOrdWithoutNestednessAndRecursion</a>
 
-<a id="1455" class="Keyword">import</a> <a id="1462" href="OrdinalArithmetic.html" class="Module">OrdinalArithmetic</a>
+<a id="1377" class="Comment">-- §3.3 The higher inductive approach</a>
+<a id="1415" class="Keyword">import</a> <a id="1422" href="HITOrd.html" class="Module">HITOrd</a>
 
-<a id="1481" class="Markup">\end{code}</a><a id="1491" class="Background">
+<a id="1430" class="Comment">-- §3.4 Equivalences between the three approaches</a>
+<a id="1480" class="Keyword">import</a> <a id="1487" href="Equivalences.html" class="Module">Equivalences</a>
 
-■ Transfinite induction
+<a id="1501" class="Comment">-- §4 Ordinal arithmetic</a>
+<a id="1526" class="Keyword">import</a> <a id="1533" href="Arithmetic.html" class="Module">Arithmetic</a>
 
-We prove that our simultaneous definition 𝒪 of ordinal notations is
-well-founded and hence have the transfinite induction principle for 𝒪.
-Using this, we prove a computational version of the statement
+<a id="1545" class="Comment">-- §5 Transfinite induction</a>
+<a id="1573" class="Keyword">import</a> <a id="1580" href="TransfiniteInduction.html" class="Module">TransfiniteInduction</a>
 
-  there is no infinite descending sequence of ordinals below ε₀.
-
-</a><a id="1786" class="Markup">\begin{code}</a>
-
-<a id="1800" class="Keyword">import</a> <a id="1807" href="TransfiniteInduction.html" class="Module">TransfiniteInduction</a>
-
-<a id="1829" class="Markup">\end{code}</a><a id="1839" class="Background">
-
-■ An equivalent inductive-inductive definition of ordinal notations
-
-The head function fst : 𝒪 → 𝒪 is only used strictly positively in 𝒪
-and &lt;, which means that its graph can be defined inductive-inductively
-and in turn used instead of the recursively defined fst.  This reduces
-the above inductive-inductive-recursive construction to an
-inductive-inductive one.
-
-</a><a id="2205" class="Markup">\begin{code}</a>
-
-<a id="2219" class="Keyword">import</a> <a id="2226" href="OrdinalNotationsWithoutRecursion.html" class="Module">OrdinalNotationsWithoutRecursion</a>
-
-<a id="2260" class="Markup">\end{code}</a><a id="2270" class="Background">
+<a id="1602" class="Markup">\end{code}</a><a id="1612" class="Background">
 </a></pre></body></html>
