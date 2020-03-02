@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>index</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Background">
+     ---------------------------------------------------------
+      A Gentzen-style monadic translation of Gödel&#39;s System T
+     ---------------------------------------------------------
+
+                   Chuangjie Xu, August 2019
+
+                   Updated in February 2020
+
+
+We introduce a syntactic translation of Gödel’s System T parametrized
+by a weak notion of a monad, and prove a corresponding fundamental
+theorem of logical relation. Our translation structurally corresponds
+to Gentzen’s negative translation of classical logic. By instantiating
+the monad and the base case of the logical relation, we reveal various
+properties and structures of T-definable functionals such as
+majorizability, continuity and bar recursion.
+
+
+This Agda development is organized as follow:
+
+1. Gödel&#39;s system T (extended with products)
+
+2. A Gentzen-style monadic translation of System T
+
+3. Fundamental theorem of logical relation
+
+4. Examples of nuclei and their applications
+
+5. Other monadic translations of System T
+
+All the files are tested in the safe mode of Agda version 2.6.1.
+
+
+</a><a id="1086" class="Markup">\begin{code}</a>
+
+<a id="1100" class="Symbol">{-#</a> <a id="1104" class="Keyword">OPTIONS</a> <a id="1112" class="Pragma">--safe</a> <a id="1119" class="Symbol">#-}</a>
+
+<a id="1124" class="Markup">\end{code}</a><a id="1134" class="Background">
+
+■ Gödel&#39;s system T
+
+we work with the lambda-calculus version of System T.
+
+</a><a id="1211" class="Markup">\begin{code}</a>
+
+<a id="1225" class="Keyword">import</a> <a id="1232" href="T.html" class="Module">T</a>
+<a id="1234" class="Keyword">import</a> <a id="1241" href="TAuxiliaries.html" class="Module">TAuxiliaries</a>
+
+<a id="1255" class="Markup">\end{code}</a><a id="1265" class="Background">
+
+■ A Gentzen-style monadic translation
+
+We define a syntactic translation of T into itself, parametrized by a
+nucleus (Jι, η, κ) which is given as module parameters.
+
+</a><a id="1433" class="Markup">\begin{code}</a>
+
+<a id="1447" class="Keyword">import</a> <a id="1454" href="GentzenTranslation.html" class="Module">GentzenTranslation</a>
+
+<a id="1474" class="Markup">\end{code}</a><a id="1484" class="Background">
+
+■ Fundamental theorem of logical relation
+
+We show that every term is related to its translation w.r.t. the
+logical relation extending a given relation on natural numbers.
+
+</a><a id="1659" class="Markup">\begin{code}</a>
+
+<a id="1673" class="Keyword">import</a> <a id="1680" href="LogicalRelation.html" class="Module">LogicalRelation</a>
+
+<a id="1697" class="Markup">\end{code}</a><a id="1707" class="Background">
+
+■ Example I: majorizability
+
+The translation of any term t of T majorizes t itself.
+
+</a><a id="1794" class="Markup">\begin{code}</a>
+
+<a id="1808" class="Keyword">import</a> <a id="1815" href="Majorizability.html" class="Module">Majorizability</a>
+
+<a id="1831" class="Markup">\end{code}</a><a id="1841" class="Background">
+
+■ Example II: lifting to higher-order functionals
+
+We lift natural numbers to functions of type X → ℕ for type X of T.
+This allows us to apply the usual syntactic method to prove properties
+of functions of type X → ℕ.
+
+</a><a id="2062" class="Markup">\begin{code}</a>
+
+<a id="2076" class="Keyword">import</a> <a id="2083" href="Lifting.html" class="Module">Lifting</a>
+
+<a id="2092" class="Markup">\end{code}</a><a id="2102" class="Background">
+
+■ Example III: pointwise continuity
+
+Given a term f : ℕᴺ → ℕ in T, we obtain a term M : ℕᴺ → ℕ which is a
+modulus of continuity of f from the translation of f.
+
+</a><a id="2265" class="Markup">\begin{code}</a>
+
+<a id="2279" class="Keyword">import</a> <a id="2286" href="Continuity.html" class="Module">Continuity</a>
+
+<a id="2298" class="Markup">\end{code}</a><a id="2308" class="Background">
+
+■ Example IV: uniform continuity
+
+Given a term f : ℕᴺ → ℕ in T, we obtain from the translation of f a
+function M : ℕᴺ → ℕ such that, for any θ : ℕᴺ, M(θ) is a modulus of
+uniform continuity of f restricted to inputs pointwise bounded by θ.
+
+</a><a id="2550" class="Markup">\begin{code}</a>
+
+<a id="2564" class="Keyword">import</a> <a id="2571" href="UniformContinuity.html" class="Module">UniformContinuity</a>
+
+<a id="2590" class="Markup">\end{code}</a><a id="2600" class="Background">
+
+■ Example V: bar recursion
+
+Given Y : ℕᴺ → ℕ in T, we obtain a general-bar-recursion functional
+form the translation of Y.
+
+</a><a id="2726" class="Markup">\begin{code}</a>
+
+<a id="2740" class="Keyword">import</a> <a id="2747" href="BarRecursion.html" class="Module">BarRecursion</a>
+
+<a id="2761" class="Markup">\end{code}</a><a id="2771" class="Background">
+
+■ Other monadic translations
+
+We implement another two monadic translations, corresponding to the
+negative translations due to Kuroda and Kolmogorov.
+
+</a><a id="2924" class="Markup">\begin{code}</a>
+
+<a id="2938" class="Keyword">import</a> <a id="2945" href="KurodaTranslation.html" class="Module">KurodaTranslation</a>
+<a id="2963" class="Keyword">import</a> <a id="2970" href="KolmogorovTranslation.html" class="Module">KolmogorovTranslation</a>
+
+<a id="2993" class="Markup">\end{code}</a><a id="3003" class="Background">
+</a></pre></body></html>
