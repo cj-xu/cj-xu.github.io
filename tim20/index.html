@@ -98,7 +98,7 @@ table#abs {
   border: 1px solid white;
   border-collapse: collapse;
   padding: 3pt;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 table#abs tr:nth-child(even) {
@@ -151,18 +151,17 @@ ul li {
 
 <div id="programme" class="card">
   <h3>Programme</h3>
+  <p>To be announced.</p>
+<!--
   <table id="gt" width="100%">
     <tbody>
       <h4>Wednesday 11.03.2020</h4>
-<!--
       <tr>
 	<td width="17%">09:55</td>
 	<td width="80%">Opening</td>
       </tr>
--->
     </tbody>
   </table>
-<!--
   <table id="mtt" width="100%">
     <tbody>
       <tr>
@@ -223,23 +222,132 @@ ul li {
       </tr>
     </tbody>
   </table>
--->
   <table id="gt" width="100%">
     <tbody>
       <h4>Thursday 12.03.2020</h4>
-<!--
       <tr>
 	<td width="17%">09:55</td>
 	<td width="80%">Opening</td>
       </tr>
--->
     </tbody>
   </table>
-
+-->
 </div>
 
 <div id="abstracts" class="card">
   <h3>Abstracts</h3>
+  <table id="abs" width="100%">
+    <tbody>
+      <tr>
+	<td><b>Nils K&ouml;pp</b>: <em>Program Analysis and Transformation via Monadic Translations</em></td>
+      </tr>
+      <tr>
+	<td>
+	  We introduce a parametrized monadic translation of G&ouml;del's
+	  System T (and possible extensions), and prove a
+	  corresponding fundamental theorem of logical relation. By
+	  instantiating the monad and the base case of the logical
+	  relation, we reveal various properties and structures of
+	  programs in T such as majorizability and (uniform)
+	  continuity.
+	</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="abs" width="100%">
+    <tbody>
+      <tr>
+	<td><b>Nicolai Kraus</b>: <em>An Induction Principle for Cycles</em></td>
+      </tr>
+      <tr>
+	<td>
+	  joint work with Jakob von Raumer
+	  <br><br>
+          Consider paths in a given graph. If we want to prove a
+          certain property for all paths, the obvious approach is to
+          try induction on [the length of] paths. If we want to prove
+          a certain property for all *closed* paths a.k.a. cycles
+          (first vertex = last vertex), this does not work since
+          closed paths are not inductively generated: if we remove an
+          edge from a closed path, it is not closed any more.
+	  <br><br>
+	  We have studied this situation because certain coherence
+	  conditions in HoTT can be formulated in terms of cycles. The
+	  problem discussed above then makes it difficult to verify
+	  these conditions in the case of natural applications.
+	  <br><br>
+	  We build on the observation that, at least in all those
+	  cases we are interested in, the graph is given by the
+	  symmetric closure of a locally confluent and Noetherian
+	  (co-well-founded) proof-relevant relation. Under these
+	  assumptions, we construct a new Noetherian relation on
+	  cycles which allows co-well-founded induction. As a
+	  consequence, whenever we have to prove a property for all
+	  cycles, it suffices to prove the property for the empty
+	  cycle and for those given by local confluence.
+	  <br><br>
+	  An application in HoTT is the statement that the fundamental
+	  groups of the free higher group over a set are trivial.
+	</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="abs" width="100%">
+    <tbody>
+      <tr>
+	<td><b>Anders M&ouml;rtberg</b>: <em>Some results in Cubical Agda</em></td>
+      </tr>
+      <tr>
+	<td>
+	  We have found that many results that were difficult in HoTT
+	  is a lot easier to formalize cubically (e.g. the 3x3 lemma
+	  for pushouts) and I would love to get some ideas for other
+	  things to try.
+	</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="abs" width="100%">
+    <tbody>
+      <tr>
+	<td><b>Chuangjie Xu</b>: <em>Statistical approaches to theories</em></td>
+      </tr>
+      <tr>
+	<td>
+	  I would like to discuss a seemingly possible application of
+	  machine learning motivated by reverse mathematics.
+	</td>
+      </tr>
+    </tbody>
+  </table>  <table id="abs" width="100%">
+    <tbody>
+      <tr>
+	<td><b>Max Zeuner</b>: <em>A cubical approach to the Structure Identity Principle</em></td>
+      </tr>
+      <tr>
+	<td>
+	  The structure identity principle (SIP) is an informal
+	  principle, which asserts that reasoning about mathematical
+	  structures is invariant under isomorphisms of such
+	  structures. This can be made precise in HoTT/UF and
+	  formalized versions of the SIP have been proved for large
+	  classes of mathematical structures. We will discuss a
+	  version of the SIP that can be found in the lecture notes of
+	  Martín Escardó and our work can be seen as a reformulation
+	  of it in cubical type theory. By reformulating the SIP
+	  cubically some of the key proofs become more direct than in
+	  HoTT/UF, and furthermore, the cubical SIP lets us transport
+	  programs and proofs between isomorphic structures without
+	  sacrificing the computational content of the transported
+	  programs and proofs. We will then discuss a few examples to
+	  demonstrate how the cubical SIP is applied to actual
+	  instances of structures in mathematics and computer science.
+	  <br><br>
+          (Joint work with Anders Mörtberg.)
+	</td>
+      </tr>
+    </tbody>
+  </table>
 <!--
   <table id="abs" width="100%">
     <tbody>
@@ -268,7 +376,7 @@ ul li {
 
 <div class="footer">
   <a href="http://cj-xu.github.io/" target="_blank">Chuangjie Xu</a><BR><BR>
-  Last modified: Mon 24th March 2020
+  Last modified: Wed 4th March 2020
 </div>
 
 </body>
