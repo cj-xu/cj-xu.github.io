@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>index</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Comment">----------------------------------------------------------------------------------------------------</a>
+<a id="102" class="Comment">-- Connecting Constructive Notions of Ordinals in Homotopy Type Theory</a>
+<a id="173" class="Comment">----------------------------------------------------------------------------------------------------</a>
+
+<a id="275" class="Comment">{- Cubical Agda implementation of the paper
+
+     Connecting Constructive Notions of Ordinals in Homotopy Type Theory
+
+         Nicolai Kraus, Fredrik Nordvall-Forsberg, and Chuangjie Xu
+
+
+
+   All the files are tested with
+
+   • Agda development version 2.6.2
+     (commit: 2479f0a7122a41ac15f5699dc87ed41ed72cbd0e)
+
+   • Cubical Agda library
+     (commit: 390ac95aa2f87a131844aabe20a7b3ed81d608f4)
+-}</a>
+
+<a id="678" class="Symbol">{-#</a> <a id="682" class="Keyword">OPTIONS</a> <a id="690" class="Pragma">--cubical</a> <a id="700" class="Symbol">#-}</a>
+
+<a id="705" class="Keyword">module</a> <a id="712" href="index.html" class="Module">index</a> <a id="718" class="Keyword">where</a>
+
+<a id="725" class="Comment">{- An axiomatic approach to ordinals -}</a>
+<a id="765" class="Keyword">import</a> <a id="772" href="Abstract.ZerSucLim.html" class="Module">Abstract.ZerSucLim</a>
+<a id="791" class="Keyword">import</a> <a id="798" href="Abstract.Arithmetic.html" class="Module">Abstract.Arithmetic</a>
+
+<a id="819" class="Comment">{- Cantor Normal Forms as subsets of unlabled binary trees -}</a>
+<a id="881" class="Keyword">import</a> <a id="888" href="CantorNormalForm.Everything.html" class="Module">CantorNormalForm.Everything</a>
+
+<a id="917" class="Comment">{- Brouwer Trees as a Quotient Inductive-Inductive Type -}</a>
+<a id="976" class="Keyword">import</a> <a id="983" href="BrouwerTree.Everything.html" class="Module">BrouwerTree.Everything</a>
+
+<a id="1007" class="Comment">{- Extensional Wellfounded Orders -}</a>
+<a id="1044" class="Keyword">import</a> <a id="1051" href="ExtensionalWellfoundedOrder.Everything.html" class="Module">ExtensionalWellfoundedOrder.Everything</a>
+
+<a id="1091" class="Comment">{- Interpretation between the Notions -}</a>
+<a id="1132" class="Keyword">import</a> <a id="1139" href="Interpretations.CnfToBrw.html" class="Module">Interpretations.CnfToBrw</a>
+<a id="1164" class="Keyword">import</a> <a id="1171" href="Interpretations.BrwToOrd.html" class="Module">Interpretations.BrwToOrd</a>
+
+<a id="1197" class="Comment">{- Index of the Formalized Proofs in the Paper -}</a>
+<a id="1247" class="Keyword">import</a> <a id="1254" href="IndexOfProofs.html" class="Module">IndexOfProofs</a>
+</pre></body></html>
