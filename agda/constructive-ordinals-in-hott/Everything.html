@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Everything</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Comment">----------------------------------------------------------------------------------------------------</a>
+<a id="102" class="Comment">-- Connecting Constructive Notions of Ordinals in Homotopy Type Theory</a>
+<a id="173" class="Comment">----------------------------------------------------------------------------------------------------</a>
+
+<a id="275" class="Comment">{- Cubical Agda implementation of the paper
+
+     Connecting Constructive Notions of Ordinals in Homotopy Type Theory
+
+         Nicolai Kraus, Fredrik Nordvall-Forsberg, and Chuangjie Xu
+
+   Source files can be found at
+
+     </a><a href="https://bitbucket.org/nicolaikraus/constructive-ordinals-in-hott/">https://bitbucket.org/nicolaikraus/constructive-ordinals-in-hott/</a>
+<a class="Comment">
+   See `</a><a href="https://bitbucket.org/nicolaikraus/constructive-ordinals-in-hott/src/master/README.md">README.md</a><a class="Comment">` for versions of Agda and the cubical library that these
+   files are tested with.
+-}</a>
+
+<a id="673" class="Symbol">{-#</a> <a id="677" class="Keyword">OPTIONS</a> <a id="685" class="Pragma">--cubical</a> <a id="695" class="Symbol">#-}</a>
+
+<a id="700" class="Keyword">module</a> <a id="707" href="Everything.html" class="Module">Everything</a> <a id="718" class="Keyword">where</a>
+
+<a id="725" class="Comment">{- An axiomatic approach to ordinals -}</a>
+<a id="765" class="Keyword">import</a> <a id="772" href="Abstract.ZerSucLim.html" class="Module">Abstract.ZerSucLim</a>
+<a id="791" class="Keyword">import</a> <a id="798" href="Abstract.Arithmetic.html" class="Module">Abstract.Arithmetic</a>
+
+<a id="819" class="Comment">{- Cantor Normal Forms as subsets of unlabled binary trees -}</a>
+<a id="881" class="Keyword">import</a> <a id="888" href="CantorNormalForm.Everything.html" class="Module">CantorNormalForm.Everything</a>
+
+<a id="917" class="Comment">{- Brouwer Trees as a Quotient Inductive-Inductive Type -}</a>
+<a id="976" class="Keyword">import</a> <a id="983" href="BrouwerTree.Everything.html" class="Module">BrouwerTree.Everything</a>
+
+<a id="1007" class="Comment">{- Extensional Wellfounded Orders -}</a>
+<a id="1044" class="Keyword">import</a> <a id="1051" href="ExtensionalWellfoundedOrder.Everything.html" class="Module">ExtensionalWellfoundedOrder.Everything</a>
+
+<a id="1091" class="Comment">{- Interpretation between the Notions -}</a>
+<a id="1132" class="Keyword">import</a> <a id="1139" href="Interpretations.CnfToBrw.html" class="Module">Interpretations.CnfToBrw</a>
+<a id="1164" class="Keyword">import</a> <a id="1171" href="Interpretations.BrwToOrd.html" class="Module">Interpretations.BrwToOrd</a>
+</pre></body></html>
