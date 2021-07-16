@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Yablo</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Background">
+  -----------------------------------------------------------
+    Yablo&#39;s paradox in (the minimal-logic fragment of) Agda
+  -----------------------------------------------------------
+
+Agda is not &quot;clever&quot; enough to prove the paradox directly. But it can
+prove two lemmas which togethers derive falsity.
+
+The inhabited set X, its binary relation _&lt;_ (called R in the minlog
+development) and the predicate S are given as module parameters, for
+the sake of simplicity.
+
+</a><a id="470" class="Markup">\begin{code}</a>
+
+<a id="484" class="Keyword">module</a> <a id="491" href="Yablo.html" class="Module">Yablo</a> <a id="497" class="Symbol">(</a><a id="498" href="Yablo.html#498" class="Bound">⊥</a> <a id="500" href="Yablo.html#500" class="Bound">X</a>   <a id="504" class="Symbol">:</a> <a id="506" href="Agda.Primitive.html#326" class="Primitive">Set</a><a id="509" class="Symbol">)</a>
+             <a id="524" class="Symbol">(</a><a id="525" href="Yablo.html#525" class="Bound">c</a>     <a id="531" class="Symbol">:</a> <a id="533" href="Yablo.html#500" class="Bound">X</a><a id="534" class="Symbol">)</a>
+             <a id="549" class="Symbol">(</a><a id="550" href="Yablo.html#550" class="Bound Operator">_&lt;_</a>   <a id="556" class="Symbol">:</a> <a id="558" href="Yablo.html#500" class="Bound">X</a> <a id="560" class="Symbol">→</a> <a id="562" href="Yablo.html#500" class="Bound">X</a> <a id="564" class="Symbol">→</a> <a id="566" href="Agda.Primitive.html#326" class="Primitive">Set</a><a id="569" class="Symbol">)</a>
+             <a id="584" class="Symbol">(</a><a id="585" href="Yablo.html#585" class="Bound">inf</a>   <a id="591" class="Symbol">:</a> <a id="593" class="Symbol">∀</a> <a id="595" href="Yablo.html#595" class="Bound">x</a> <a id="597" class="Symbol">→</a> <a id="599" class="Symbol">(∀</a> <a id="602" href="Yablo.html#602" class="Bound">y</a> <a id="604" class="Symbol">→</a> <a id="606" href="Yablo.html#595" class="Bound">x</a> <a id="608" href="Yablo.html#550" class="Bound Operator">&lt;</a> <a id="610" href="Yablo.html#602" class="Bound">y</a> <a id="612" class="Symbol">→</a> <a id="614" href="Yablo.html#498" class="Bound">⊥</a><a id="615" class="Symbol">)</a> <a id="617" class="Symbol">→</a> <a id="619" href="Yablo.html#498" class="Bound">⊥</a><a id="620" class="Symbol">)</a>
+             <a id="635" class="Symbol">(</a><a id="636" href="Yablo.html#636" class="Bound">trans</a> <a id="642" class="Symbol">:</a> <a id="644" class="Symbol">∀{</a><a id="646" href="Yablo.html#646" class="Bound">x</a> <a id="648" href="Yablo.html#648" class="Bound">y</a> <a id="650" href="Yablo.html#650" class="Bound">z</a><a id="651" class="Symbol">}</a> <a id="653" class="Symbol">→</a> <a id="655" href="Yablo.html#646" class="Bound">x</a> <a id="657" href="Yablo.html#550" class="Bound Operator">&lt;</a> <a id="659" href="Yablo.html#648" class="Bound">y</a> <a id="661" class="Symbol">→</a> <a id="663" href="Yablo.html#648" class="Bound">y</a> <a id="665" href="Yablo.html#550" class="Bound Operator">&lt;</a> <a id="667" href="Yablo.html#650" class="Bound">z</a> <a id="669" class="Symbol">→</a> <a id="671" href="Yablo.html#646" class="Bound">x</a> <a id="673" href="Yablo.html#550" class="Bound Operator">&lt;</a> <a id="675" href="Yablo.html#650" class="Bound">z</a><a id="676" class="Symbol">)</a>
+             <a id="691" class="Symbol">(</a><a id="692" href="Yablo.html#692" class="Bound">S</a>     <a id="698" class="Symbol">:</a> <a id="700" href="Yablo.html#500" class="Bound">X</a> <a id="702" class="Symbol">→</a> <a id="704" href="Agda.Primitive.html#326" class="Primitive">Set</a><a id="707" class="Symbol">)</a>
+             <a id="722" class="Symbol">(</a><a id="723" href="Yablo.html#723" class="Bound">spec1</a> <a id="729" class="Symbol">:</a> <a id="731" class="Symbol">∀</a> <a id="733" href="Yablo.html#733" class="Bound">x</a> <a id="735" class="Symbol">→</a> <a id="737" href="Yablo.html#692" class="Bound">S</a> <a id="739" href="Yablo.html#733" class="Bound">x</a> <a id="741" class="Symbol">→</a> <a id="743" class="Symbol">∀</a> <a id="745" href="Yablo.html#745" class="Bound">y</a> <a id="747" class="Symbol">→</a> <a id="749" href="Yablo.html#733" class="Bound">x</a> <a id="751" href="Yablo.html#550" class="Bound Operator">&lt;</a> <a id="753" href="Yablo.html#745" class="Bound">y</a> <a id="755" class="Symbol">→</a> <a id="757" href="Yablo.html#692" class="Bound">S</a> <a id="759" href="Yablo.html#745" class="Bound">y</a> <a id="761" class="Symbol">→</a> <a id="763" href="Yablo.html#498" class="Bound">⊥</a><a id="764" class="Symbol">)</a>
+             <a id="779" class="Symbol">(</a><a id="780" href="Yablo.html#780" class="Bound">spec2</a> <a id="786" class="Symbol">:</a> <a id="788" class="Symbol">∀</a> <a id="790" href="Yablo.html#790" class="Bound">x</a> <a id="792" class="Symbol">→</a> <a id="794" class="Symbol">(∀</a> <a id="797" href="Yablo.html#797" class="Bound">y</a> <a id="799" class="Symbol">→</a> <a id="801" href="Yablo.html#790" class="Bound">x</a> <a id="803" href="Yablo.html#550" class="Bound Operator">&lt;</a> <a id="805" href="Yablo.html#797" class="Bound">y</a> <a id="807" class="Symbol">→</a> <a id="809" href="Yablo.html#692" class="Bound">S</a> <a id="811" href="Yablo.html#797" class="Bound">y</a> <a id="813" class="Symbol">→</a> <a id="815" href="Yablo.html#498" class="Bound">⊥</a><a id="816" class="Symbol">)</a> <a id="818" class="Symbol">→</a> <a id="820" href="Yablo.html#692" class="Bound">S</a> <a id="822" href="Yablo.html#790" class="Bound">x</a><a id="823" class="Symbol">)</a>
+ <a id="826" class="Keyword">where</a>
+
+<a id="833" class="Markup">\end{code}</a><a id="843" class="Background">
+
+Agda&#39;s auto feature finds a proof that S(x) doesn&#39;t hold for all x.
+
+</a><a id="914" class="Markup">\begin{code}</a>
+
+<a id="928" class="Comment">{- inferred by Agda&#39;s auto -}</a>
+<a id="Lemma"></a><a id="958" href="Yablo.html#958" class="Function">Lemma</a> <a id="964" class="Symbol">:</a> <a id="966" class="Symbol">∀</a> <a id="968" href="Yablo.html#968" class="Bound">x</a> <a id="970" class="Symbol">→</a> <a id="972" href="Yablo.html#692" class="Bound">S</a> <a id="974" href="Yablo.html#968" class="Bound">x</a> <a id="976" class="Symbol">→</a> <a id="978" href="Yablo.html#498" class="Bound">⊥</a>
+<a id="980" href="Yablo.html#958" class="Function">Lemma</a> <a id="986" href="Yablo.html#986" class="Bound">x</a> <a id="988" href="Yablo.html#988" class="Bound">s</a> <a id="990" class="Symbol">=</a> <a id="992" href="Yablo.html#585" class="Bound">inf</a> <a id="996" href="Yablo.html#986" class="Bound">x</a> <a id="998" class="Symbol">(λ</a> <a id="1001" href="Yablo.html#1001" class="Bound">y</a> <a id="1003" href="Yablo.html#1003" class="Bound">x&lt;y</a> <a id="1007" class="Symbol">→</a> <a id="1009" href="Yablo.html#723" class="Bound">spec1</a> <a id="1015" href="Yablo.html#986" class="Bound">x</a> <a id="1017" href="Yablo.html#988" class="Bound">s</a> <a id="1019" href="Yablo.html#1001" class="Bound">y</a> <a id="1021" href="Yablo.html#1003" class="Bound">x&lt;y</a> <a id="1025" class="Symbol">(</a><a id="1026" href="Yablo.html#780" class="Bound">spec2</a> <a id="1032" href="Yablo.html#1001" class="Bound">y</a> <a id="1034" class="Symbol">(λ</a> <a id="1037" href="Yablo.html#1037" class="Bound">z</a> <a id="1039" href="Yablo.html#1039" class="Bound">y&lt;z</a> <a id="1043" class="Symbol">→</a> <a id="1045" href="Yablo.html#723" class="Bound">spec1</a> <a id="1051" href="Yablo.html#986" class="Bound">x</a> <a id="1053" href="Yablo.html#988" class="Bound">s</a> <a id="1055" href="Yablo.html#1037" class="Bound">z</a> <a id="1057" class="Symbol">(</a><a id="1058" href="Yablo.html#636" class="Bound">trans</a> <a id="1064" href="Yablo.html#1003" class="Bound">x&lt;y</a> <a id="1068" href="Yablo.html#1039" class="Bound">y&lt;z</a><a id="1071" class="Symbol">))))</a>
+
+<a id="1077" class="Markup">\end{code}</a><a id="1087" class="Background">
+
+It also proves S(c) where c is constant of X.
+
+</a><a id="1136" class="Markup">\begin{code}</a>
+
+<a id="1150" class="Comment">{- can be inferred by Agda, with Lemma inlined -}</a>
+<a id="s"></a><a id="1200" href="Yablo.html#1200" class="Function">s</a> <a id="1202" class="Symbol">:</a> <a id="1204" href="Yablo.html#692" class="Bound">S</a> <a id="1206" href="Yablo.html#525" class="Bound">c</a>
+<a id="1208" href="Yablo.html#1200" class="Function">s</a> <a id="1210" class="Symbol">=</a> <a id="1212" href="Yablo.html#780" class="Bound">spec2</a> <a id="1218" href="Yablo.html#525" class="Bound">c</a> <a id="1220" class="Symbol">(λ</a> <a id="1223" href="Yablo.html#1223" class="Bound">y</a> <a id="1225" href="Yablo.html#1225" class="Bound">_</a> <a id="1227" class="Symbol">→</a> <a id="1229" href="Yablo.html#958" class="Function">Lemma</a> <a id="1235" href="Yablo.html#1223" class="Bound">y</a><a id="1236" class="Symbol">)</a>
+
+<a id="1239" class="Markup">\end{code}</a><a id="1249" class="Background">
+
+Agda doesn&#39;t search over the theorems that it has proved.  So let&#39;s
+use the above proofs to derive ⊥ ourselves.
+
+</a><a id="1364" class="Markup">\begin{code}</a>
+
+<a id="bot"></a><a id="1378" href="Yablo.html#1378" class="Function">bot</a> <a id="1382" class="Symbol">:</a> <a id="1384" href="Yablo.html#498" class="Bound">⊥</a>
+<a id="1386" href="Yablo.html#1378" class="Function">bot</a> <a id="1390" class="Symbol">=</a> <a id="1392" href="Yablo.html#958" class="Function">Lemma</a> <a id="1398" href="Yablo.html#525" class="Bound">c</a> <a id="1400" href="Yablo.html#1200" class="Function">s</a>
+
+<a id="1403" class="Markup">\end{code}</a><a id="1413" class="Background">
+</a></pre></body></html>
