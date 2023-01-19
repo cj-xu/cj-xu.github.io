@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>MLTT.Universes</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Markup">\begin{code}</a>
+
+<a id="15" class="Symbol">{-#</a> <a id="19" class="Keyword">OPTIONS</a> <a id="27" class="Pragma">--without-K</a> <a id="39" class="Pragma">--exact-split</a> <a id="53" class="Pragma">--safe</a> <a id="60" class="Pragma">--auto-inline</a> <a id="74" class="Symbol">#-}</a>
+
+<a id="79" class="Keyword">module</a> <a id="86" href="MLTT.Universes.html" class="Module">MLTT.Universes</a> <a id="101" class="Keyword">where</a>
+
+<a id="108" class="Keyword">open</a> <a id="113" class="Keyword">import</a> <a id="120" href="Agda.Primitive.html" class="Module">Agda.Primitive</a> <a id="135" class="Keyword">public</a>
+  <a id="144" class="Keyword">using</a> <a id="150" class="Symbol">(</a><a id="151" href="Agda.Primitive.html#810" class="Primitive Operator">_⊔_</a><a id="154" class="Symbol">)</a>
+  <a id="158" class="Keyword">renaming</a> <a id="167" class="Symbol">(</a><a id="168" href="Agda.Primitive.html#764" class="Primitive">lzero</a> <a id="174" class="Symbol">to</a> <a id="177" class="Primitive">𝓤₀</a>
+          <a id="190" class="Symbol">;</a> <a id="192" href="Agda.Primitive.html#780" class="Primitive">lsuc</a> <a id="197" class="Symbol">to</a> <a id="200" class="Primitive">_⁺</a>
+          <a id="213" class="Symbol">;</a> <a id="215" href="Agda.Primitive.html#597" class="Postulate">Level</a> <a id="221" class="Symbol">to</a> <a id="224" class="Postulate">Universe</a>
+          <a id="243" class="Symbol">;</a> <a id="245" href="Agda.Primitive.html#381" class="Primitive">Setω</a> <a id="250" class="Symbol">to</a> <a id="253" class="Primitive">𝓤ω</a>
+          <a id="266" class="Symbol">)</a>
+
+<a id="269" class="Keyword">variable</a>
+ <a id="279" href="MLTT.Universes.html#279" class="Generalizable">𝓤</a> <a id="281" href="MLTT.Universes.html#281" class="Generalizable">𝓥</a> <a id="283" href="MLTT.Universes.html#283" class="Generalizable">𝓦</a> <a id="285" href="MLTT.Universes.html#285" class="Generalizable">𝓣</a> <a id="287" href="MLTT.Universes.html#287" class="Generalizable">𝓤&#39;</a> <a id="290" href="MLTT.Universes.html#290" class="Generalizable">𝓥&#39;</a> <a id="293" href="MLTT.Universes.html#293" class="Generalizable">𝓦&#39;</a> <a id="296" href="MLTT.Universes.html#296" class="Generalizable">𝓣&#39;</a> <a id="299" class="Symbol">:</a> <a id="301" href="MLTT.Universes.html#224" class="Postulate">Universe</a>
+
+<a id="311" class="Markup">\end{code}</a><a id="321" class="Background">
+
+The following should be the only use of the Agda keyword &#39;Set&#39; in this
+development:
+
+</a><a id="408" class="Markup">\begin{code}</a>
+
+<a id="_̇"></a><a id="422" href="MLTT.Universes.html#422" class="Function Operator">_̇</a> <a id="425" class="Symbol">:</a> <a id="427" class="Symbol">(</a><a id="428" href="MLTT.Universes.html#428" class="Bound">𝓤</a> <a id="430" class="Symbol">:</a> <a id="432" href="MLTT.Universes.html#224" class="Postulate">Universe</a><a id="440" class="Symbol">)</a> <a id="442" class="Symbol">→</a> <a id="444" class="Symbol">_</a>
+<a id="446" href="MLTT.Universes.html#446" class="Bound">𝓤</a> <a id="448" href="MLTT.Universes.html#422" class="Function Operator">̇</a> <a id="450" class="Symbol">=</a> <a id="452" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="456" href="MLTT.Universes.html#446" class="Bound">𝓤</a>
+
+<a id="𝓤₁"></a><a id="459" href="MLTT.Universes.html#459" class="Function">𝓤₁</a> <a id="462" class="Symbol">=</a> <a id="464" href="MLTT.Universes.html#177" class="Primitive">𝓤₀</a> <a id="467" href="MLTT.Universes.html#200" class="Primitive Operator">⁺</a>
+<a id="𝓤₂"></a><a id="469" href="MLTT.Universes.html#469" class="Function">𝓤₂</a> <a id="472" class="Symbol">=</a> <a id="474" href="MLTT.Universes.html#459" class="Function">𝓤₁</a> <a id="477" href="MLTT.Universes.html#200" class="Primitive Operator">⁺</a>
+
+<a id="_⁺⁺"></a><a id="480" href="MLTT.Universes.html#480" class="Function Operator">_⁺⁺</a> <a id="484" class="Symbol">:</a> <a id="486" href="MLTT.Universes.html#224" class="Postulate">Universe</a> <a id="495" class="Symbol">→</a> <a id="497" href="MLTT.Universes.html#224" class="Postulate">Universe</a>
+<a id="506" href="MLTT.Universes.html#506" class="Bound">𝓤</a> <a id="508" href="MLTT.Universes.html#480" class="Function Operator">⁺⁺</a> <a id="511" class="Symbol">=</a> <a id="513" href="MLTT.Universes.html#506" class="Bound">𝓤</a> <a id="515" href="MLTT.Universes.html#200" class="Primitive Operator">⁺</a> <a id="517" href="MLTT.Universes.html#200" class="Primitive Operator">⁺</a>
+
+<a id="520" class="Markup">\end{code}</a><a id="530" class="Background">
+
+This is mainly to avoid naming implicit arguments:
+
+</a><a id="584" class="Markup">\begin{code}</a>
+
+<a id="universe-of"></a><a id="598" href="MLTT.Universes.html#598" class="Function">universe-of</a> <a id="610" class="Symbol">:</a> <a id="612" class="Symbol">(</a><a id="613" href="MLTT.Universes.html#613" class="Bound">X</a> <a id="615" class="Symbol">:</a> <a id="617" href="MLTT.Universes.html#279" class="Generalizable">𝓤</a> <a id="619" href="MLTT.Universes.html#422" class="Function Operator">̇</a> <a id="621" class="Symbol">)</a> <a id="623" class="Symbol">→</a> <a id="625" href="MLTT.Universes.html#224" class="Postulate">Universe</a>
+<a id="634" href="MLTT.Universes.html#598" class="Function">universe-of</a> <a id="646" class="Symbol">{</a><a id="647" href="MLTT.Universes.html#647" class="Bound">𝓤</a><a id="648" class="Symbol">}</a> <a id="650" href="MLTT.Universes.html#650" class="Bound">X</a> <a id="652" class="Symbol">=</a> <a id="654" href="MLTT.Universes.html#647" class="Bound">𝓤</a>
+
+<a id="657" class="Markup">\end{code}</a><a id="667" class="Background">
+
+precedences:
+
+</a><a id="683" class="Markup">\begin{code}</a>
+
+<a id="697" class="Keyword">infix</a>  <a id="704" class="Number">1</a> <a id="706" href="MLTT.Universes.html#422" class="Function Operator">_̇</a>
+
+<a id="710" class="Markup">\end{code}</a><a id="720" class="Background">
+</a></pre></body></html>

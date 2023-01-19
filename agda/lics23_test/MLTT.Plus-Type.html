@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>MLTT.Plus-Type</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Markup">\begin{code}</a>
+
+<a id="15" class="Symbol">{-#</a> <a id="19" class="Keyword">OPTIONS</a> <a id="27" class="Pragma">--without-K</a> <a id="39" class="Pragma">--exact-split</a> <a id="53" class="Pragma">--safe</a> <a id="60" class="Pragma">--auto-inline</a> <a id="74" class="Symbol">#-}</a>
+
+<a id="79" class="Keyword">module</a> <a id="86" href="MLTT.Plus-Type.html" class="Module">MLTT.Plus-Type</a> <a id="101" class="Keyword">where</a>
+
+<a id="108" class="Keyword">open</a> <a id="113" class="Keyword">import</a> <a id="120" href="MLTT.Universes.html" class="Module">MLTT.Universes</a> <a id="135" class="Keyword">public</a>
+
+<a id="143" class="Keyword">data</a> <a id="_+_"></a><a id="148" href="MLTT.Plus-Type.html#148" class="Datatype Operator">_+_</a> <a id="152" class="Symbol">{</a><a id="153" href="MLTT.Plus-Type.html#153" class="Bound">𝓤</a> <a id="155" href="MLTT.Plus-Type.html#155" class="Bound">𝓥</a><a id="156" class="Symbol">}</a> <a id="158" class="Symbol">(</a><a id="159" href="MLTT.Plus-Type.html#159" class="Bound">X</a> <a id="161" class="Symbol">:</a> <a id="163" href="MLTT.Plus-Type.html#153" class="Bound">𝓤</a> <a id="165" href="MLTT.Universes.html#422" class="Function Operator">̇</a> <a id="167" class="Symbol">)</a> <a id="169" class="Symbol">(</a><a id="170" href="MLTT.Plus-Type.html#170" class="Bound">Y</a> <a id="172" class="Symbol">:</a> <a id="174" href="MLTT.Plus-Type.html#155" class="Bound">𝓥</a> <a id="176" href="MLTT.Universes.html#422" class="Function Operator">̇</a> <a id="178" class="Symbol">)</a> <a id="180" class="Symbol">:</a> <a id="182" href="MLTT.Plus-Type.html#153" class="Bound">𝓤</a> <a id="184" href="Agda.Primitive.html#810" class="Primitive Operator">⊔</a> <a id="186" href="MLTT.Plus-Type.html#155" class="Bound">𝓥</a> <a id="188" href="MLTT.Universes.html#422" class="Function Operator">̇</a>  <a id="191" class="Keyword">where</a>
+ <a id="_+_.inl"></a><a id="198" href="MLTT.Plus-Type.html#198" class="InductiveConstructor">inl</a> <a id="202" class="Symbol">:</a> <a id="204" href="MLTT.Plus-Type.html#159" class="Bound">X</a> <a id="206" class="Symbol">→</a> <a id="208" href="MLTT.Plus-Type.html#159" class="Bound">X</a> <a id="210" href="MLTT.Plus-Type.html#148" class="Datatype Operator">+</a> <a id="212" href="MLTT.Plus-Type.html#170" class="Bound">Y</a>
+ <a id="_+_.inr"></a><a id="215" href="MLTT.Plus-Type.html#215" class="InductiveConstructor">inr</a> <a id="219" class="Symbol">:</a> <a id="221" href="MLTT.Plus-Type.html#170" class="Bound">Y</a> <a id="223" class="Symbol">→</a> <a id="225" href="MLTT.Plus-Type.html#159" class="Bound">X</a> <a id="227" href="MLTT.Plus-Type.html#148" class="Datatype Operator">+</a> <a id="229" href="MLTT.Plus-Type.html#170" class="Bound">Y</a>
+
+<a id="232" class="Markup">\end{code}</a><a id="242" class="Background">
+</a></pre></body></html>

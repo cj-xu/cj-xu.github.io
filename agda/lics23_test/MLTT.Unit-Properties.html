@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>MLTT.Unit-Properties</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Background">One-element type properties.
+
+</a><a id="31" class="Markup">\begin{code}</a>
+
+<a id="45" class="Symbol">{-#</a> <a id="49" class="Keyword">OPTIONS</a> <a id="57" class="Pragma">--without-K</a> <a id="69" class="Pragma">--exact-split</a> <a id="83" class="Pragma">--safe</a> <a id="90" class="Pragma">--auto-inline</a> <a id="104" class="Symbol">#-}</a>
+
+<a id="109" class="Keyword">module</a> <a id="116" href="MLTT.Unit-Properties.html" class="Module">MLTT.Unit-Properties</a> <a id="137" class="Keyword">where</a>
+
+<a id="144" class="Keyword">open</a> <a id="149" class="Keyword">import</a> <a id="156" href="MLTT.Universes.html" class="Module">MLTT.Universes</a>
+<a id="171" class="Keyword">open</a> <a id="176" class="Keyword">import</a> <a id="183" href="MLTT.Unit.html" class="Module">MLTT.Unit</a>
+<a id="193" class="Keyword">open</a> <a id="198" class="Keyword">import</a> <a id="205" href="MLTT.Empty.html" class="Module">MLTT.Empty</a>
+<a id="216" class="Keyword">open</a> <a id="221" class="Keyword">import</a> <a id="228" href="MLTT.Id.html" class="Module">MLTT.Id</a>
+<a id="236" class="Keyword">open</a> <a id="241" class="Keyword">import</a> <a id="248" href="MLTT.Negation.html" class="Module">MLTT.Negation</a>
+
+<a id="𝟙-all-⋆"></a><a id="263" href="MLTT.Unit-Properties.html#263" class="Function">𝟙-all-⋆</a> <a id="271" class="Symbol">:</a> <a id="273" class="Symbol">(</a><a id="274" href="MLTT.Unit-Properties.html#274" class="Bound">x</a> <a id="276" class="Symbol">:</a> <a id="278" href="MLTT.Unit.html#157" class="Record">𝟙</a> <a id="280" class="Symbol">{</a><a id="281" href="MLTT.Universes.html#279" class="Generalizable">𝓤</a><a id="282" class="Symbol">})</a> <a id="285" class="Symbol">→</a> <a id="287" href="MLTT.Unit-Properties.html#274" class="Bound">x</a> <a id="289" href="MLTT.Id.html#221" class="Datatype Operator">＝</a> <a id="291" href="MLTT.Unit.html#190" class="InductiveConstructor">⋆</a>
+<a id="293" href="MLTT.Unit-Properties.html#263" class="Function">𝟙-all-⋆</a> <a id="301" class="Symbol">{</a><a id="302" href="MLTT.Unit-Properties.html#302" class="Bound">𝓤</a><a id="303" class="Symbol">}</a> <a id="305" href="MLTT.Unit.html#190" class="InductiveConstructor">⋆</a> <a id="307" class="Symbol">=</a> <a id="309" href="MLTT.Identity-Type.html#186" class="InductiveConstructor">refl</a> <a id="314" class="Symbol">{</a><a id="315" href="MLTT.Unit-Properties.html#302" class="Bound">𝓤</a><a id="316" class="Symbol">}</a>
+<a id="𝟙-is-not-𝟘"></a><a id="318" href="MLTT.Unit-Properties.html#318" class="Function">𝟙-is-not-𝟘</a> <a id="329" class="Symbol">:</a> <a id="331" href="MLTT.Unit.html#157" class="Record">𝟙</a> <a id="333" href="MLTT.Negation.html#411" class="Function Operator">≠</a> <a id="335" href="MLTT.Empty-Type.html#149" class="Datatype">𝟘</a>
+<a id="337" href="MLTT.Unit-Properties.html#318" class="Function">𝟙-is-not-𝟘</a> <a id="348" href="MLTT.Unit-Properties.html#348" class="Bound">p</a> <a id="350" class="Symbol">=</a> <a id="352" href="MLTT.Id.html#764" class="Function">transport</a> <a id="362" class="Symbol">(λ</a> <a id="365" href="MLTT.Unit-Properties.html#365" class="Bound">X</a> <a id="367" class="Symbol">→</a> <a id="369" href="MLTT.Unit-Properties.html#365" class="Bound">X</a><a id="370" class="Symbol">)</a> <a id="372" href="MLTT.Unit-Properties.html#348" class="Bound">p</a> <a id="374" href="MLTT.Unit.html#190" class="InductiveConstructor">⋆</a>
+
+<a id="377" class="Markup">\end{code}</a><a id="387" class="Background">
+</a></pre></body></html>

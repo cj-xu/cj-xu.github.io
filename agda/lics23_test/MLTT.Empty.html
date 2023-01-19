@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>MLTT.Empty</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Background">Empty type.
+
+</a><a id="14" class="Markup">\begin{code}</a>
+
+<a id="28" class="Symbol">{-#</a> <a id="32" class="Keyword">OPTIONS</a> <a id="40" class="Pragma">--without-K</a> <a id="52" class="Pragma">--exact-split</a> <a id="66" class="Pragma">--safe</a> <a id="73" class="Pragma">--auto-inline</a> <a id="87" class="Symbol">#-}</a>
+
+<a id="92" class="Keyword">module</a> <a id="99" href="MLTT.Empty.html" class="Module">MLTT.Empty</a> <a id="110" class="Keyword">where</a>
+
+<a id="117" class="Keyword">open</a> <a id="122" class="Keyword">import</a> <a id="129" href="MLTT.Empty-Type.html" class="Module">MLTT.Empty-Type</a> <a id="145" class="Keyword">public</a>
+
+<a id="153" class="Markup">\end{code}</a><a id="163" class="Background">
+
+This should be the only use of the () pattern in this development:
+
+</a><a id="233" class="Markup">\begin{code}</a>
+
+<a id="𝟘-induction"></a><a id="247" href="MLTT.Empty.html#247" class="Function">𝟘-induction</a> <a id="259" class="Symbol">:</a> <a id="261" class="Symbol">{</a><a id="262" href="MLTT.Empty.html#262" class="Bound">A</a> <a id="264" class="Symbol">:</a> <a id="266" href="MLTT.Empty-Type.html#149" class="Datatype">𝟘</a> <a id="268" class="Symbol">{</a><a id="269" href="MLTT.Universes.html#279" class="Generalizable">𝓤</a><a id="270" class="Symbol">}</a> <a id="272" class="Symbol">→</a> <a id="274" href="MLTT.Universes.html#281" class="Generalizable">𝓥</a> <a id="276" href="MLTT.Universes.html#422" class="Function Operator">̇</a> <a id="278" class="Symbol">}</a> <a id="280" class="Symbol">→</a> <a id="282" class="Symbol">(</a><a id="283" href="MLTT.Empty.html#283" class="Bound">x</a> <a id="285" class="Symbol">:</a> <a id="287" href="MLTT.Empty-Type.html#149" class="Datatype">𝟘</a><a id="288" class="Symbol">)</a> <a id="290" class="Symbol">→</a> <a id="292" href="MLTT.Empty.html#262" class="Bound">A</a> <a id="294" href="MLTT.Empty.html#283" class="Bound">x</a>
+<a id="296" href="MLTT.Empty.html#247" class="Function">𝟘-induction</a> <a id="308" class="Symbol">=</a> <a id="310" class="Symbol">λ</a> <a id="312" class="Symbol">()</a>
+
+<a id="unique-from-𝟘"></a><a id="316" href="MLTT.Empty.html#316" class="Function">unique-from-𝟘</a> <a id="330" class="Symbol">:</a> <a id="332" class="Symbol">{</a><a id="333" href="MLTT.Empty.html#333" class="Bound">A</a> <a id="335" class="Symbol">:</a> <a id="337" href="MLTT.Universes.html#281" class="Generalizable">𝓥</a> <a id="339" href="MLTT.Universes.html#422" class="Function Operator">̇</a> <a id="341" class="Symbol">}</a> <a id="343" class="Symbol">→</a> <a id="345" href="MLTT.Empty-Type.html#149" class="Datatype">𝟘</a> <a id="347" class="Symbol">{</a><a id="348" href="MLTT.Universes.html#279" class="Generalizable">𝓤</a><a id="349" class="Symbol">}</a> <a id="351" class="Symbol">→</a> <a id="353" href="MLTT.Empty.html#333" class="Bound">A</a>
+<a id="355" href="MLTT.Empty.html#316" class="Function">unique-from-𝟘</a> <a id="369" class="Symbol">=</a> <a id="371" href="MLTT.Empty.html#247" class="Function">𝟘-induction</a>
+
+<a id="𝟘-elim"></a><a id="384" href="MLTT.Empty.html#384" class="Function">𝟘-elim</a> <a id="391" class="Symbol">=</a> <a id="393" href="MLTT.Empty.html#316" class="Function">unique-from-𝟘</a>
+
+<a id="408" class="Markup">\end{code}</a><a id="418" class="Background">
+</a></pre></body></html>
